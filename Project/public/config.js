@@ -5,6 +5,17 @@
 
     function configuration($routeProvider) {
         $routeProvider
+
+            .when("/", {
+                templateUrl: "views/home/home.view.client.html",
+                controller: "HomeController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkForLogin
+                }
+            })
+
+
             .when("/login",{
                 templateUrl: 'views/user/templates/login.view.client.html'
                 // controller: 'LoginController',

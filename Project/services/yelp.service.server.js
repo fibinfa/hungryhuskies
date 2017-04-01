@@ -17,7 +17,7 @@ module.exports = function (app) {
         var location = req.query.location;
         var parameters = {
             term: searchTerm,
-            location: location|| 'Boston',
+            location: location || 'Boston',
             limit: 10
         };
 

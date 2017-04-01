@@ -1,0 +1,63 @@
+<nav class=" navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div  class="col-xs-10">
+            <div class="navbar-brand pull-left ffa-no-left-padding">
+                <a href="#/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-brand ffa-no-left-padding">
+                <span><strong>Websites</strong></span>
+            </div>
+        </div>
+
+        <div class="col-xs-2">
+            <div class="navbar-brand pull-right ">
+                <a href="#/user/{{model.userId}}/website/new">
+                    <span class="glyphicon glyphicon-plus">
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container-fluid">
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-11">
+                    Name
+                    <span class="glyphicon glyphicon-triangle-top"></span>
+                </div>
+            </div>
+        </li>
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-11 ">
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+                </div>
+                <div class="col-xs-1">
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-brand pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+

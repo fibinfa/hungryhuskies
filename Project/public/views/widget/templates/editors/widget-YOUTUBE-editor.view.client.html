@@ -1,0 +1,43 @@
+<h1>Youtube Editor</h1>
+<div ng-show="widgetForm.$invalid && widgetForm.$submitted" class="alert alert-danger" >
+    There are errors in the form. Please correct the errors and submit again.
+</div>
+
+<form name="widgetForm" novalidate>
+    <div class="form-group">
+        <label for="widgetname">Name</label>
+        <input ng-model="model.widget.name" id="widgetname" name="widgetname" type="text"
+               class="form-control"
+               placeholder="Widget Name" required/>
+    </div>
+
+    <div ng-show="widgetForm.$submitted && widgetForm.widgetname.$invalid" class="error">
+        Please enter name of the widget
+    </div>
+    <div class="form-group">
+        <label for="widgettext">Text</label>
+        <input ng-model="model.widget.text" id="widgettext" type="text"
+               class="form-control"
+               placeholder="Widget Text"/>
+    </div>
+    <div class="form-group">
+        <label for="url">URL</label>
+        <input ng-model="model.widget.url" id="url" type="url"
+               class="form-control"
+               placeholder="URL"/>
+    </div>
+    <div class="form-group">
+        <label for="width">Width</label>
+        <input ng-model="model.widget.width" id="width" type="text"
+               class="form-control"
+               placeholder="Width"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block"
+            ng-click="model.updateWidget(model.widget)">Update</button>
+
+    <a class="btn btn-danger btn-block"
+       ng-click="model.deleteWidget()">Delete</a>
+
+
+</form>

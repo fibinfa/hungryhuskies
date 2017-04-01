@@ -1,0 +1,72 @@
+<div class="container">
+    <h1>Register</h1>
+
+    <div class="alert alert-success" ng-show="model.message && registerForm.$valid">
+        {{model.message}}
+    </div>
+
+    <div ng-show="registerForm.$invalid && registerForm.$submitted" class="alert alert-danger" >
+        There are errors in the form. Please correct the errors and submit again.
+    </div>
+ <form name="registerForm" novalidate>
+        <div class="form-group">
+                <label for="username">Username</label>
+                <input ng-model="user.username" type="text" class="form-control"
+                       name="username" id="username" placeholder="username" required>
+        </div>
+        <div ng-show="registerForm.$submitted && registerForm.username.$invalid" class="error">
+            Please enter a username
+        </div>
+        <div class="form-group">
+                <label for="password">Password</label>
+                <input ng-model="user.password" type="password"
+                       ng-class="{'invalid':registerForm.password.value != registerForm.cpassword.value}"
+                       class="form-control"
+                       name="password" id="password" placeholder="password" required>
+        </div>
+        <div ng-show="registerForm.$submitted && registerForm.password.$invalid" class="error">
+         Please enter a password
+        </div>
+        <div class="form-group">
+                <label for="cpassword">Confirm Password</label>
+                <input ng-model="user.cpassword"
+                       ng-class="{'invalid':registerForm.password.value != registerForm.cpassword.value}"
+                       type="password" class="form-control"
+                       name="cpassword" id="cpassword" placeholder="verify password" required>
+        </div>
+     <div ng-show="registerForm.$submitted && registerForm.cpassword.$invalid" class="error">
+         Please re-enter the password
+     </div>
+     <div ng-show="registerForm.$submitted && registerForm.password.value != registerForm.cpassword.value" class="error">
+         Your password and confirmation-password do not match.
+     </div>
+         <div class="form-group">
+             <label for="first-name">First Name</label>
+             <input ng-model="user.firstName" type="text" class="form-control"
+                    id="first-name" placeholder="Alice">
+         </div>
+         <div class="form-group">
+             <label for="last-name">Last Name</label>
+             <input ng-model="user.lastName" type="text" class="form-control"
+                    id="last-name" placeholder="Wonderland">
+         </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input ng-model="user.email" type="email" class="form-control"
+                       name="email" id="email" placeholder="alice@wonderland.com">
+        </div>
+     <div ng-show="registerForm.$submitted && registerForm.email.$invalid" class="error">
+         Please enter a valid email id
+     </div>
+
+        <button ng-click="model.register(user)" type="submit"
+           class="btn btn-primary btn-block">
+                Register
+        </button>
+    <a class="btn btn-danger  btn-block"
+       href="#/login">Cancel</a>
+
+
+</form>
+
+</div>

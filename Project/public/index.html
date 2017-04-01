@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="HungryApp">
+<head>
+
+    <!--bootstrap-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel = "stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+
+
+
+    <!--angular-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <script src="views/YelpSearchController.js"></script>
+    <script src="services/yelpservice.client.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div ng-view></div>
+</body>
+</html>

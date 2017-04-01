@@ -1,0 +1,48 @@
+ <div class="container">
+        <h1>Login</h1>
+     <div ng-show="model.error && loginForm.$valid" class="alert alert-danger" role="alert">
+         {{model.error}}
+     </div>
+     <div ng-show="loginForm.$invalid && loginForm.$submitted" class="alert alert-danger" >
+         There are errors in the form. Please correct the errors and submit again.
+     </div>
+
+     <form name="loginForm" novalidate>
+
+     <label for="username">Username</label>
+        <input ng-model="user.username" id="username" name="username" type="text"
+               class="form-control"
+               placeholder="username" required/>
+         <div ng-show="loginForm.$submitted && loginForm.username.$invalid" class="error">
+             Please enter a username
+         </div>
+
+        <label for="password">Password</label>
+        <input ng-model="user.password" id="password" name="password" type="password"
+               class="form-control"
+               placeholder="password" required/>
+         <div ng-show="loginForm.$submitted && loginForm.password.$invalid" class="error">
+             Please enter a password
+         </div>
+         <br>
+
+        <button type ="submit" class="btn btn-primary btn-block"
+           ng-click="model.login(user)">Login
+        </button>
+
+        <a class="btn btn-success btn-block"
+           href="#/register">Register</a>
+
+         <a href="/auth/facebook" class="btn btn-primary btn-block">
+             <span class="fa fa-facebook"></span>
+             Facebook
+         </a>
+
+     <a href="/auth/google" class="btn btn-danger btn-block">
+         <span class="fa fa-google-plus"></span>
+         Google
+     </a>
+     </form>
+
+ </div>
+

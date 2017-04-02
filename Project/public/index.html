@@ -2,18 +2,21 @@
 <html lang="en" ng-app="HungryApp">
 <head>
 
-    <!--bootstrap-->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel = "stylesheet">
-    <link href="css/style.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Hungry</title>
 
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <!--angular-->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 
 
+    <!--bootstrap-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel = "stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
 
     <script src="app.js"></script>
     <script src="config.js"></script>
@@ -21,11 +24,24 @@
     <script src="views/YelpSearchController.js"></script>
     <script src="services/yelpservice.client.js"></script>
 
-    <meta charset="UTF-8">
-    <title>HungryApp</title>
+
+    <!--favicon-->
+    <link rel="icon"
+          type="image/icon"
+          href="images/icon.PNG">
+
+
+    <!--controllers-->
+    <script src="views/home/home.controller.client.js"></script>
+
 </head>
 <body>
 
-    <div ng-view></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+
+    </nav>
+
+    <span ng-view></span>
 </body>
 </html>

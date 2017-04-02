@@ -104,3 +104,10 @@ p{
 }
 
 
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    /*width: 70%;*/
+    height: 345px;
+    margin: auto;
+}
+

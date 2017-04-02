@@ -1,3 +1,9 @@
-/**
- * Created by sanka on 4/1/2017.
- */
+(function () {
+    angular
+        .module("HungryApp")
+        .controller("HomeController", HomeController);
+
+    function HomeController() {
+
+    }
+})();

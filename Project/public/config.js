@@ -9,10 +9,7 @@
             .when("/", {
                 templateUrl: "views/home/home.view.client.html",
                 controller: "HomeController",
-                controllerAs: "model",
-                resolve: {
-                    loggedIn: checkForLogin
-                }
+                controllerAs: "model"
             })
 
 

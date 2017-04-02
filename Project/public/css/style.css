@@ -124,14 +124,17 @@ p{
 
 .t-category{
     background-image: url(../images/bg.jpg);
-    opacity: .5;
-    transition: 2000ms;
+    opacity: .6;
+    transition: opacity 3500ms;
+    transition: color 3000ms;
+    color: red;
+
 }
 
 
 .t-category:hover{
     opacity: 1;
-
+    color: whitesmoke;
 }
 
 

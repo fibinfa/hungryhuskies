@@ -1,9 +1,5 @@
 
-
-
-<div class="container">
-    <br>
-    <div id="myCarousel" class="carousel slide myCarousel" data-ride="carousel">
+    <div name ="myCarousel" id="myCarousel" class="carousel slide t-header" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -16,7 +12,8 @@
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <a href= "#/category">
-                    <img src="../../images/slide1.jpg" alt="Chania" width="460" height="345">
+                    <img class="img-responsive"
+                         src="../../images/slide1.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
                         <h3>Caption Text</h3>
                     </div>
@@ -25,38 +22,133 @@
 
             <div class="item">
                 <a href="#/category">
-                    <img src="../../images/slide2.jpg" alt="Chania" width="460" height="345">
+                    <img class="img-responsive"
+                         src="../../images/slide2.jpg" alt="Chania" width="460" height="345">
                 </a>
             </div>
 
             <div class="item">
                 <a href="#/category">
-                    <img src="../../images/slide3.jpg" alt="Chania" width="460" height="345">
+                    <img class="img-responsive"
+                         src="../../images/slide3.jpg" alt="Chania" width="460" height="345">
                 </a>
             </div>
 
             <div class="item">
                 <a href="#/category">
-                    <img src="../../images/slide4.jpg" alt="Chania" width="460" height="345">
+                    <img class="img-responsive"
+                         src="../../images/slide4.jpg" alt="Chania" width="460" height="345">
                 </a>
             </div>
         </div>
 
         <!-- Left and right controls -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="icon-prev"></span>
         </a>
         <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="icon-next"></span>
         </a>
     </div>
-</div>
 
-<script>
-    $('.carousel').carousel({
-        interval: 2000 //changes the speed
-    })
-</script>
+
+    <!--category-->
+    <div class="container-fluid t-category">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Categories</h2>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3 class="text-center">Bakeries</h3>
+                    <a aria-haspopup="true" ng-click="model.findApiAllBusinessByCategory('bakeries')">
+                        <img class="t-category-image img-responsive img-portfolio img-hover"
+                             ng-src="../images/c1.jpg" alt="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3 class="text-center">Coffee & Tea</h3>
+                    <a ng-click="model.findApiAllBusinessByCategory('coffee')">
+                        <img class="t-category-image img-responsive img-portfolio img-hover"
+                             ng-src="./images/coffee.jpg" alt="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3 class="text-center">Breweries</h3>
+                    <a ng-click="model.findApiAllBusinessByCategory('breweries')">
+                        <img class="t-category-image img-responsive img-portfolio img-hover"
+                             ng-src="./images/pub.jpg" alt="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3 class="text-center">Ice Cream & Yogurt</h3>
+                    <a ng-click="model.findApiAllBusinessByCategory('icecream')">
+                        <img class="t-category-image img-responsive img-portfolio img-hover"
+                             ng-src="./images/ice.jpg" alt="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3 class="text-center">Desserts</h3>
+                    <a ng-click="model.findApiAllBusinessByCategory('desserts')">
+                        <img class="t-category-image img-responsive img-portfolio img-hover"
+                             ng-src="./images/dessert.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <h3 class="text-center">Patisserie & Cake</h3>
+                    <a ng-click="model.findApiAllBusinessByCategory('cakeshop')">
+                        <img class="t-category-image img-responsive img-portfolio img-hover"
+                             ng-src="./images/cake.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <h3 class="text-center">Donuts</h3>
+                    <a ng-click="model.findApiAllBusinessByCategory('donuts')">
+                        <img class="t-category-image img-responsive img-portfolio img-hover"
+                             ng-src="./images/donut.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <h3 class="text-center">Gelato</h3>
+                    <a ng-click="model.findApiAllBusinessByCategory('gelato')">
+                        <img class="t-category-image img-responsive img-portfolio img-hover"
+                             ng-src="./images/gelato.jpg" alt="">
+                    </a>
+                </div>
+
+            </div>
+
+            <hr>
+
+
+        </div>
+    </div>
+
+
+
+
+
+<!--<script>-->
+    <!--$('.carousel').carousel({-->
+        <!--interval: 2000 //changes the speed-->
+    <!--});-->
+
+    <!--$('.carousel-control.left').click(function() {-->
+        <!--$('#myCarousel').carousel('prev');-->
+    <!--});-->
+
+    <!--$('.carousel-control.right').click(function() {-->
+        <!--$('#myCarousel').carousel('next');-->
+    <!--});-->
+
+
+
+<!--</script>-->
 

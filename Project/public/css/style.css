@@ -13,6 +13,16 @@ body {
     margin-right: 0px;
 }
 
+.t-no-bottom-margin {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.t-no-top-margin {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
 form {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -106,8 +116,45 @@ p{
 
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-    /*width: 70%;*/
+    width: 70%;
     height: 345px;
     margin: auto;
 }
 
+
+.t-category{
+    background-image: url(../images/bg.jpg);
+    opacity: .5;
+    transition: 2000ms;
+}
+
+
+.t-category:hover{
+    opacity: 1;
+
+}
+
+
+.t-font{
+    font-family: 'Indie Flower', cursive;
+    color: antiquewhite;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.t-category-image{
+    width:300px ;
+    height: 200px;
+    border: inset;
+    border-width: 4px;
+}
+
+/*hr {*/
+    /*border: 0;*/
+    /*height: 1px;*/
+    /*background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));*/
+/*}*/
+
+.t-header{
+    background-image: url(../images/bg2.jpg);
+}

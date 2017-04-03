@@ -33,7 +33,12 @@
                 templateUrl: "views/yelp.html",
                 controller: "YelpSearchController",
                 controllerAs: "model"
-            });
+            })
+            .when("/search/:category", {
+            templateUrl: "views/restaurant/template/restaurant-list.view.client.html",
+            controller: "RestaurantListController",
+            controllerAs: "model"
+        });
         // .when("/",{
         //     templateUrl: 'views/user/templates/login.view.client.html',
         //     controller: 'LoginController',

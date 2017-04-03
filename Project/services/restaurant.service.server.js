@@ -10,9 +10,10 @@ module.exports = function (app) {
         token_secret: '4l1Cm0tjavpLMllvveQoZ7TVDN8'
     });
 
-    app.get("/api/yelp/searchByTerm", findAllBusinessByTerm);
+    app.get("/api/yelp/searchByTerm", findAllRestaurantsByTerm);
+    app.get("/api/yelp/searchByCategory", findAllRestaurantsByCategory);
 
-    function findAllBusinessByTerm(req, res) {
+    function findAllRestaurantsByTerm(req, res) {
         var searchTerm = req.query.term;
         var location = req.query.location;
         var parameters = {
@@ -26,13 +27,34 @@ module.exports = function (app) {
             .then(
                 function (data) {
                     res.send(data);
-                    console.log(data);
+                    // console.log(data);
                 },
                 function (err) {
                     res.status(400).send(err);
                 }
             );
     }
+
+    function findAllRestaurantsByCategory(req, res) {
+        var category = req.query.category;
+        var parameters = {
+            category_filter: category,
+            location: 'Boston',
+            limit: 18
+        };
+
+        yelp
+            .search(parameters)
+            .then(
+                function (data) {
+                    res.send(data);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
 }
 
 

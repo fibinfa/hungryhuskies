@@ -5,6 +5,7 @@
 
     function HomeController($location, RestaurantService) {
         var vm = this;
+
         vm.findAllRestaurantsByCategory = findAllRestaurantsByCategory;
         // vm.findApiAllBusinessByTerm = findApiAllBusinessByTerm;
 
@@ -35,5 +36,15 @@
                     }
                 )
         }
+
+
+        function init() {
+
+            $('#myCarousel').carousel({
+                interval: 3000
+            });
+
+
+        }init();
     }
 })();

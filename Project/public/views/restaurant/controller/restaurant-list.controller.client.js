@@ -11,6 +11,7 @@
 
         var category = $routeParams.category;
         var searchTerm = $routeParams.searchTerm;
+        var location = $routeParams.location;
 
         function init() {
             // vm.currentUser = $rootScope.currentUser;
@@ -23,8 +24,24 @@
                             vm.data = res.data;
                         }
                     );
-            }
+            } else if(searchTerm) {
+                searchObj =
+                    {
+                        term: searchTerm,
+                        location: location
+                    }
 
+                RestaurantService
+                    .findAllRestaurantsByTerm(searchObj)
+                    .then(
+                        function (res) {
+                            vm.data = res.data;
+                        },
+                        function (error) {
+                            vm.error = "Sorry. There are no search results available.";
+                        }
+                    )
+            }
 
         }
 

@@ -38,7 +38,11 @@
             templateUrl: "views/restaurant/template/restaurant-list.view.client.html",
             controller: "RestaurantListController",
             controllerAs: "model"
-        });
+            })
+            .when("/search/:searchTerm/location/:location", {
+                templateUrl: "views/restaurant/template/restaurant-list.view.client.html",
+                controller: "RestaurantListController",
+                controllerAs: "model"});
         // .when("/",{
         //     templateUrl: 'views/user/templates/login.view.client.html',
         //     controller: 'LoginController',

@@ -79,13 +79,13 @@
             </div>
             <div class="col-xs-6">
                 <div id="search"><span >
-                    <input type="text" placeholder="Term Eg:Pizza"
+                    <input type="text" placeholder="Term Eg:Pizza" ng-model="search.term"
                        role="combobox" aria-label="Search">
 
-                    <input type="text" placeholder="Location Eg: Boston"
+                    <input type="text" placeholder="Location Eg: Boston" ng-init="search.location='Boston'" ng-model="search.location"
                            role="combobox" aria-label="Search">
 
-                    <a href="" class="fa fa-search" aria-hidden="true"></a>
+                    <a href="#/search/:{{search.term}}/location/:{{search.location}}" class="fa fa-search" aria-hidden="true"></a>
                 </span>
             </div>
         </div>

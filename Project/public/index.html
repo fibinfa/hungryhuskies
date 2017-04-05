@@ -40,6 +40,7 @@
     <!--google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
+
     <script src="app.js"></script>
     <script src="config.js"></script>
 
@@ -66,14 +67,37 @@
 
 <body>
 
+
+    <!--header-->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <a href="#/" class="text-left"><img width="4%" height="4%" class="text-center" ng-src="images/icon.PNG" /></a>
+        <div class="row">
+            <div class="col-xs-6">
+                <span>
+                    <a href="#/" class="text-left t-title">
+                        <img width="50px" height="50px" class="text-center " ng-src="images/icon.PNG" />Hungry</a>
+                </span>
+            </div>
+            <div class="col-xs-6">
+                <div id="search"><span >
+                    <input type="text" placeholder="Term Eg:Pizza"
+                       role="combobox" aria-label="Search">
+
+                    <input type="text" placeholder="Location Eg: Boston"
+                           role="combobox" aria-label="Search">
+
+                    <a href="" class="fa fa-search" aria-hidden="true"></a>
+                </span>
+            </div>
+        </div>
+
     </nav>
 
+
+    <!--body-->
     <span ng-view></span>
 
 
-
+    <!--FOOTER-->
     <nav class="navbar navbar-inverse navbar-fixed-bottom t-no-bottom-margin">
         <div class="text-right t-font">Hungry</div>
     </nav>

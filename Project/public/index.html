@@ -80,50 +80,37 @@
 
             <div class="col-xs-3">
                 <div class="t-search">
-                    <span >
-                        <input class="form-control" type="text" placeholder="Term Eg:Pizza"
+                    <input class="form-control" type="text"
+                           ng-model="search.term"
+                           placeholder="Term Eg:Pizza"
                            role="combobox" aria-label="Search">
-
-                        <!--<input class="form-control" type="text" placeholder="Location Eg: Boston"-->
-                               <!--role="combobox" aria-label="Search">-->
-
-                        <!--<a href="" class="fa fa-search" aria-hidden="true"></a>-->
-                    </span>
                 </div>
             </div>
 
             <div class="col-xs-3">
                 <div class="t-search">
-                    <span >
-                        <!--<input class="form-control" type="text" placeholder="Term Eg:Pizza"-->
-                               <!--role="combobox" aria-label="Search">-->
-
-                        <input class="form-control" type="text" placeholder="Location Eg: Boston"
-                        role="combobox" aria-label="Search">
-
-                        <!--<a href="" class="fa fa-search" aria-hidden="true"></a>-->
-                    </span>
+                    <input class="form-control" type="text"
+                           ng-init="search.location='Boston'" ng-model="search.location"
+                           placeholder="Location Eg: Boston"
+                           role="combobox" aria-label="Search">
                 </div>
+            </div>
 
 
 
 
             <div class="col-xs-1">
                 <div class="t-search">
-                    <span >
-                        <!--<input class="form-control" type="text" placeholder="Term Eg:Pizza"-->
-                        <!--role="combobox" aria-label="Search">-->
-
-                        <!--<input class="form-control" type="text" placeholder="Location Eg: Boston"-->
-                               <!--role="combobox" aria-label="Search">-->
-
-                        <a href="" class=" fa fa-2x fa-search" aria-hidden="true"></a>
-                    </span>
+                    <a href="#/search/:{{search.term}}/location/:{{search.location}}"
+                       class="fa fa-search fa-2x" aria-hidden="true"></a>
                 </div>
             </div>
 
+
+
+
         </div>
-        </div>
+
 
 
     </nav>

@@ -40,6 +40,15 @@
      <div ng-show="registerForm.$submitted && registerForm.password.value != registerForm.cpassword.value" class="error">
          Your password and confirmation-password do not match.
      </div>
+     <div class="form-group">
+         <label for="role">Role:</label>
+         <select id="role" name="role" ng-model="user.role" class="form-control">
+             <option value="user" selected>User</option>
+             <option value="owner">Owner</option>
+             <option value="critic">Critic</option>
+         </select>
+
+     </div>
          <div class="form-group">
              <label for="first-name">First Name</label>
              <input ng-model="user.firstName" type="text" class="form-control"

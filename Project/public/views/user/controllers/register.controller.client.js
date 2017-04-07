@@ -3,7 +3,7 @@
  */
 (function(){
     angular
-        .module("WebAppMaker")
+        .module("HungryApp")
         .controller("RegisterController", registerController);
     
     function registerController(UserService,$location) {
@@ -12,6 +12,7 @@
         vm.register=register;
 
         function createUser(user){
+            console.log(user);
             UserService
                 .createUser(user)
                 .success(function (user) {

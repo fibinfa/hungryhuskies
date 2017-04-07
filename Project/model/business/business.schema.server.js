@@ -1,6 +1,6 @@
 module.exports = function () {
     var mongoose =  require("mongoose");
-    var ReviewSchema = require("../review/review.schema.server")();
+    // var ReviewSchema = require("../review/review.schema.server")();
 
     var BusinessSchema = mongoose.Schema({
         _id: {type: String, required: true},

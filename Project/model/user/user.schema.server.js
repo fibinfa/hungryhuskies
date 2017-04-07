@@ -1,27 +1,30 @@
 module.exports = function () {
-    var mongoose = require('mongoose');
-    // var WebsiteSchema = require('../website/website.schema.server')();
+    var mongoose =  require("mongoose");
+    var BusinessSchema = require("../business/business.schema.server")();
 
     var UserSchema = mongoose.Schema({
-        username: String,
-        role: {type: String, enum: ['USER', 'OWNER', 'ADMIN', 'CRITIC']},
+        username: {type: String, required: true},
+        role: {type: String, enum: ['CUSTOMER', 'OWNER', 'CRITIC', 'ADMIN'],default: 'CUSTOMER'},
         password: String,
         firstName: String,
         lastName: String,
         email: String,
         phone: String,
-        // restaurants: [{type:mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'}],
-        dateCreated: {type: Date, default: Date.now},
+        company: String,
+        url: String,
+        businesses: {type:mongoose.Schema.Types.ObjectId, ref: 'BusinessModel'},
+        dateCreated: {type: Date, default: Date.now()},
         facebook: {
             id:    String,
             token: String,
             displayName: String
         },
         google: {
-            id:    String,
-            token: String
+            token: String,
+            id: String,
+            displayName: String
         }
-    }, {collection: 'user'});
+    }, {collection: "user"});
 
     return UserSchema;
 };

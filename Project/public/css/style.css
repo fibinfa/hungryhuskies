@@ -175,7 +175,11 @@ p{
     margin-top: 0;
 }
 
-#search {
-    margin: 5px;
-    padding: 15px;
+.t-search {
+    margin-top: 5px;
+    margin-left :1px ;
+    margin-right :1px ;
+    padding-top: 15px;
+    padding-left: 0;
+    padding-right: 0;
 }

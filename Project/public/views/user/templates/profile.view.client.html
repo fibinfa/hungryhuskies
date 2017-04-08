@@ -1,18 +1,4 @@
-<nav class=" navbar-default navbar-fixed-top">
-    <div class="row container-fluid">
-        <div class="col-xs-10 navbar-brand ">
-                <span><strong>Profile</strong></span>
-        </div>
-        <div class="col-xs-2">
-            <div class="navbar-brand pull-right ">
-                <a ng-click="model.update(model.user)" class="navbar-link">
-                    <span class="glyphicon glyphicon-ok">
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
+
 
 
 <div class="container ffa-add-bottom-padding">
@@ -29,6 +15,19 @@
                 <label for="username">Username</label>
                 <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username">
             </div>
+            <!--<div class="form-group">-->
+                <!--<label for="role">Role</label>-->
+                <!--<input ng-model="model.user.role" type="text" class="form-control" id="role" >-->
+            <!--</div>-->
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" name="role"  class="form-control">
+                    <option value="USER" ng-selected="{{model.user.role}}=='USER'" >User</option>
+                    <option value="OWNER" ng-selected="{{model.user.role}}=='OWNER'">Owner</option>
+                    <option value="CRITIC" ng-selected="{{model.user.role}}=='CRITIC'">Critic</option>
+                </select>
+                Fibin  {{model.user.role}}=='USER'
+            </div>
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
@@ -44,7 +43,7 @@
         </form>
 
         <a class="btn btn-success btn-block"
-           href="#/user/{{model.user._id}}/website">Websites</a>
+           href="#/user/{{model.user._id}}/website">Restaurants</a>
         <a ng-click="model.update(model.user)"
         class="btn btn-primary btn-block">
             Update
@@ -58,14 +57,5 @@
     <br>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-brand pull-right">
-                <a href="#/user/{{model.user._id}}">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
 
-        </div>
-    </div>
-</nav>
 

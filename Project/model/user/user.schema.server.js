@@ -4,7 +4,7 @@ module.exports = function () {
 
     var UserSchema = mongoose.Schema({
         username: {type: String, required: true},
-        role: {type: String, enum: ['CUSTOMER', 'OWNER', 'CRITIC', 'ADMIN'],default: 'CUSTOMER'},
+        role: {type: String, enum: ['USER', 'OWNER', 'CRITIC', 'ADMIN'],default: 'CUSTOMER'},
         password: String,
         firstName: String,
         lastName: String,

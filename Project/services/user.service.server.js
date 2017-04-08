@@ -22,14 +22,14 @@ module.exports = function (app, model) {
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/assignment/index.html#/user',
-            failureRedirect: '/assignment/index.html#/login'
+            successRedirect: '/index.html#/user',
+            failureRedirect: '/index.html#/login'
         }));
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/assignment/index.html#/user',
-            failureRedirect: '/assignment/index.html#/login'
+            successRedirect: '/index.html#/user',
+            failureRedirect: '/index.html#/login'
         }));
 
     var googleConfig = {
@@ -127,13 +127,16 @@ module.exports = function (app, model) {
 
     function localStrategy(username, password, done) {
         model.userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
                     if (!user) {
                         return done(null, false);
                     }
-                    return done(null, user);
+                    if(bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    }
+                    return done(null, false);
                 },
                 function(err) {
                     if (err) {
@@ -146,7 +149,7 @@ module.exports = function (app, model) {
 
     function createUser(req, res) {
         var newUser = req.body;
-        newUser.password = bcrypt.hashSync(user.password);
+        newUser.password = bcrypt.hashSync(newUser.password);
         model.userModel
             .createUser(newUser)
             .then(function(user) {

@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("HungryApp")
         .controller("ProfileController",profileController);
     function profileController($routeParams,$location,UserService,$rootScope) {
         var vm=this;

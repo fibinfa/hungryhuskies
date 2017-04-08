@@ -25,9 +25,9 @@
 
 
             .when("/login", {
-                templateUrl: 'views/user/templates/login.view.client.html'
-                // controller: 'LoginController',
-                // controllerAs: 'model'
+                templateUrl: 'views/user/templates/login.view.client.html',
+                controller: 'LoginController',
+                controllerAs: 'model'
             })
             .when("/yelp", {
                 templateUrl: "views/yelp.html",
@@ -47,28 +47,28 @@
             templateUrl: 'views/user/templates/register.view.client.html',
             controller: 'RegisterController',
             controllerAs: 'model'
-        });
+        })
         // .when("/register",{
         //     templateUrl: 'views/user/templates/register.view.client.html',
         //     controller: 'RegisterController',
         //     controllerAs: 'model'
         // })
-        // .when("/user",{
-        //     templateUrl: 'views/user/templates/profile.view.client.html',
-        //     controller: 'ProfileController',
-        //     controllerAs: 'model',
-        //     resolve: {
-        //         checkLoggedIn: checkLoggedIn
-        //     }
-        // })
-        // .when("/user/:uid",{
-        //     templateUrl: 'views/user/templates/profile.view.client.html',
-        //     controller: 'ProfileController',
-        //     controllerAs: 'model',
-        //     resolve: {
-        //         checkLoggedIn: checkLoggedIn
-        //     }
-        // })
+        .when("/user",{
+            templateUrl: 'views/user/templates/profile.view.client.html',
+            controller: 'ProfileController',
+            controllerAs: 'model',
+            resolve: {
+                checkLoggedIn: checkLoggedIn
+            }
+        })
+        .when("/user/:uid",{
+            templateUrl: 'views/user/templates/profile.view.client.html',
+            controller: 'ProfileController',
+            controllerAs: 'model',
+            resolve: {
+                checkLoggedIn: checkLoggedIn
+            }
+        });
         // .when("/user/:uid/website",{
         //     templateUrl: 'views/website/templates/website-list.view.client.html',
         //     controller: "WebsiteListController",
@@ -119,22 +119,22 @@
         //     controller: "FlickrImageSearchController",
         //     controllerAs: "model"
         // });
-        // function checkLoggedIn($q, UserService,$location) {
-        //     var deferred = $q.defer();
-        //     UserService
-        //         .checkLoggedIn()
-        //         .success(
-        //             function (user) {
-        //                 if(user !='0') {
-        //                     deferred.resolve();
-        //                 } else{
-        //                     deferred.reject();
-        //                     $location.url("/login");
-        //                 }
-        //             }
-        //         );
-        //     return deferred.promise;
-        // }
+        function checkLoggedIn($q, UserService,$location) {
+            var deferred = $q.defer();
+            UserService
+                .checkLoggedIn()
+                .success(
+                    function (user) {
+                        if(user !='0') {
+                            deferred.resolve();
+                        } else{
+                            deferred.reject();
+                            $location.url("/login");
+                        }
+                    }
+                );
+            return deferred.promise;
+        }
 
     }
 

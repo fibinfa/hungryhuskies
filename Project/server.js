@@ -11,18 +11,20 @@ app.use(express.static(__dirname + '/public'));
 //require ("./test/app.js")(app);
 
 var passport      = require('passport');
-var cookieParser  = require('cookie-parser');
-var session       = require('express-session');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
 
+
+app.use(cookieParser());
 app.use(session({
-    secret: 'this is the secret',
+    secret: process.env.SESSION_SECRET || 'top secret',
     resave: true,
-    saveUninitialized: true
-}));
+    saveUninitialized: true}));
 
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 require ("./app.js")(app);
 

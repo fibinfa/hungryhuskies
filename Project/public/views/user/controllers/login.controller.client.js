@@ -12,15 +12,19 @@
         function login(user){
             // var promise = UserService
             //     .findUserByCredentials(user.username,user.password);
-            var promise = UserService
+            var promise =
+                UserService
                 .login(user);
             promise.then(function (loginUser) {
                  //console.log(loginUser);
-                    $rootScope.currentUser = user;
-                if(loginUser !=null){
-                    $location.url('/user/'+loginUser._id)
+                 //    $rootScope.currentUser = user;
+                if(loginUser.data !=null){
+                    // console.log(loginUser.data.username);
+                    $rootScope.currentUser = loginUser.data;
+                    $location.url('/user/'+loginUser.data._id)
                 }
                 else{
+                    $rootScope.currentUser =null;
                     vm.error="User not found";
                 }
             },

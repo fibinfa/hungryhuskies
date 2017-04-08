@@ -8,6 +8,20 @@ module.exports = function (app, model) {
     var bcrypt = require("bcrypt-nodejs");
     // var auth = authorized;
 
+
+    var cookieParser  = require('cookie-parser');
+    var session       = require('express-session');
+
+    app.use(session({
+        secret: process.env.SESSION_SECRET || 'top secret',
+        resave: true,
+        saveUninitialized: true}));
+
+    app.use(cookieParser());
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -261,7 +275,7 @@ module.exports = function (app, model) {
 
     function login(req, res) {
         var user = req.user;
-        res.json(user);
+        res.json(user._doc);
     }
 
     function logout(req, res) {

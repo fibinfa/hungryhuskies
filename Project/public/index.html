@@ -110,17 +110,22 @@
                 </div>
             </div>
 
-            <div class="t-search">
+            <div class="t-search ">
 
                 <span>
 
                         <a ng-if="currentUser == null"
                            href="#/register"><b>Register</b></a>
 
+                        <i ng-show="currentUser == null"><strong style="color: beige">/</strong></i>
 
 
                         <a ng-if="currentUser == null"
                            href="#/login"><b>Login</b></a>
+
+                        <p ng-show ="currentUser != null">
+                            <b class="t-font ">Welcome {{currentUser.username}}</b></p>
+
 
                 </span>
 
@@ -140,7 +145,7 @@
 
 
     <!--FOOTER-->
-    <nav class="navbar navbar-inverse navbar-fixed-bottom t-no-bottom-margin">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom t-no-bottom-margin t-top-margin">
         <div class="text-right t-font">Hungry</div>
     </nav>
 </body>

@@ -6,11 +6,15 @@ body {
     margin-top: 60px;
     margin-bottom: 30px;
 }
-.ffa-no-left-padding {
-    padding-left: 0px;
+.t-top-margin{
+    margin-top: 10px;
+    padding-top: 20px;
 }
-.ffa-no-right-margin {
-    margin-right: 0px;
+
+
+.t-bottom-margin{
+    margin-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .t-no-bottom-margin {
@@ -205,4 +209,19 @@ p{
     color: black;
     opacity:0.9;
     filter:alpha(opacity=90);
+}
+
+.carousel img {
+    width:100% !important;
+    min-width: 100% !important;
+    height: auto;
+}
+
+.t-font{
+    color: blanchedalmond;
+    font-size: larger;
+}
+
+.t-large-size{
+    font-size: larger;
 }

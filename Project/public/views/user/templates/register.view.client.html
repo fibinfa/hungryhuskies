@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container t-top-margin t-bottom-margin">
     <h1>Register</h1>
 
     <div class="alert alert-success" ng-show="model.message && registerForm.$valid">
@@ -8,7 +8,8 @@
     <div ng-show="registerForm.$invalid && registerForm.$submitted" class="alert alert-danger" >
         There are errors in the form. Please correct the errors and submit again.
     </div>
- <form name="registerForm" novalidate>
+
+     <form name="registerForm" novalidate>
         <div class="form-group">
                 <label for="username">Username</label>
                 <input ng-model="user.username" type="text" class="form-control"

@@ -16,11 +16,13 @@
                 .login(user);
             promise.then(function (loginUser) {
                  //console.log(loginUser);
-                    $rootScope.currentUser = user;
+
                 if(loginUser !=null){
+                    $rootScope.currentUser = loginUser;
                     $location.url('/user/'+loginUser._id)
                 }
                 else{
+                    $rootScope.currentUser = null;
                     vm.error="User not found";
                 }
             },

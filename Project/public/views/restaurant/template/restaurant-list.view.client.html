@@ -1,27 +1,27 @@
-<div class="container-fluid">
+<div class="container-fluid bg-image3">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header">Places Around You
-                    <small></small>
+                <h3 class="page-header">
+                    Places Around You
                 </h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-sm-2 hidden-xs">
-                <p class="lead business-list-title">Popular Categories</p>
-                <ul class="ts-sidebar-menu">
-                    <li class="open"><a href="#/search/bakeries"><h4><b>Bakeries</b></h4></a></li>
-                    <li class="open"><a href="#/search/coffee"><h4><b>Coffee & Tea</b></h4></a></li>
-                    <li class="open"><a href="#/search/breweries"><h4><b>Breweries</b></h4></a></li>
-                    <li class="open"><a href="#/search/icecream"><h4><b>Ice Cream & Yogurt</b></h4></a></li>
-                    <li class="open"><a href="#/search/cakeshop"><h4><b>Patisserie & Cake</b></h4></a></li>
-                    <li class="open"><a href="#/search/donuts"><h4><b>Donuts</b></h4></a></li>
-                    <li class="open"><a href="#/search/gelato"><h4><b>Gelato</b></h4></a></li>
+            <div class="col-md-3 col-sm-3 hidden-xs">
+                <p class="lead business-list-title">Categories</p>
+                <ul class="ts-sidebar-menu  active">
+                    <li class="open btn list-group-item t-button"><a href="#/search/bakeries"><h4><b>Bakeries</b></h4></a></li>
+                    <li class="open btn list-group-item"><a href="#/search/coffee"><h4><b>Coffee & Tea</b></h4></a></li>
+                    <li class="open btn list-group-item"><a href="#/search/breweries"><h4><b>Breweries</b></h4></a></li>
+                    <li class="open btn list-group-item"><a href="#/search/icecream"><h4><b>Ice Cream & Yogurt</b></h4></a></li>
+                    <li class="open btn list-group-item"><a href="#/search/cakeshop"><h4><b>Patisserie & Cake</b></h4></a></li>
+                    <li class="open btn list-group-item"><a href="#/search/donuts"><h4><b>Donuts</b></h4></a></li>
+                    <li class="open btn list-group-item"><a href="#/search/gelato"><h4><b>Gelato</b></h4></a></li>
                 </ul>
             </div>
-            <div class="col-md-9 col-sm-10">
-                <div ng-repeat="business in model.data.businesses" class="col-md-4 col-sm-6 portfolio-item">
+            <div class="col-md-9 col-sm-9">
+                <div ng-repeat="business in model.data.businesses" class="col-md-4 col-sm-4 col-xs-6 portfolio-item">
                     <div class="panel panel-default">
                         <a href="" ng-click="model.findApiBusinessById(business.id)">
                             <img class="img-responsive"

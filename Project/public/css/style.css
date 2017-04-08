@@ -183,3 +183,26 @@ p{
     padding-left: 0;
     padding-right: 0;
 }
+
+
+.bg-image3{
+    background-image: url(../images/bg.jpg);
+}
+
+.ts-sidebar-menu{
+    background-image: url(../images/bg2.jpg);
+    background-blend-mode: overlay;
+}
+
+
+.t-button {
+    padding: 10px;
+    margin-right: 8px;
+    margin-bottom:10px;
+}
+
+.t-button:hover {
+    color: black;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+}

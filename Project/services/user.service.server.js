@@ -154,6 +154,9 @@ module.exports = function (app, model) {
             .createUser(newUser)
             .then(function(user) {
                 res.json(user);
+            },
+            function (error) {
+                console.log(error);
             });
     }
 

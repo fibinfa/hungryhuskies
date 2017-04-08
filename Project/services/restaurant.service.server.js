@@ -12,6 +12,13 @@ module.exports = function (app) {
 
     app.get("/api/yelp/searchByTerm", findAllRestaurantsByTerm);
     app.get("/api/yelp/searchByCategory", findAllRestaurantsByCategory);
+    app.get("/api/yelp/restaurant/:restaurantId", findRestaurantByIdYelp);
+
+    function findRestaurantByIdYelp(req, res) {
+        var restaurantId = req.params.restaurantId;
+        yelp
+            .business
+    }
 
     function findAllRestaurantsByTerm(req, res) {
         var searchTerm = req.query.term;
@@ -19,7 +26,7 @@ module.exports = function (app) {
         var parameters = {
             term: searchTerm,
             location: location || 'Boston',
-            limit: 10
+            limit: 15
         };
 
         yelp

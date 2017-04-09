@@ -130,9 +130,13 @@
                         <a ng-if="currentUser == null"
                            href="#/login"><b>Login</b></a>
 
-                        <p ng-show ="currentUser != null">
+                        <p ng-show ="currentUser.data != null">
 
-                            <b class="t-font ">Welcome {{currentUser.data.username}}</b></p>
+                            <b class="t-font ">Welcome {{currentUser.data.username}}</b>
+                            <a href="#/user">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </a>
+                        </p>
 
 
                 </span>
@@ -151,11 +155,12 @@
     <!--body-->
     <span ng-view></span>
 
-    <!--{{currentUser}}-->
+
     <!--FOOTER-->
     <nav class="navbar navbar-inverse navbar-fixed-bottom t-no-bottom-margin t-top-margin">
         <div class="text-right t-font">Hungry</div>
     </nav>
+
 </body>
 
 

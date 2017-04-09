@@ -60,7 +60,8 @@
                 controllerAs: "model",
                 resolve:{
                     getUser : getUser
-                }})
+                }
+            })
 
             .when("/register",{
                 templateUrl: 'views/user/templates/register.view.client.html',
@@ -102,7 +103,7 @@
                 .checkLoggedIn()
                 .then(
                     function (user) {
-                        if(user !='0') {
+                        if(user.data !='0') {
                             $rootScope.currentUser = user;
                             deferred.resolve();
                         } else{
@@ -125,7 +126,7 @@
                 .checkLoggedIn()
                 .then(
                     function (user) {
-                        if(user !='0') {
+                        if(user.data !='0') {
                             $rootScope.currentUser = user;
                             deferred.resolve();
                         } else{

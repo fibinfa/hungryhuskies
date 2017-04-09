@@ -256,3 +256,23 @@ p{
     font-size: larger;
     color: red;
 }
+
+
+.t-category-head{
+    font-size: x-large;
+    color: floralwhite;
+}
+
+.p-groove {outline-style: groove;}
+
+
+.bg-grey{
+    color: white;
+    background-color:gray;
+    transition: 2s;
+}
+
+.bg-grey:hover{
+    color: black;
+    background-color: whitesmoke;
+   }

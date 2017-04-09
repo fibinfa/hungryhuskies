@@ -1,7 +1,9 @@
 
 <div class="container t-top-margin t-bottom-margin box">
-    <div class="t-title t-category t-font t-bottom-padding">{{model.data.name}}</div>
-    <div class="row">
+    <div class="t-title t-category t-font t-bottom-padding t-category-head row">
+        {{model.data.name}}
+    </div>
+    <div class="row t-top-margin">
         <div class="col-sm-4 hidden-xs">
             <p class="lead text-center t-special business-list-title">Categories</p>
             <ul class="ts-sidebar-menu  active">
@@ -15,12 +17,33 @@
             </ul>
         </div>
         <div class="col-sm-8">
-            <div>
-                <img class="img-responsive t-category-image"
-                     ng-src="{{model.data.image_url}}" alt="">
+            <div class="row">
+
+                <div class="col-sm-7">
+                    <img class="img-responsive t-category-image"
+                         ng-src="{{model.data.image_url}}" alt="">
+                </div>
+
+                <div class = "col-sm-5 p-groove bg-grey">
+                    <h4>
+                        <i>
+                            <b>Address:</b><br>
+                            <div ng-repeat="element in model.data.location.display_address">
+                                {{element}}
+                            </div>
+                            {{model.data.location.country_code}}
+                        </i>
+                    </h4>
+
+                    <h4>
+                        <b>Phone:</b>
+                        {{model.data.display_phone}}
+                    </h4>
+                </div>
+
             </div>
 
-            <p>
+
             <div ng-if="model.currentUser">
                 <div ng-if="!model.liked" class="like-button">
                     <span class="fa-stack fa-lg">
@@ -35,7 +58,7 @@
                     </span>
                 </div>
             </div>
-            </p>
+
 
             <div >
                 <p class=" t-title navbar-text t-open" ng-show = "{{model.data.is_closed}} == false">Currently Open</p>

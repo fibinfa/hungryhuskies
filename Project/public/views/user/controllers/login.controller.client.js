@@ -16,11 +16,13 @@
                 UserService
                 .login(user);
             promise.then(function (loginUser) {
-
+                    console.log(loginUser);
 
                 if(loginUser !=null){
-                    $rootScope.currentUser = loginUser;
-                    $location.url('/user/'+loginUser._id)
+                    console.log(loginUser.data);
+                    $rootScope.currentUser = loginUser.data;
+                    console.log($rootScope.currentUser);
+                    $location.url('/user/')
                 }
                 else{
                     $rootScope.currentUser = null;

@@ -1,12 +1,13 @@
 module.exports = function (app, model) {
 
     var passport      = require('passport');
+
     var LocalStrategy = require('passport-local').Strategy;
     var FacebookStrategy = require('passport-facebook').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
     passport.use(new LocalStrategy(localStrategy));
     var bcrypt = require("bcrypt-nodejs");
-    // var auth = authorized;
 
 
     var cookieParser  = require('cookie-parser');
@@ -21,7 +22,6 @@ module.exports = function (app, model) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -34,12 +34,15 @@ module.exports = function (app, model) {
     app.post('/api/checkLoggedIn',checkLoggedIn);
     app.post('/api/logout',logout);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/index.html#/user',
             failureRedirect: '/index.html#/login'
         }));
+
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    
     app.get('/auth/google/callback',
         passport.authenticate('google', {
             successRedirect: '/index.html#/user',

@@ -148,6 +148,7 @@ module.exports = function (app, model) {
                         return done(null, false);
                     }
                     if(bcrypt.compareSync(password, user.password)) {
+                        console.log(user);
                         return done(null, user);
                     }
                     return done(null, false);
@@ -275,6 +276,7 @@ module.exports = function (app, model) {
 
     function login(req, res) {
         var user = req.user;
+        // console.log(user._doc);
         res.json(user._doc);
     }
 

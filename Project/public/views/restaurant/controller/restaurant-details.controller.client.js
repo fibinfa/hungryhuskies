@@ -1,13 +1,15 @@
 (function () {
     angular
         .module("HungryApp")
-        .controller("RestaurantDetailController", RestaurantDetailController);
+        .controller("RestaurantDetailController", RestaurantDetailController)
+        // .directive("map", initMap);
 
-    function RestaurantDetailController($routeParams,RestaurantService,$rootScope) {
+    function RestaurantDetailController($scope,$routeParams,RestaurantService,$rootScope) {
 
 
     var vm = this;
     var restaurantId = $routeParams.rid;
+    // vm.initMap = initMap;
 
 
     function init() {
@@ -17,14 +19,22 @@
             .findRestaurantByIdYelp(restaurantId)
             .then(
                 function (res) {
-                    console.log(res);
+                    // console.log(res.data.location.coordinate.latitude);
                     vm.data = res.data;
+
+
+                    console.log(vm.data);
+                    // $scope.lat =res.data.location.coordinate.latitude;
+                    // $scope.lng =res.data.location.coordinate.longitude;
+                    // console.log($scope.lat);
+                    // console.log($scope.lng);
                 }, function (err) {
                     console.log(err);
                 }
             );
 
         // findBusiness();
+
 
 
     }
@@ -48,5 +58,39 @@
     //     return false;
     // }
     init();
+
+        //
+        // function initMap() {
+        //     var uluru = {lat: vm.lat, lng: vm.lng};
+        //     var map = new google.maps.Map(document.getElementById('map'), {
+        //         zoom: 7,
+        //         center: uluru
+        //     });
+        //     var marker = new google.maps.Marker({
+        //         position: uluru,
+        //         map: map
+        //     });
+        // }
     }
+    
+//     function initMap() {
+//
+//
+//             var scope = angular.element("#map").scope();
+//             var lt =  window.lat;
+//             var lg =  window.lng;
+//
+//             console.log(window.lat);
+//             var uluru = {lat: lt, lng: lg};
+// //        console.log(scope)
+//             var map = new google.maps.Map(document.getElementById('map'), {
+//                 zoom: 8,
+//                 center: uluru
+//             });
+//             var marker = new google.maps.Marker({
+//                 position: uluru,
+//                 map: map
+//             });
+//         }
+
 })();

@@ -1,12 +1,30 @@
 module.exports = function (app, model) {
 
     var passport      = require('passport');
+
     var LocalStrategy = require('passport-local').Strategy;
     var FacebookStrategy = require('passport-facebook').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
     passport.use(new LocalStrategy(localStrategy));
     var bcrypt = require("bcrypt-nodejs");
+
     var auth = authorized;
+
+
+
+    var cookieParser  = require('cookie-parser');
+    var session       = require('express-session');
+
+    app.use(session({
+        secret: process.env.SESSION_SECRET || 'top secret',
+        resave: true,
+        saveUninitialized: true}));
+
+    app.use(cookieParser());
+    app.use(passport.initialize());
+    app.use(passport.session());
+
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -20,13 +38,15 @@ module.exports = function (app, model) {
     app.post('/api/checkLoggedIn',checkLoggedIn);
     app.post('/api/logout',logout);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/index.html#/user',
             failureRedirect: '/index.html#/login'
         }));
+
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
     app.get('/auth/google/callback',
         passport.authenticate('google', {
             successRedirect: '/index.html#/user',
@@ -41,8 +61,7 @@ module.exports = function (app, model) {
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
-
-
+    
     var facebookConfig = {
         clientID     : "1479677212082333",//process.env.FACEBOOK_CLIENT_ID, ////
         clientSecret : "be7bc72af96265506db4ae5faf14a61d",//process.env.FACEBOOK_CLIENT_SECRET,//
@@ -134,6 +153,7 @@ module.exports = function (app, model) {
                         return done(null, false);
                     }
                     if(bcrypt.compareSync(password, user.password)) {
+                        console.log(user);
                         return done(null, user);
                     }
                     return done(null, false);
@@ -257,7 +277,8 @@ module.exports = function (app, model) {
 
     function login(req, res) {
         var user = req.user;
-        res.json(user);
+        // console.log(user._doc);
+        res.json(user._doc);
     }
 
     function logout(req, res) {
@@ -266,7 +287,7 @@ module.exports = function (app, model) {
     }
 
     function checkLoggedIn(req, res) {
-        res.send(req.isAuthenticated() ? req.user : '0');
+        res.send(req.isAuthenticated() ? req.user._doc : '0');
     }
 
 

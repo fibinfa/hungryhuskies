@@ -124,7 +124,8 @@
                            href="#/login"><b>Login</b></a>
 
                         <p ng-show ="currentUser != null">
-                            <b class="t-font ">Welcome {{currentUser.username}}</b></p>
+
+                            <b class="t-font ">Welcome {{currentUser.data.username}}</b></p>
 
 
                 </span>
@@ -143,7 +144,7 @@
     <!--body-->
     <span ng-view></span>
 
-
+    {{currentUser}}
     <!--FOOTER-->
     <nav class="navbar navbar-inverse navbar-fixed-bottom t-no-bottom-margin t-top-margin">
         <div class="text-right t-font">Hungry</div>

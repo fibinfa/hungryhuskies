@@ -119,18 +119,23 @@
         //     controller: "FlickrImageSearchController",
         //     controllerAs: "model"
         // });
-        function checkLoggedIn($q, UserService,$location) {
+        function checkLoggedIn($q, UserService,$location, $rootScope) {
             var deferred = $q.defer();
             UserService
                 .checkLoggedIn()
-                .success(
+                .then(
                     function (user) {
                         if(user !='0') {
+                            $rootScope.currentUser = user;
                             deferred.resolve();
                         } else{
+                            $rootScope.currentUser = null;
                             deferred.reject();
                             $location.url("/login");
                         }
+                    },
+                    function(err) {
+                        $location.url("/login");
                     }
                 );
             return deferred.promise;

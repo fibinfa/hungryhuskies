@@ -5,21 +5,25 @@
     angular
         .module("HungryApp")
         .controller("ProfileController",profileController);
+
     function profileController($routeParams,$location,UserService,$rootScope) {
         var vm=this;
-        var userId=$routeParams['uid'];
+        var userId=$rootScope.currentUser.data._id;
         vm.update=update;
         vm.deleteUser=deleteUser;
         vm.logout = logout;
 
         function init(){
-            var promise = UserService
-                //.findUserById(userId);
-                .findCurrentUser();
-            promise.success(function (user) {
-                console.log($rootScope.currentUser);
-                vm.user=angular.copy(user);
-            });
+   // var promise = UserService
+            //     //.findUserById(userId);
+            //     .findCurrentUser();
+            // promise.success(function (user) {
+            //     vm.user=angular.copy(user);
+            // });
+
+            vm.user = $rootScope.currentUser.data;
+            console.log(vm.user);
+
         }
         init();
 

@@ -5,6 +5,7 @@ body {
     /*overflow: hidden;*/
     margin-top: 60px;
     margin-bottom: 30px;
+    overflow-x:hidden
 }
 .t-top-margin{
     margin-top: 10px;
@@ -194,7 +195,7 @@ p{
 }
 
 .ts-sidebar-menu{
-    background-image: url(../images/bg2.jpg);
+    /*background-image: url(../images/bg2.jpg);*/
     background-blend-mode: overlay;
 }
 
@@ -207,8 +208,9 @@ p{
 
 .t-button:hover {
     color: black;
-    opacity:0.9;
+    opacity:0.6;
     filter:alpha(opacity=90);
+
 }
 
 .carousel img {
@@ -224,4 +226,18 @@ p{
 
 .t-large-size{
     font-size: larger;
+}
+
+.t-special{
+    color: floralwhite;
+}
+
+.t-special:hover{
+    opacity: .8;
+    color: indianred;
+}
+
+.panel-body{
+    width: 700px;
+    height: 150px;
 }

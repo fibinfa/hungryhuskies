@@ -9,7 +9,7 @@
         var vm = this;
         var restaurantId = $routeParams.rid;
         vm.likeRestaurant = likeRestaurant;
-        // vm.dislikeRestaurant = dislikeRestaurant;
+        vm.dislikeRestaurant = dislikeRestaurant;
 
 
 
@@ -128,6 +128,41 @@
             }
 
         }
+
+
+        function dislikeRestaurant(restaurantId) {
+            var currentUser = $rootScope.currentUser;
+
+            if(currentUser) {
+                UserService
+                    .findUserById(currentUser.data._id)
+                    .then(
+                        function (res) {
+                            var user = res.data;
+                            user.restaurants.splice(user.restaurants.indexOf(restaurantId, 1));
+
+                            UserService
+                                .updateUser(user._id, user)
+                                .then(
+                                    function (stats) {
+                                        vm.liked = false;
+                                    },
+                                    function (err) {
+                                        console.log(err);
+                                    }
+                                );
+                        },
+                        function (err) {
+                            console.log(err);
+                        }
+                    )
+
+            } else {
+                $location.url("/login");
+            }
+
+        }
+
 
 
     }

@@ -1,177 +1,152 @@
-<div class="container-fluid business-list-view">
-    <div class="container">
+<div class="col-md-9 col-sm-10">
+    <div class="thumbnail">
         <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header business-list-title">{{model.data.name}}
-                    <small></small>
-                </h3>
+            <div class="col-md-4">
+                <div class="panel-body">
+                    <img class="img-responsive pic"
+                         ng-src="{{model.data.image_url}}" alt="">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-2 hidden-xs">
-                <p class="lead business-list-title">Popular Categories</p>
-                <ul class="ts-sidebar-menu">
-                    <li class="open"><a href="#/search/bakeries"><h4><b>Bakeries</b></h4></a></li>
-                    <li class="open"><a href="#/search/breweries"><h4><b>Brewries</b></h4></a></li>
-                    <li class="open"><a href="#/search/foodtrucks"><h4><b>Food Trucks</b></h4></a></li>
-                    <li class="open"><a href="#/search/juicebars"><h4><b>Juice Bars</b></h4></a></li>
-                    <li class="open"><a href="#/search/desserts"><h4><b>Deserts</b></h4></a></li>
-                    <li class="open"><a href="#/search/icecream"><h4><b>Ice Cream</b></h4></a></li>
-                    <li class="open"><a href="#/search/coffee"><h4><b>Coffee</b></h4></a></li>
-                    <li class="open"><a href="#/search/donuts"><h4><b>Donuts</b></h4></a></li>
-                    <li class="open"><a href="#/search/bagels"><h4><b>Bagels</b></h4></a></li>
-                </ul>
-            </div>
-            <div class="col-md-9 col-sm-10">
-                <div class="thumbnail">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="panel-body">
-                                <img class="img-responsive pic"
-                                     ng-src="{{model.data.image_url}}" alt="">
+            <div class="col-md-8">
+                <div class="panel-body">
+                    <p>
+                    <h4>
+                        <i>
+                            <b>Address:</b><br>
+                            <div ng-repeat="element in model.data.location.display_address">
+                                {{element}}
                             </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="panel-body">
-                                <p>
-                                <h4>
-                                    <i>
-                                        <b>Address:</b><br>
-                                        <div ng-repeat="element in model.data.location.display_address">
-                                            {{element}}
-                                        </div>
-                                        {{model.data.location.country_code}}
-                                    </i>
-                                </h4>
-                                <p>
-                                <h4>
-                                    <b>Phone:</b>
-                                    {{model.data.display_phone}}
-                                </h4>
-                                </p>
-                                <p>
-                                <h4>
-                                    <i>
-                                        <b>Neighborhoods:</b><br>
-                                        <div ng-repeat="element in model.data.location.neighborhoods">
-                                            {{element}}
-                                        </div>
-                                    </i>
-                                </h4>
-                                </p>
-                                <p>
-                                <div ng-if="model.currentUser">
-                                    <div ng-if="!model.liked" class="like-button">
+                            {{model.data.location.country_code}}
+                        </i>
+                    </h4>
+                    <p>
+                    <h4>
+                        <b>Phone:</b>
+                        {{model.data.display_phone}}
+                    </h4>
+                    </p>
+                    <p>
+                    <h4>
+                        <i>
+                            <b>Neighborhoods:</b><br>
+                            <div ng-repeat="element in model.data.location.neighborhoods">
+                                {{element}}
+                            </div>
+                        </i>
+                    </h4>
+                    </p>
+                    <p>
+                    <div ng-if="model.currentUser">
+                        <div ng-if="!model.liked" class="like-button">
                                                 <span class="fa-stack fa-lg">
                                                     <i class="fa fa-circle-o fa-stack-2x" ng-click="model.likeBusiness(model.data)"></i>
                                                     <i class="fa fa-thumbs-up fa-stack-1x" ng-click="model.likeBusiness(model.data)"></i>
                                                 </span>
-                                    </div>
-                                    <div ng-if="model.liked" class="like-button">
+                        </div>
+                        <div ng-if="model.liked" class="like-button">
                                                 <span class="fa-stack fa-lg">
                                                     <i class="fa fa-circle-o fa-stack-2x" ng-click="model.dislikeBusiness(model.data.id)"></i>
                                                     <i class="fa fa-thumbs-down fa-stack-1x" ng-click="model.dislikeBusiness(model.data.id)"></i>
                                                 </span>
-                                    </div>
-                                </div>
-                                </p>
-                                </p>
-                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel-body">
-                                <div class="caption-full text-left">
-                                    <h3>{{model.data.name}}</h3>
-                                    <h4><p><i>{{model.data.reviews[0].excerpt}}</i></p></h4>
-                                </div>
-                            </div>
-                        </div>
+                    </p>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+                    <div class="caption-full text-left">
+                        <h3>{{model.data.name}}</h3>
+                        <h4><p><i>{{model.data.reviews[0].excerpt}}</i></p></h4>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel-body">
-                                <div class="ratings">
-                                    <p>
-                                        <img class="img-responsive"
-                                             ng-src="{{model.data.rating_img_url}}" alt="">
-                                    </p>
-                                </div>
-                            </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+                    <div class="ratings">
+                        <p>
+                            <img class="img-responsive"
+                                 ng-src="{{model.data.rating_img_url}}" alt="">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well review">
+        <div ng-if="model.currentUser && !model.reviewEnabled" class="text-right">
+            <a class="btn btn-warning"
+               ng-click="model.enableReview()"
+               id="show-review-textarea">
+                Write a Review
+            </a>
+        </div>
+        <div ng-if="model.reviewEnabled" class="row" id="submit-review">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <textarea ng-model="model.reviewText" class="form-control transition" cols="100" id="get-review" name="comment" placeholder="Submit a Review Here" rows="3"></textarea>
+                        <div class="text-left">
+                            <p>
+                                <ng-rating ng-if="model.currentUser"
+                                           ng-model="model.rating"
+                                           editable="true">
+                                </ng-rating>
+                            </p>
+                        </div>
+                        <div class="text-right">
+                            <a class="btn btn-danger" ng-click="model.disableReview()" id="reject-review">
+                                <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                            <button class="btn btn-success"
+                                    ng-click="model.createReview(model.data, model.reviewText, model.currentUser.username, model.rating)">
+                                <span class="glyphicon glyphicon-send"></span>
+                                Post
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="well review">
-                    <div ng-if="model.currentUser && !model.reviewEnabled" class="text-right">
-                        <a class="btn btn-warning"
-                           ng-click="model.enableReview()"
-                           id="show-review-textarea">
-                            Write a Review
-                        </a>
-                    </div>
-                    <div ng-if="model.reviewEnabled" class="row" id="submit-review">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <textarea ng-model="model.reviewText" class="form-control transition" cols="100" id="get-review" name="comment" placeholder="Submit a Review Here" rows="3"></textarea>
-                                    <div class="text-left">
-                                        <p>
-                                            <ng-rating ng-if="model.currentUser"
-                                                       ng-model="model.rating"
-                                                       editable="true">
-                                            </ng-rating>
-                                        </p>
-                                    </div>
-                                    <div class="text-right">
-                                        <a class="btn btn-danger" ng-click="model.disableReview()" id="reject-review">
-                                            <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                                        <button class="btn btn-success"
-                                                ng-click="model.createReview(model.data, model.reviewText, model.currentUser.username, model.rating)">
-                                            <span class="glyphicon glyphicon-send"></span>
-                                            Post
-                                        </button>
-                                    </div>
-                                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div ng-repeat="review in model.localBusiness.reviews | orderBy:'dateCreated':true"
+             ng-if="model.localBusiness"
+             class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-left">
+                            <p>
+                            <h4>{{review.content}}</h4>
+                            </p>
+                            <p>
+                                <ng-rating
+                                        ng-model="review.rating"
+                                        editable="false">
+                                </ng-rating>
+                                <br>
+                                Posted by: &nbsp;
+                                <a href="#/user/{{review.username}}">
+                                    {{review.username}}
+                                </a>
+                            <div class="text-left">
+                                <h5>Date posted: <b>{{review.dateCreated | date: 'medium'}}</b></h5>
                             </div>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div ng-repeat="review in model.localBusiness.reviews | orderBy:'dateCreated':true"
-                         ng-if="model.localBusiness"
-                         class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="text-left">
-                                        <p>
-                                        <h4>{{review.content}}</h4>
-                                        </p>
-                                        <p>
-                                            <ng-rating
-                                                    ng-model="review.rating"
-                                                    editable="false">
-                                            </ng-rating>
-                                            <br>
-                                            Posted by: &nbsp;
-                                            <a href="#/user/{{review.username}}">
-                                                {{review.username}}
-                                            </a>
-                                        <div class="text-left">
-                                            <h5>Date posted: <b>{{review.dateCreated | date: 'medium'}}</b></h5>
-                                        </div>
-                                        </p>
-                                        <div class="text-right" ng-if="(model.username === review.username && model.deleteEnable) || model.currentUser.role === 'admin'">
-                                            <a class="btn btn-danger" ng-click="model.deleteReview(model.localBusiness, review._id)">
-                                                <span class="glyphicon glyphicon-remove"></span>Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
+                            </p>
+                            <div class="text-right" ng-if="(model.username === review.username && model.deleteEnable) || model.currentUser.role === 'admin'">
+                                <a class="btn btn-danger" ng-click="model.deleteReview(model.localBusiness, review._id)">
+                                    <span class="glyphicon glyphicon-remove"></span>Delete</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>

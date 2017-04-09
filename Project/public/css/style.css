@@ -194,7 +194,7 @@ p{
 }
 
 .ts-sidebar-menu{
-    background-image: url(../images/bg2.jpg);
+    /*background-image: url(../images/bg2.jpg);*/
     background-blend-mode: overlay;
 }
 
@@ -207,8 +207,9 @@ p{
 
 .t-button:hover {
     color: black;
-    opacity:0.9;
+    opacity:0.6;
     filter:alpha(opacity=90);
+
 }
 
 .carousel img {
@@ -224,4 +225,13 @@ p{
 
 .t-large-size{
     font-size: larger;
+}
+
+.t-special{
+    color: floralwhite;
+}
+
+.t-special:hover{
+    opacity: .8;
+    color: black;
 }

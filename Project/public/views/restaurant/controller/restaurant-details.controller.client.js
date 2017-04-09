@@ -4,14 +4,16 @@
         .controller("RestaurantDetailController", RestaurantDetailController);
 
     function RestaurantDetailController($routeParams,RestaurantService,$rootScope) {
+        var vm = this;
+        var restaurantId = $routeParams.rid;
+        vm.likeRestaurant = likeRestaurant;
+        // vm.dislikeRestaurant = dislikeRestaurant;
 
-
-    var vm = this;
-    var restaurantId = $routeParams.rid;
 
 
     function init() {
         vm.currentUser = $rootScope.currentUser;
+
 
         RestaurantService
             .findRestaurantByIdYelp(restaurantId)
@@ -48,5 +50,71 @@
     //     return false;
     // }
     init();
+
+
+
+        function likeRestaurant(restaurant) {
+            var currentUser = $rootScope.currentUser;
+
+            if(currentUser) {
+                var newRestaurant = {
+                    _id: restaurant.id,
+                    imageUrl: restaurant.image_url,
+                    name: restaurant.name,
+                    phone: restaurant.phone,
+                    ratingUrl: restaurant.rating_img_url
+                };
+
+                RestaurantService
+                    .findRestaurantById(restaurant.id)
+                    .then(
+                        function (response) {
+                            var restaurant = response.data;
+                            if(!restaurant) {
+                                RestaurantService
+                                    .createRestaurant(newRestaurant)
+                                    .then(
+                                        function (res) {
+                                            console.log(res.data);
+                                        },
+                                        function (err) {
+                                            console.log(err);
+                                        }
+                                    );
+                            }
+                        },
+                        function (error) {
+                            vm.error = "Error finding restaurant with id";
+                        }
+                    );
+
+                UserService
+                    .findUserById(currentUser._id)
+                    .then(
+                        function (res) {
+                            var user = res.data;
+                            user.restaurants.push(newRestaurant);
+                            UserService
+                                .updateUser(user._id, user)
+                                .then(
+                                    function (stats) {
+                                        vm.liked = true;
+                                    },
+                                    function (err) {
+                                        console.log(err);
+                                    }
+                                );
+                        },
+                        function (err) {
+                            console.log(err);
+                        }
+                    );
+
+            } else {
+                $location.url("/login");
+            }
+
+        }
+
     }
 })();

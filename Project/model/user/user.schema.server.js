@@ -1,6 +1,6 @@
 module.exports = function () {
     var mongoose =  require("mongoose");
-    // var BusinessSchema = require("../business/business.schema.server")();
+    var RestaurantSchema = require("../restaurant/restaurant.schema.server")();
 
     var UserSchema = mongoose.Schema({
         username: {type: String, required: true},
@@ -12,7 +12,7 @@ module.exports = function () {
         phone: String,
         company: String,
         url: String,
-        businesses: {type:mongoose.Schema.Types.ObjectId, ref: 'BusinessModel'},
+        restaurants: [RestaurantSchema],
         dateCreated: {type: Date, default: Date.now()},
         facebook: {
             id:    String,

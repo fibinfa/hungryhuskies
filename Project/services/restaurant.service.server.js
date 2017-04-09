@@ -1,7 +1,6 @@
-module.exports = function (app) {
+module.exports = function (app,model) {
 
     var Yelp = require('yelp');
-
 
     var yelp = new Yelp({
         consumer_key: 'yupxaDDxBGaFZB8EauSihA',
@@ -13,6 +12,35 @@ module.exports = function (app) {
     app.get("/api/yelp/searchByTerm", findAllRestaurantsByTerm);
     app.get("/api/yelp/searchByCategory", findAllRestaurantsByCategory);
     app.get("/api/yelp/restaurant/:restaurantId", findRestaurantByIdYelp);
+    app.post("/api/restaurant/new", createRestaurant);
+    app.get("/api/restaurant/:restaurantId", findRestaurantById);
+
+
+    function findRestaurantById(req, res) {
+        var restaurantId = req.params.restaurantId;
+        RestaurantModel
+            .findRestaurantById(restaurantId)
+            .then(
+                function (restaurant) {
+                    res.json(restaurant);
+                }, function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            )
+    }
+
+    function createRestaurant(req, res) {
+        var newRestaurant = req.body;
+        RestaurantModel
+            .createRestaurant(newRestaurant)
+            .then(
+                function (restaurant) {
+                    res.json(restaurant);
+                }, function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
+    }
 
     function findRestaurantByIdYelp(req, res) {
         var restaurantId = req.params.restaurantId;
@@ -23,7 +51,7 @@ module.exports = function (app) {
                     res.send(business);
                 },
                 function(err) {
-                    res.status(400).send(error);
+                    res.sendStatus(400).send(error);
                 }
             );
     }

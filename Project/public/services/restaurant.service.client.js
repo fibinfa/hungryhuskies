@@ -8,9 +8,19 @@
         var api = {
             findAllRestaurantsByCategory : findAllRestaurantsByCategory,
             findAllRestaurantsByTerm: findAllRestaurantsByTerm,
-            findRestaurantByIdYelp: findRestaurantByIdYelp
+            findRestaurantByIdYelp: findRestaurantByIdYelp,
+            findRestaurantById: findRestaurantById,
+            createRestaurant: createRestaurant
         };
         return api;
+
+        function findRestaurantById(restaurantId) {
+            return $http.get("/api/restaurant/"+restaurantId);
+        }
+
+        function createRestaurant(newRestaurant) {
+            return $http.post("/api/restaurant/new", newRestaurant);
+        }
 
         function findRestaurantByIdYelp(restaurantId){
             return $http.get("/api/yelp/restaurant/"+restaurantId);

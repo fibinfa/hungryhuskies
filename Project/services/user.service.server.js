@@ -6,7 +6,7 @@ module.exports = function (app, model) {
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     passport.use(new LocalStrategy(localStrategy));
     var bcrypt = require("bcrypt-nodejs");
-    // var auth = authorized;
+    var auth = authorized;
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -25,6 +25,7 @@ module.exports = function (app, model) {
             successRedirect: '/index.html#/user',
             failureRedirect: '/index.html#/login'
         }));
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/google/callback',
         passport.authenticate('google', {
@@ -49,7 +50,6 @@ module.exports = function (app, model) {
     };
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-
 
     function facebookStrategy(token, refreshToken, profile, done) {
         model.userModel
@@ -146,7 +146,6 @@ module.exports = function (app, model) {
             );
     }
 
-
     function createUser(req, res) {
         var newUser = req.body;
         newUser.password = bcrypt.hashSync(newUser.password);
@@ -154,9 +153,6 @@ module.exports = function (app, model) {
             .createUser(newUser)
             .then(function(user) {
                 res.json(user);
-            },
-            function (error) {
-                console.log(error);
             });
     }
 
@@ -220,11 +216,11 @@ module.exports = function (app, model) {
             .userModel
             .findUserById(userId)
             .then(function (user) {
-                res.json(user);
-            },
-            function (error) {
-                res.sendStatus(404);
-            })
+                    res.json(user);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                })
 
     }
 
@@ -290,6 +286,14 @@ module.exports = function (app, model) {
                 }
             );
     }
+
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    };
 
 
 }

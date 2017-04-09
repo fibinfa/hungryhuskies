@@ -17,6 +17,7 @@
                 //.findUserById(userId);
                 .findCurrentUser();
             promise.success(function (user) {
+                console.log($rootScope.currentUser);
                 vm.user=angular.copy(user);
             });
         }

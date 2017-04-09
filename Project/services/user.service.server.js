@@ -284,7 +284,7 @@ module.exports = function (app, model) {
     }
 
     function checkLoggedIn(req, res) {
-        res.send(req.isAuthenticated() ? req.user : '0');
+        res.send(req.isAuthenticated() ? req.user._doc : '0');
     }
 
 

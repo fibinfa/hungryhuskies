@@ -20,7 +20,10 @@
             .when("/", {
                 templateUrl: "views/home/home.view.client.html",
                 controller: "HomeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    getUser : getUser
+                }
             })
 
 
@@ -136,6 +139,26 @@
                     },
                     function(err) {
                         $location.url("/login");
+                    }
+                );
+            return deferred.promise;
+        }
+
+
+        function getUser ($q, UserService,$location, $rootScope) {
+            var deferred = $q.defer();
+            UserService
+                .checkLoggedIn()
+                .then(
+                    function (user) {
+                        if(user !='0') {
+                            $rootScope.currentUser = user;
+                            deferred.resolve();
+                        } else{
+                            $rootScope.currentUser = null;
+                            deferred.resolve();
+
+                        }
                     }
                 );
             return deferred.promise;

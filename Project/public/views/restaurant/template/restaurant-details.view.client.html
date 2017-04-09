@@ -1,7 +1,8 @@
 
-<div class="container">
+<div class="container t-top-margin t-bottom-margin box">
+    <div class="t-title t-category t-font t-bottom-padding">{{model.data.name}}</div>
     <div class="row">
-        <div class="col-sm-3 hidden-xs">
+        <div class="col-sm-4 hidden-xs">
             <p class="lead text-center t-special business-list-title">Categories</p>
             <ul class="ts-sidebar-menu  active">
                 <li class="open btn list-group-item t-button"><a href="#/search/bakeries"><h4><b>Bakeries</b></h4></a></li>
@@ -13,7 +14,7 @@
                 <li class="open btn list-group-item t-button"><a href="#/search/gelato"><h4><b>Gelato</b></h4></a></li>
             </ul>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-8">
             <div>
                 <img class="img-responsive t-category-image"
                      ng-src="{{model.data.image_url}}" alt="">
@@ -37,8 +38,8 @@
             </p>
 
             <div >
-                <p class="t-open" ng-show = "{{model.data.is_closed}} == false">Open</p>
-                <p class="t-closed" ng-show = "{{model.data.is_closed}} ">Closed</p>
+                <p class=" t-title navbar-text t-open" ng-show = "{{model.data.is_closed}} == false">Currently Open</p>
+                <p class="t-closed" ng-show = "{{model.data.is_closed}} ">Currently Closed</p>
             </div>
         </div>
     </div>
@@ -46,17 +47,6 @@
 
 
 
-
-
-<div class="row">
-    <div class="col-md-6">
-        <img class="img-responsive yelp-img"
-             ng-src="{{model.data.image_url}}" alt="">
-    </div>
-
-<div ng-repeat="business in model.data.businesses"></div>
-    <img class="img-responsive yelp-img"
-         ng-src="{{model.data.snippet_image_url}}" alt="">
 
 
     <div class="col-md-6">

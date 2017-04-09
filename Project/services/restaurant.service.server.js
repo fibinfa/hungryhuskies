@@ -18,7 +18,7 @@ module.exports = function (app,model) {
 
     function findRestaurantById(req, res) {
         var restaurantId = req.params.restaurantId;
-        RestaurantModel
+        model.restaurantModel
             .findRestaurantById(restaurantId)
             .then(
                 function (restaurant) {
@@ -31,7 +31,7 @@ module.exports = function (app,model) {
 
     function createRestaurant(req, res) {
         var newRestaurant = req.body;
-        RestaurantModel
+        model.restaurantModel
             .createRestaurant(newRestaurant)
             .then(
                 function (restaurant) {

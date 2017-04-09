@@ -5,7 +5,7 @@
 
 
 
-    function RestaurantDetailController($routeParams,RestaurantService,$rootScope) {
+    function RestaurantDetailController($routeParams,RestaurantService,$rootScope,UserService) {
         var vm = this;
         var restaurantId = $routeParams.rid;
         vm.likeRestaurant = likeRestaurant;
@@ -101,11 +101,12 @@
                     );
 
                 UserService
-                    .findUserById(currentUser._id)
+                    .findUserById(currentUser.data._id)
                     .then(
                         function (res) {
                             var user = res.data;
                             user.restaurants.push(newRestaurant);
+                            console.log(user.restaurants);
                             UserService
                                 .updateUser(user._id, user)
                                 .then(

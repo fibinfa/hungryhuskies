@@ -1,18 +1,18 @@
 module.exports = function () {
 
     var mongoose = require('mongoose');
-    var RestaurantSchema = require('./restaurant.model.server')();
+    var RestaurantSchema = require('./restaurant.schema.server')();
     var RestaurantModel = mongoose.model('RestaurantModel', RestaurantSchema);
     var model ={};
 
     var api = {
         createRestaurant: createRestaurant,
-        findRestaurantById: findRestaurantById
+        findRestaurantById: findRestaurantById,
         // updateUser: updateUser,
         // deleteUser: deleteUser,
         // findUserByUsername: findUserByUsername,
         // findUserByCredentials: findUserByCredentials,
-        // setModel: setModel,
+        setModel: setModel
         // findAllWebsitesForUser: findAllWebsitesForUser,
         // findUserByFacebookId: findUserByFacebookId,
         // findUserByGoogleId: findUserByGoogleId

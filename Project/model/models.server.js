@@ -15,19 +15,19 @@ module.exports =function() {
      mongoose.connect(connectionString);
 
      var userModel = require("./user/user.model.server")();
-     // var websiteModel = require("./website/website.model.server")();
+     var restaurantModel = require("./restaurant/restaurant.model.server")();
      // var pageModel = require("./page/page.model.server")();
      // var widgetModel = require("./widget/widget.model.server")();
 
      var model = {
-         userModel : userModel
-         // websiteModel : websiteModel,
+         userModel : userModel,
+         restaurantModel : restaurantModel
          // pageModel : pageModel,
          // widgetModel : widgetModel
      };
 
     userModel.setModel(model);
-    // websiteModel.setModel(model);
+    restaurantModel.setModel(model);
     // pageModel.setModel(model);
     // widgetModel.setModel(model);
 

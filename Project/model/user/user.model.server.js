@@ -58,9 +58,7 @@ module.exports = function () {
     function updateUser(userId, newUser) {
         return UserModel.update(
             {_id:userId},
-            {firstName: newUser.firstName,
-                lastName: newUser.lastName,
-                email: newUser.email}
+            {$set:newUser}
         );
     }
 

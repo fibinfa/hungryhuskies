@@ -61,7 +61,7 @@ module.exports = function (app, model) {
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
-    
+
     var facebookConfig = {
         clientID     : "1479677212082333",//process.env.FACEBOOK_CLIENT_ID, ////
         clientSecret : "be7bc72af96265506db4ae5faf14a61d",//process.env.FACEBOOK_CLIENT_SECRET,//

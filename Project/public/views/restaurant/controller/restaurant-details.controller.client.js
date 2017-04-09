@@ -3,8 +3,11 @@
         .module("HungryApp")
         .controller("RestaurantDetailController", RestaurantDetailController);
 
+    function RestaurantDetailController($routeParams,RestaurantService,$rootScope) {
+
+
     var vm = this;
-    var restaurantId = $routeParams.restaurantId;
+    var restaurantId = $routeParams.rid;
 
 
     function init() {
@@ -14,7 +17,10 @@
             .findRestaurantByIdYelp(restaurantId)
             .then(
                 function (res) {
+                    console.log(res);
                     vm.data = res.data;
+                }, function (err) {
+                    console.log(err);
                 }
             );
 
@@ -23,15 +29,15 @@
 
     }
 
-    function findBusiness() {
-        BusinessService
-            .findBusinessById(businessId)
-            .then(
-                function (res) {
-                    vm.localBusiness = res.data;
-                }
-            );
-    }
+    // function findBusiness() {
+    //     BusinessService
+    //         .findBusinessById(businessId)
+    //         .then(
+    //             function (res) {
+    //                 vm.localBusiness = res.data;
+    //             }
+    //         );
+    // }
 
     // function search(businessId, businessArray) {
     //     for (var i=0; i < businessArray.length; i++) {
@@ -42,5 +48,5 @@
     //     return false;
     // }
     init();
-
+    }
 })();

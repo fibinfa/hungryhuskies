@@ -17,7 +17,15 @@ module.exports = function (app) {
     function findRestaurantByIdYelp(req, res) {
         var restaurantId = req.params.restaurantId;
         yelp
-            .business
+            .business(restaurantId)
+            .then(
+                function(business) {
+                    res.send(business);
+                },
+                function(err) {
+                    res.status(400).send(error);
+                }
+            );
     }
 
     function findAllRestaurantsByTerm(req, res) {

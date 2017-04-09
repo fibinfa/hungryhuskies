@@ -13,7 +13,7 @@
         return api;
 
         function findRestaurantByIdYelp(restaurantId){
-            return $http.get("/api/yelp/restaurant"+restaurantId);
+            return $http.get("/api/yelp/restaurant/"+restaurantId);
         }
 
         function findAllRestaurantsByTerm(searchObject) {

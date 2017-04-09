@@ -71,7 +71,13 @@
             resolve: {
                 checkLoggedIn: checkLoggedIn
             }
-        });
+        })
+            .when("/restaurant/:rid",{
+                templateUrl: 'views/restaurant/template/restaurant-details.view.client.html',
+                controller: 'RestaurantDetailController',
+                controllerAs: 'model'
+                });
+
         // .when("/user/:uid/website",{
         //     templateUrl: 'views/website/templates/website-list.view.client.html',
         //     controller: "WebsiteListController",

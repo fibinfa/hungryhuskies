@@ -23,7 +23,7 @@
             <div class="col-md-9 col-sm-9">
                 <div ng-repeat="business in model.data.businesses" class="col-md-4 col-sm-4 col-xs-6 portfolio-item">
                     <div class="panel panel-default">
-                        <a href="" ng-click="model.findApiBusinessById(business.id)">
+                        <a href="" ng-click="model.findRestaurantByIdYelp(business.id)">
                             <img class="img-responsive"
                                  width="700"
                                  height="300"
@@ -31,7 +31,7 @@
                         </a>
                         <div class="panel-body fixed-panel">
                             <h5>
-                                <a href="" ng-click="model.findApiBusinessById(business.id)"><h4>{{business.name}}</h4></a>
+                                <a href="" ng-click="model.findRestaurantByIdYelp(business.id)"><h4>{{business.name}}</h4></a>
                             </h5>
 
                             <p>

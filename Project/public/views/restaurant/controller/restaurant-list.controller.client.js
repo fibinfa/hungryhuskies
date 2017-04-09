@@ -6,7 +6,7 @@
     function RestaurantListController($location, RestaurantService, $routeParams, $rootScope) {
         var vm = this;
         vm.findApiAllBusinessByTerm = findApiAllBusinessByTerm;
-        vm.findApiBusinessById = findApiBusinessById;
+        vm.findRestaurantByIdYelp = findRestaurantByIdYelp;
         vm.findAllRestaurantsByCategory = findAllRestaurantsByCategory;
 
         var category = $routeParams.category;
@@ -60,13 +60,13 @@
                 )
         }
 
-        function findApiBusinessById(businessId) {
-            BusinessService
-                .findApiBusinessById(businessId)
+        function findRestaurantByIdYelp(restaurantId) {
+            RestaurantService
+                .findRestaurantByIdYelp(restaurantId)
                 .then(
                     function (res) {
                         vm.data = res.data;
-                        $location.url("/business/"+businessId);
+                        $location.url("/restaurant/"+restaurantId);
                     },
                     function (err) {
                         vm.error = "Sorry! We could not find a business matching the Id";

@@ -1,8 +1,9 @@
 
 <div class="container t-top-margin t-bottom-margin box">
-    <div class="t-title t-category t-font t-bottom-padding t-category-head row">
+    <div class="t-title t-category t-font t-category-head row">
         {{model.data.name}}
     </div>
+    <hr>
     <div class="row t-top-margin">
         <div class="col-sm-4 hidden-xs">
             <p class="lead text-center t-special business-list-title">Categories</p>
@@ -41,10 +42,33 @@
                     </h4>
                 </div>
 
+                <!--currently open-->
+                <div>
+                    <p class=" t-title navbar-text t-open" ng-show = "{{model.data.is_closed}} == false">Currently Open</p>
+                    <p class="t-closed" ng-show = "{{model.data.is_closed}} ">Currently Closed</p>
+                </div>
+
             </div>
 
 
-            <div ng-if="model.currentUser">
+            <!--rating and like-->
+            <div class="row">
+            <span>
+
+                <fieldset class="rating">
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                <input type="radio"  name="ratingd" ng-model="model.data.rating" value=".5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+            </fieldset>
+
+                <div  ng-if="model.currentUser">
                 <div ng-if="!model.liked" class="like-button">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle-o fa-stack-2x" ng-click="model.likeRestaurant(model.data)"></i>
@@ -60,103 +84,44 @@
             </div>
 
 
-
-            <fieldset class="rating">
-                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-            </fieldset>
+            </span>
 
 
-            <div >
-                <p class=" t-title navbar-text t-open" ng-show = "{{model.data.is_closed}} == false">Currently Open</p>
-                <p class="t-closed" ng-show = "{{model.data.is_closed}} ">Currently Closed</p>
+
+
             </div>
-        </div>
-    </div>
-</div>
 
 
-
-
-
-    <div class="col-md-6">
-        <div class="panel-body">
-            <p>
-            <h4>
-                <i>
-                    <b>Address:</b><br>
-                    <div ng-repeat="element in model.data.location.display_address">
-                        {{element}}
+            <div class="row">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3>Yelp Review: {{model.data.name}}</h3>
                     </div>
-                    {{model.data.location.country_code}}
-                </i>
-            </h4>
-            <p>
-            <h4>
-                <b>Phone:</b>
-                {{model.data.display_phone}}
-            </h4>
-            </p>
-            <p>
-            <h4>
-                <i>
-                    <b>Neighborhoods:</b><br>
-                    <div ng-repeat="element in model.data.location.neighborhoods">
-                        {{element}}
+                    <div class="panel-body">
+                        <h4><p><i>{{model.data.reviews[0].excerpt}}</i></p></h4>
+                        <fieldset class="rating">
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio"  name="rating" ng-model="model.data.reviews[0].rating" value=".5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
                     </div>
-                </i>
-            </h4>
-            </p>
-            <p>
-            <div ng-if="model.currentUser">
-                <div ng-if="!model.liked" class="like-button">
-                                                <span class="fa-stack fa-lg">
-                                                    <i class="fa fa-circle-o fa-stack-2x" ng-click="model.likeRestaurant(model.data)"></i>
-                                                    <i class="fa fa-thumbs-up fa-stack-1x" ng-click="model.likeRestaurant(model.data)"></i>
-                                                </span>
                 </div>
-                <div ng-if="model.liked" class="like-button">
-                                                <span class="fa-stack fa-lg">
-                                                    <i class="fa fa-circle-o fa-stack-2x" ng-click="model.dislikeBusiness(model.data.id)"></i>
-                                                    <i class="fa fa-thumbs-down fa-stack-1x" ng-click="model.dislikeBusiness(model.data.id)"></i>
-                                                </span>
-                </div>
+
             </div>
-            </p>
-            </p>
+
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel-body">
-            <div class="caption-full text-left">
-                <h3>{{model.data.name}}</h3>
-                <h4><p><i>{{model.data.reviews[0].excerpt}}</i></p></h4>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel-body">
-            <div class="ratings">
-                <p>
-                    <img class="img-responsive"
-                         ng-src="{{model.data.rating_img_url}}" alt="">
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
 
 
 

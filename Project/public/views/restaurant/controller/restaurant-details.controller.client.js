@@ -12,9 +12,6 @@
         vm.dislikeRestaurant = dislikeRestaurant;
         vm.findBusiness = findBusiness;
 
-
-
-
         function init() {
             vm.currentUser = $rootScope.currentUser.data;
 

@@ -104,8 +104,11 @@
         }
 
         function init() {
-            vm.currentUser = $rootScope.currentUser.data;
-
+            if($rootScope.currentUser !== null) {
+                vm.currentUser = $rootScope.currentUser.data;
+            }else{
+                vm.currentUser = null;
+            }
 
             RestaurantService
                 .findRestaurantByIdYelp(restaurantId)

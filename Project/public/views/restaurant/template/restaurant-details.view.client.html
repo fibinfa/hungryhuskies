@@ -51,7 +51,6 @@
 
             </div>
 
-
             <!--rating and like-->
             <div class="row">
             <span>
@@ -152,6 +151,36 @@
             </div>
 
 
+            <!--review Array-->
+            <div ng-repeat="review in model.reviewArray">
+
+                <div class="row">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3> {{review.username}} reviewed {{review.resname}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4><p><i>{{review.content}}</i></p></h4>
+                            <fieldset class="rating">
+                                <input type="radio"  name="rating" ng-model="review.rating" value="5" /><label class = "full" title="Awesome - 5 stars"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value="4.5" /><label class="half" title="Pretty good - 4.5 stars"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value="4" /><label class = "full" title="Pretty good - 4 stars"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value="3.5" /><label class="half" title="Meh - 3.5 stars"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value="3" /><label class = "full" title="Meh - 3 stars"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value="2.5" /><label class="half" title="Kinda bad - 2.5 stars"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value="2" /><label class = "full" title="Kinda bad - 2 stars"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value="1.5" /><label class="half" title="Meh - 1.5 stars"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value="1" /><label class = "full" title="Sucks big time - 1 star"></label>
+                                <input type="radio"  name="rating" ng-model="review.rating" value=".5" /><label class="half"  title="Sucks big time - 0.5 stars"></label>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div ng-repeat="comment in review.comment"></div>
+
+            </div>
         </div>
     </div>
 </div>

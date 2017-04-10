@@ -1,7 +1,7 @@
 
 
 
-<div class="container ffa-add-bottom-padding">
+<div class="container ffa-add-bottom-padding t-top-margin t-bottom-margin t-register">
     <div class="alert alert-danger" ng-show="model.error">
         {{model.error}}
     </div>
@@ -26,7 +26,7 @@
                     <option value="OWNER" ng-selected="{{model.user.role}}=='OWNER'">Owner</option>
                     <option value="CRITIC" ng-selected="{{model.user.role}}=='CRITIC'">Critic</option>
                 </select>
-                Fibin  {{model.user.role}}=='USER'
+
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>

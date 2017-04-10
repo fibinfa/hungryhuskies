@@ -92,6 +92,19 @@
             </div>
 
 
+            <div>
+                <div ng-if="model.currentUser" class="text-right">
+                    <textarea ng-model="model.reviewText" class="form-control transition" cols="100" id="get-review" name="comment" placeholder="Submit a Review Here" rows="3"></textarea>
+                    <a class="btn btn-warning"
+                       ng-click="model.enableReview()">
+                        Write a Review
+                    </a>
+                </div>
+            </div>
+            <hr>
+
+
+            <!--yelp review-->
             <div class="row">
                 <div class="panel panel-success">
                     <div class="panel-heading">
@@ -115,6 +128,8 @@
                 </div>
 
             </div>
+
+
 
         </div>
     </div>

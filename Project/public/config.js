@@ -86,6 +86,14 @@
                     checkLoggedIn: checkLoggedIn
                 }
             })
+            .when("/user/:username",{
+                templateUrl: 'views/user/templates/profile.view.client.html',
+                controller: 'ProfileController',
+                controllerAs: 'model',
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
+            })
 
             .when("/restaurant/:rid",{
                 templateUrl: 'views/restaurant/template/restaurant-details.view.client.html',
@@ -94,7 +102,8 @@
                 resolve:{
                     getUser : getUser
                 }
-            });
+            })
+        ;
 
 
         function checkLoggedIn($q, UserService,$location, $rootScope) {

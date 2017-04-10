@@ -10,12 +10,13 @@
         var restaurantId = $routeParams.rid;
         vm.likeRestaurant = likeRestaurant;
         vm.dislikeRestaurant = dislikeRestaurant;
+        vm.findBusiness = findBusiness;
 
 
 
 
         function init() {
-            vm.currentUser = $rootScope.currentUser;
+            vm.currentUser = $rootScope.currentUser.data;
 
 
             RestaurantService
@@ -36,37 +37,54 @@
                     }
                 );
 
-            // findBusiness();
+            findBusiness();
+
+            if(vm.currentUser) {
+                UserService
+                    .findUserById(vm.currentUser._id)
+                    .then(
+                        function (res) {
+                            var user = res.data;
+                            vm.username = user.username;
+                            var restaurantArray = user.restaurants;
+                            vm.liked = search(restaurantId, restaurantArray);
+                        },
+                        function (err) {
+                            vm.error = "User not found";
+                        }
+                    );
+                vm.deleteEnable = true;
+            }
 
 
 
         }
 
-        // function findBusiness() {
-        //     BusinessService
-        //         .findBusinessById(businessId)
-        //         .then(
-        //             function (res) {
-        //                 vm.localBusiness = res.data;
-        //             }
-        //         );
-        // }
+        function findBusiness() {
+            RestaurantService
+                .findRestaurantById(restaurantId)
+                .then(
+                    function (res) {
+                        vm.localBusiness = res.data;
+                    }
+                );
+        }
 
-        // function search(businessId, businessArray) {
-        //     for (var i=0; i < businessArray.length; i++) {
-        //         if (businessArray[i]._id === businessId) {
-        //             return true;
-        //         }
-        //     }
-        //     return false;
-        // }
+        function search(restaurantId, restaurantArray) {
+            for (var i=0; i < restaurantArray.length; i++) {
+                if (restaurantArray[i]._id === restaurantId) {
+                    return true;
+                }
+            }
+            return false;
+        }
         init();
 
 
 
 
         function likeRestaurant(restaurant) {
-            var currentUser = $rootScope.currentUser;
+            var currentUser = $rootScope.currentUser.data;
 
             if(currentUser) {
                 var newRestaurant = {
@@ -101,7 +119,7 @@
                     );
 
                 UserService
-                    .findUserById(currentUser.data._id)
+                    .findUserById(currentUser._id)
                     .then(
                         function (res) {
                             var user = res.data;

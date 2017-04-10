@@ -7,7 +7,7 @@
         var vm = this;
 
         vm.findAllRestaurantsByCategory = findAllRestaurantsByCategory;
-        // vm.findApiAllBusinessByTerm = findApiAllBusinessByTerm;
+        // vm.findAllRestaurantsByTerm = findAllRestaurantsByTerm;
 
         function findAllRestaurantsByCategory(category) {
             RestaurantService

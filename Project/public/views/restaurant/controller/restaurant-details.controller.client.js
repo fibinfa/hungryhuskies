@@ -5,7 +5,9 @@
 
 
 
+
     function RestaurantDetailController($routeParams,RestaurantService,$rootScope,UserService, ReviewService) {
+
         var vm = this;
         var restaurantId = $routeParams.rid;
         vm.likeRestaurant = likeRestaurant;
@@ -13,6 +15,9 @@
         vm.createReview = createReview;
         // vm.deleteReview = deleteReview;
         vm.findBusiness = findBusiness;
+        vm.createReview = createReview;
+
+
 
         function createReview(reviewText, rating) {
             if(vm.currentUser) {

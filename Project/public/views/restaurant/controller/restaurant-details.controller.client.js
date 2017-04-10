@@ -5,12 +5,23 @@
 
 
 
-    function RestaurantDetailController($routeParams,RestaurantService,$rootScope,UserService) {
+    function RestaurantDetailController($scope, $routeParams,RestaurantService,$rootScope,UserService) {
         var vm = this;
         var restaurantId = $routeParams.rid;
         vm.likeRestaurant = likeRestaurant;
         vm.dislikeRestaurant = dislikeRestaurant;
         vm.findBusiness = findBusiness;
+        vm.createReview = createReview;
+
+
+        function createReview(review,rating) {
+            console.log(review);
+            console.log("rating"+rating);
+
+            // var r = document.getElementById("rating1").value;
+            // console.log(angular.element('#rating1')[0].value);
+            // console.log(r);
+        }
 
         function init() {
             vm.currentUser = $rootScope.currentUser.data;
@@ -77,7 +88,17 @@
         }
         init();
 
-
+        $scope.rating = 0;
+        $scope.ratings = [{
+            current: 5,
+            max: 10
+        }, {
+            current: 3,
+            max: 5
+        }];
+        $scope.getSelectedRating = function (rating) {
+            console.log(rating);
+        };
 
 
         function likeRestaurant(restaurant) {

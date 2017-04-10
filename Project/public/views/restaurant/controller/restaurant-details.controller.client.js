@@ -24,8 +24,11 @@
                 var review = {
                     username: vm.currentUser.username,
                     content: reviewText,
-                    rating: rating
+                    rating: rating,
+                    // userId: vm.currentUser._id,
+                    // restaurantId: vm.data.id
                 };
+                console.log(review);
                 var restaurant=vm.data;
                 var newRestaurant = {
                     _id: restaurant.id,
@@ -157,6 +160,7 @@
                 .then(
                     function (res) {
                         vm.localBusiness = res.data;
+                        vm.reviewArray = res.data.reviews;
                     }
                 );
         }

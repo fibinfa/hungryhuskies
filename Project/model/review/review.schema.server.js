@@ -3,7 +3,8 @@ module.exports = function () {
      var CommentSchema = require("../comment/comment.schema.server")();
 
     var ReviewSchema = mongoose.Schema({
-        user: {type:mongoose.Schema.Types.ObjectId, ref: 'UserModel'},
+        username: String,
+        // restaurantId: {type:mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'},
         content: String,
         rating: Number,
         comments: [CommentSchema],

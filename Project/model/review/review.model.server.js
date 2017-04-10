@@ -1,14 +1,14 @@
 module.exports = function () {
 
     var mongoose = require('mongoose');
-    var RestaurantSchema = require('./restaurant.schema.server')();
-    var RestaurantModel = mongoose.model('RestaurantModel', RestaurantSchema);
+    var ReviewSchema = require('./review.schema.server')();
+    var ReviewModel = mongoose.model('ReviewModel', ReviewSchema);
     var model ={};
 
     var api = {
-        createRestaurant: createRestaurant,
-        findRestaurantById: findRestaurantById,
-        updateRestaurant: updateRestaurant,
+        createReview: createReview,
+        // findRestaurantById: findRestaurantById,
+        // updateUser: updateUser,
         // deleteUser: deleteUser,
         // findUserByUsername: findUserByUsername,
         // findUserByCredentials: findUserByCredentials,
@@ -55,19 +55,21 @@ module.exports = function () {
     //     );
     // }
     //
-    function updateRestaurant(restaurantId, newRestaurant) {
-        return RestaurantModel.update(
-            {_id:restaurantId},
-            {$set:newRestaurant}
-        );
-    }
+    // function updateUser(userId, newUser) {
+    //     return UserModel.update(
+    //         {_id:userId},
+    //         {firstName: newUser.firstName,
+    //             lastName: newUser.lastName,
+    //             email: newUser.email}
+    //     );
+    // }
+    //
+    // function findRestaurantById(restaurantId) {
+    //     return RestaurantModel.findById(restaurantId);
+    // }
 
-    function findRestaurantById(restaurantId) {
-        return RestaurantModel.findById(restaurantId);
-    }
-
-    function createRestaurant(newRestaurant) {
-        return RestaurantModel.create(newRestaurant);
+    function createReview(review) {
+        return ReviewModel.create(review);
     }
 
     // function findUserByFacebookId(facebookId) {

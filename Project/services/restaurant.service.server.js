@@ -14,6 +14,20 @@ module.exports = function (app,model) {
     app.get("/api/yelp/restaurant/:restaurantId", findRestaurantByIdYelp);
     app.post("/api/restaurant/new", createRestaurant);
     app.get("/api/restaurant/:restaurantId", findRestaurantById);
+    app.put("/api/restaurant/:restaurantId", updateRestaurant);
+
+
+    function updateRestaurant(req, res) {
+        var restaurantId = req.params.restaurantId;
+        var restaurant = req.body;
+        model.restaurantModel
+            .updateRestaurant(restaurantId, restaurant)
+            .then(function (restaurant) {
+                res.json(restaurant);
+            }, function (error) {
+                res.sendStatus(400).send(error);
+            })
+    }
 
 
     function findRestaurantById(req, res) {

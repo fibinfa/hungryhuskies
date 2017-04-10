@@ -5,12 +5,98 @@
 
 
 
-    function RestaurantDetailController($routeParams,RestaurantService,$rootScope,UserService) {
+    function RestaurantDetailController($routeParams,RestaurantService,$rootScope,UserService, ReviewService) {
         var vm = this;
         var restaurantId = $routeParams.rid;
         vm.likeRestaurant = likeRestaurant;
         vm.dislikeRestaurant = dislikeRestaurant;
+        vm.createReview = createReview;
+        // vm.deleteReview = deleteReview;
         vm.findBusiness = findBusiness;
+
+        function createReview(reviewText, rating) {
+            if(vm.currentUser) {
+                var review = {
+                    username: vm.currentUser.username,
+                    content: reviewText,
+                    rating: rating
+                };
+                var restaurant=vm.data;
+                var newRestaurant = {
+                    _id: restaurant.id,
+                    imageUrl: restaurant.image_url,
+                    name: restaurant.name,
+                    phone: restaurant.phone,
+                    ratingUrl: restaurant.rating_img_url
+                };
+
+                ReviewService
+                    .createReview(review)
+                    .then(
+                        function (res) {
+                            var newReview = res.data;
+                            RestaurantService
+                                .findRestaurantById(restaurant.id)
+                                .then(
+                                    function (response) {
+                                        var restaurant = response.data;
+                                        if(!restaurant) {
+                                            newRestaurant.reviews=[];
+                                            newRestaurant.reviews.push(newReview);
+                                            return RestaurantService
+                                                .createRestaurant(newRestaurant);
+                                        }   else {
+                                            restaurant.reviews.push(newReview);
+                                            RestaurantService
+                                                .updateRestaurant(restaurant._id, restaurant)
+                                                .then(
+                                                    function (stats) {
+                                                        // vm.reviewEnabled = false;
+                                                        return;
+                                                    },
+                                                    function (err) {
+                                                        // vm.reviewEnabled = false;
+                                                        return;
+                                                    }
+                                                );
+                                            findBusiness();
+                                        }
+                                    },
+                                    function (error) {
+                                        vm.error = "Error finding business with id";
+                                    }
+                                )
+                                .then(
+                                    function (res) {
+                                        if(res) {
+                                            var restaurantReceived = res.data;
+                                            restaurantReceived.reviews.push(newReview);
+                                            RestaurantService
+                                                .updateRestaurant(restaurantReceived._id, restaurantReceived)
+                                                .then(
+                                                    function (stats) {
+                                                        // vm.reviewEnabled = false;
+                                                        findBusiness();
+                                                    },
+                                                    function (err) {
+                                                    }
+                                                );
+                                            findBusiness();
+                                        }
+                                    },
+                                    function (err) {
+                                        console.log(err);
+                                    }
+                                );
+                        },
+                        function (err) {
+                            vm.error="Error creating review";
+                        }
+                    );
+
+
+            }
+        }
 
         function init() {
             vm.currentUser = $rootScope.currentUser.data;

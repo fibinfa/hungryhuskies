@@ -16,19 +16,19 @@ module.exports =function() {
 
      var userModel = require("./user/user.model.server")();
      var restaurantModel = require("./restaurant/restaurant.model.server")();
-     // var pageModel = require("./page/page.model.server")();
+     var reviewModel = require("./review/review.model.server")();
      // var widgetModel = require("./widget/widget.model.server")();
 
      var model = {
          userModel : userModel,
-         restaurantModel : restaurantModel
-         // pageModel : pageModel,
+         restaurantModel : restaurantModel,
+         reviewModel : reviewModel
          // widgetModel : widgetModel
      };
 
     userModel.setModel(model);
     restaurantModel.setModel(model);
-    // pageModel.setModel(model);
+    reviewModel.setModel(model);
     // widgetModel.setModel(model);
 
      return model;

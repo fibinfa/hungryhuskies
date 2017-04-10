@@ -1,6 +1,6 @@
 module.exports = function () {
     var mongoose =  require("mongoose");
-    // var ReviewSchema = require("../review/review.schema.server")();
+    var ReviewSchema = require("../review/review.schema.server")();
 
     var RestaurantSchema = mongoose.Schema({
         _id: {type: String, required: true},
@@ -8,7 +8,7 @@ module.exports = function () {
         phone: String,
         imageUrl: String,
         ratingUrl: String,
-        reviews: {type:mongoose.Schema.Types.ObjectId, ref: 'ReviewModel'},
+        reviews: [ReviewSchema],
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "restaurant"});
 

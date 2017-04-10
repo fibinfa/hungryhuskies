@@ -10,9 +10,14 @@
             findAllRestaurantsByTerm: findAllRestaurantsByTerm,
             findRestaurantByIdYelp: findRestaurantByIdYelp,
             findRestaurantById: findRestaurantById,
-            createRestaurant: createRestaurant
+            createRestaurant: createRestaurant,
+            updateRestaurant: updateRestaurant
         };
         return api;
+
+        function updateRestaurant(restaurantId, newRestaurant) {
+            return $http.put("/api/restaurant/"+restaurantId, newRestaurant);
+        }
 
         function findRestaurantById(restaurantId) {
             return $http.get("/api/restaurant/"+restaurantId);

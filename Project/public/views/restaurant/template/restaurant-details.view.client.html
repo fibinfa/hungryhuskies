@@ -131,7 +131,7 @@
                 <div class="row">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>reviewed by: {{review.username}}</h3>
+                            <h3>reviewed by: <a href="#/user/{{review.username}}">{{review.username}}</a></h3>
                         </div>
                         <div class="panel-body">
                             <h4><p><i>{{review.content}}</i></p></h4>
@@ -184,7 +184,7 @@
 
 
             <!--review Array-->
-            <div ng-repeat="review in model.reviewArray">
+            <div ng-repeat="review in model.reviewArray | orderBy:'dateCreated':true">
                 <div class="row">
                     <div class="panel panel-success">
                         <div class="panel-heading">

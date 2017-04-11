@@ -59,7 +59,8 @@
                                                 .updateRestaurant(restaurant._id, restaurant)
                                                 .then(
                                                     function (stats) {
-                                                        // vm.reviewEnabled = false;
+                                                        vm.text="";
+                                                        vm.rating=0;
                                                         return;
                                                     },
                                                     function (err) {
@@ -83,7 +84,6 @@
                                                 .updateRestaurant(restaurantReceived._id, restaurantReceived)
                                                 .then(
                                                     function (stats) {
-                                                        // vm.reviewEnabled = false;
                                                         findBusiness();
                                                     },
                                                     function (err) {
@@ -160,7 +160,22 @@
                 .then(
                     function (res) {
                         vm.localBusiness = res.data;
-                        vm.reviewArray = res.data.reviews;
+                        vm.reviewArray=[];
+                        vm.myReview=[];
+                        if(vm.currentUser!=null) {
+                            for (var i = 0; i < res.data.reviews.length; i++) {
+                                var localReview = res.data.reviews[i];
+                                if (localReview.username == vm.currentUser.username) {
+                                    localReview.userId = vm.currentUser._id;
+                                    vm.myReview.push(localReview);
+                                } else {
+
+                                    vm.reviewArray.push(localReview);
+                                }
+                            }
+                        } else{
+                            vm.reviewArray =res.data.reviews;
+                        }
                     }
                 );
         }

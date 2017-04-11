@@ -85,74 +85,72 @@
 
     <!--header-->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="row">
-            <div class="col-xs-2">
-                <span>
-                    <a href="#/" class="text-left t-title">
-                        <img width="50px" height="50px" class="text-center " ng-src="images/icon.PNG" />Hungry</a>
-                </span>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#/" class="text-left t-title">
+                    <img width="50px" height="50px" class="text-center" ng-src="images/icon.PNG" />Hungry</a>
             </div>
+<div class="row">
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
 
-            <div class="col-xs-3">
-                <div class="t-search">
-                    <input class="form-control" type="text"
-                           ng-model="search.term"
-                           placeholder="Term Eg:Pizza"
-                           role="combobox" aria-label="Search">
-                </div>
+                    <form class="navbar-form navbar-left" role="search">
+
+                        <div>
+                            <input class="form-control" type="text"
+                                   ng-model="search.term"
+                                   placeholder="Term Eg:Pizza"
+                                   role="combobox" aria-label="Search">
+
+                            <input class="form-control" type="text"
+                                   ng-init="search.location='Boston'"
+                                   ng-model="search.location"
+                                   placeholder="Location Eg: Boston"
+                                   role="combobox" aria-label="Search">
+
+                            <a href="#/search/:{{search.term}}/location/:{{search.location}}"
+                               class="fa fa-search fa-2x" aria-hidden="true"></a>
+
+                        </div>
+
+                    </form>
+
+                    <li ng-if="currentUser.data.role == 'admin'">
+                        <a href="#/admin"><b>Admin</b></a>
+                    </li>
+                    <li ng-if="currentUser.data == null">
+                        <a href="#/register"><b>Register</b></a>
+                    </li>
+                    <li ng-if="currentUser.data == null">
+                        <a href="#/login"><b>Login</b></a>
+                    </li>
+                    <li ng-if="currentUser" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Welcome &nbsp;
+                            <b>{{currentUser.data.username}}</b>
+                            <i class="fa fa-caret-down fa-lg" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#/user"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; &nbsp; Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href="#/user/{{currentUser.data.username}}"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp; &nbsp; Activity</a>
+                            </li>
+                            <li>
+                                <a href="#/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; &nbsp;Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
             </div>
-
-            <div class="col-xs-3">
-                <div class="t-search">
-                    <input class="form-control" type="text"
-                           ng-init="search.location='Boston'" ng-model="search.location"
-                           placeholder="Location Eg: Boston"
-                           role="combobox" aria-label="Search">
-                </div>
-            </div>
-
-
-
-
-            <div class="col-xs-1">
-                <div class="t-search">
-                    <a href="#/search/:{{search.term}}/location/:{{search.location}}"
-                       class="fa fa-search fa-2x" aria-hidden="true"></a>
-                </div>
-            </div>
-
-            <div class="t-search ">
-
-                <span>
-
-                        <a ng-if="currentUser == null"
-                           href="#/register"><b>Register</b></a>
-
-                        <i ng-show="currentUser == null"><strong style="color: beige">/</strong></i>
-
-
-                        <a ng-if="currentUser == null"
-                           href="#/login"><b>Login</b></a>
-
-                        <p ng-show ="currentUser.data != null">
-
-                            <b class="t-font ">Welcome {{currentUser.data.username}}</b>
-                            <a href="#/user">
-                                <span class="glyphicon glyphicon-user"></span>
-                            </a>
-                        </p>
-
-
-                </span>
-
-            </div>
-
-
-
+</div>
         </div>
-
-
-
     </nav>
 
 

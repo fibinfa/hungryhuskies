@@ -36,6 +36,16 @@
                 }
             })
 
+
+            .when("/logout", {
+                templateUrl: 'views/user/templates/login.view.client.html',
+                controller: 'LoginController',
+                controllerAs: 'model',
+                resolve:{
+                    logOut : logOut
+                }
+            })
+
             .when("/yelp", {
                 templateUrl: "views/yelp.html",
                 controller: "YelpSearchController",
@@ -94,6 +104,18 @@
                 resolve:{
                     getUser : getUser
                 }
+
+            })
+
+            .otherwise({
+                templateUrl: "views/home/home.view.client.html",
+                controller: "HomeController",
+                controllerAs: "model",
+                resolve:{
+                    getUser : getUser
+                }
+
+
             });
 
 
@@ -142,6 +164,18 @@
     }
 
 
+    function logOut($q,UserService,$rootScope){
+        var deferred = $q.defer();
+        UserService
+            .logout()
+            .then(
+                function () {
+                    $rootScope.currentUser = null;
+                    deferred.resolve();
+                }
+            );
+        return deferred.promise;
+    }
 
 
 })();

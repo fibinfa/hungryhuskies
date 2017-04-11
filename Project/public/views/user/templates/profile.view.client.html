@@ -2,57 +2,102 @@
 
 
 <div class="container ffa-add-bottom-padding t-top-margin t-bottom-margin t-register">
-    <div class="alert alert-danger" ng-show="model.error">
-        {{model.error}}
+
+    <div class="row">
+
+        <div class="col-xs-4">
+
+                <div class="text-center">
+                    <img ng-if="!model.user.url"
+                         ng-src="../../images/blank-img.jpg"
+                         class="avatar img-circle img-thumbnail"
+                         alt="avatar">
+
+                    <img ng-if="model.user.url"
+                         id="img-profile"
+                         ng-src="{{model.user.url}}"
+                         class="avatar img-circle img-thumbnail img-responsive"
+                         alt="avatar">
+                    <h4 class="business-list-title">{{model.user.firstName}} {{model.user.lastName}}</h4>
+
+                    <div class="form-group">
+                        <form action="/api/uploads"  method="post" enctype="multipart/form-data">
+                            <input name="myFile" type="file" class="form-control">
+                            <input  name="width" value="150" style="display: none"/>
+                            <input  name="userId" value="{{model.user._id}}" style="display: none"/>
+                            <button type="submit" class="btn btn-primary">Upload New Image</button>
+                        </form>
+                    </div>
+                </div>
+
+
+        </div>
+
+        <div class="col-xs-8">
+
+            <div class="alert alert-danger" ng-show="model.error">
+                {{model.error}}
+            </div>
+
+            <div class="alert alert-success" ng-show="model.message">
+                {{model.message}}
+            </div>
+
+
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    <select id="role" name="role"  class="form-control">
+                        <option value="USER" ng-selected="{{model.user.role}}=='USER'" >User</option>
+                        <option value="OWNER" ng-selected="{{model.user.role}}=='OWNER'">Owner</option>
+                        <option value="CRITIC" ng-selected="{{model.user.role}}=='CRITIC'">Critic</option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+                </div>
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
+                </div>
+            </form>
+
+        </div>
+
     </div>
 
-    <div class="alert alert-success" ng-show="model.message">
-        {{model.message}}
-    </div>
 
-    <form>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username" disabled>
-            </div>
-            <!--<div class="form-group">-->
-                <!--<label for="role">Role</label>-->
-                <!--<input ng-model="model.user.role" type="text" class="form-control" id="role" >-->
-            <!--</div>-->
-            <div class="form-group">
-                <label for="role">Role:</label>
-                <select id="role" name="role"  class="form-control">
-                    <option value="USER" ng-selected="{{model.user.role}}=='USER'" >User</option>
-                    <option value="OWNER" ng-selected="{{model.user.role}}=='OWNER'">Owner</option>
-                    <option value="CRITIC" ng-selected="{{model.user.role}}=='CRITIC'">Critic</option>
-                </select>
 
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
-            </div>
-            <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
-            </div>
-        </form>
+    <div class="row">
 
         <a ng-click="model.update(model.user)"
-        class="btn btn-primary btn-block">
+           class="btn btn-primary btn-block">
             Update
         </a>
-    <a ng-click="model.deleteUser()"
-       class="btn btn-warning btn-block">
-        Delete User
-    </a>
-    <a class="btn btn-danger  btn-block"
+
+        <a class="btn btn-danger  btn-block"
            ng-click="model.logout()">Logout</a>
-    <br>
+
+
+        <a ng-click="model.deleteUser()"
+           class="btn btn-warning btn-block">
+            Delete User
+        </a>
+
+    </div>
+
+        <br>
 </div>
 
 

@@ -1,5 +1,11 @@
 module.exports = function (app, model) {
 
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+    app.post("/api/uploads", upload.single('myFile'), uploadImage);
+
+
     var passport      = require('passport');
 
     var LocalStrategy = require('passport-local').Strategy;
@@ -314,7 +320,45 @@ module.exports = function (app, model) {
         } else {
             next();
         }
-    };
+    }
 
 
-}
+    function uploadImage(req, res) {
+        var userId      = req.body.userId;
+        var width         = req.body.width;
+        var myFile        = req.file;
+
+        if(myFile == null) {
+            res.redirect("#/user");
+            return;
+        }
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+        var new_url =req.protocol+'://'+req.get('host')+'/uploads/'+filename;
+        var newUser = {
+            url: new_url
+        };
+
+        model
+            .userModel
+            .updateUser(userId, newUser)
+            .then(
+                function (stats) {
+                    // console.log(stats);
+                    res.redirect("#/user");
+                },
+                function (error) {
+                    res.status(404).send(error);
+                }
+            );
+
+    }
+
+
+};

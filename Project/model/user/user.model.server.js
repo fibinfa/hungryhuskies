@@ -9,6 +9,7 @@ module.exports = function () {
         createUser: createUser,
         findUserById: findUserById,
         updateUser: updateUser,
+        updateUrl: updateUrl,
         deleteUser: deleteUser,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
@@ -59,6 +60,14 @@ module.exports = function () {
         return UserModel.update(
             {_id:userId},
             {$set:newUser}
+        );
+    }
+
+
+    function updateUrl(userId, newurl) {
+        return UserModel.update(
+            {_id:userId},
+            {url:newurl}
         );
     }
 

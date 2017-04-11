@@ -1,16 +1,6 @@
 (function () {
     angular
         .module("HungryApp")
-
-
-        // .config(function($locationProvider) {
-        //     $locationProvider.hashPrefix('!');})
-        //
-        // .run(function($location) {
-        //     $location.path('/');
-        // })
-
-
         .config(configuration);
 
 
@@ -88,21 +78,14 @@
                     checkLoggedIn: checkLoggedIn
                 }
             })
-            .when("/user/:uid",{
-                templateUrl: 'views/user/templates/profile.view.client.html',
-                controller: 'ProfileController',
-                controllerAs: 'model',
-                resolve: {
-                    checkLoggedIn: checkLoggedIn
-                }
-            })
+
             .when("/user/:username",{
-                templateUrl: 'views/user/templates/profile.view.client.html',
-                controller: 'ProfileController',
+                templateUrl: 'views/user/templates/profile-page.view.client.html',
+                controller: 'ProfilePageController',
                 controllerAs: 'model',
-                resolve: {
-                    checkLoggedIn: checkLoggedIn
-                }
+                // resolve: {
+                //     checkLoggedIn: checkLoggedIn
+                // }
             })
 
             .when("/restaurant/:rid",{

@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="page-header t-special">
-                    Places Around You
+                    NearBy Places
                 </h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-sm-3 hidden-xs">
+            <div class="col-md-3 hidden-sm hidden-xs">
                 <p class="lead text-center t-special business-list-title">Categories</p>
                 <ul class="ts-sidebar-menu  active">
                     <li class="open btn list-group-item t-button"><a href="#/search/bakeries"><h4><b>Bakeries</b></h4></a></li>
@@ -20,7 +20,7 @@
                     <li class="open btn list-group-item t-button"><a href="#/search/gelato"><h4><b>Gelato</b></h4></a></li>
                 </ul>
             </div>
-            <div class="col-md-9 col-sm-9">
+            <div class="col-md-9">
                 <div ng-repeat="business in model.data.businesses" class="col-md-4 col-sm-4 col-xs-6 portfolio-item">
                     <div class="panel panel-default">
                         <a href="" ng-click="model.findRestaurantByIdYelp(business.id)">
@@ -39,7 +39,9 @@
                                      ng-src="{{business.rating_img_url}}" alt="">
                             </p>
                             <p>Phone: {{business.display_phone}} <br>
-                                Location: {{business.location.city}}, {{business.location.state_code}}</p>
+                                Location: {{business.location.city}},
+                                {{business.location.state_code}}
+                            </p>
                         </div>
                     </div>
                 </div>

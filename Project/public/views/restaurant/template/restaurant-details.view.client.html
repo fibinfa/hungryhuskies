@@ -127,12 +127,12 @@
 
 
             <!--my review-->
-            <div ng-if="model.currentUser && model.myReview" ng-repeat="review in model.myReview">
+            <div ng-if="model.currentUser && model.myReview" ng-repeat="review in model.myReview | orderBy:'dateCreated':true">
                 <div class="row">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>reviewed by: <a href="#/user/{{review.username}}">{{review.username}}</a></h3>
-                        </div>
+                            <h3>Posted by: <a href="#/user/{{review.username}}">{{review.username}}</a></h3>
+                        </div>  
                         <div class="panel-body">
                             <h4><p><i>{{review.content}}</i></p></h4>
                             <fieldset class="rating">
@@ -147,6 +147,14 @@
                                 <input type="radio"  name="{{review._id}}" ng-model="review.rating" value="1" /><label class = "full" title="Sucks big time - 1 star"></label>
                                 <input type="radio"  name="{{review._id}}" ng-model="review.rating" value=".5" /><label class="half"  title="Sucks big time - 0.5 stars"></label>
                             </fieldset>
+                            <br>
+                            <br>
+                            <h5>Date Posted: {{review.dateCreated | date: 'medium'}}</h5>
+                            <br>
+                            <p  ng-if="(model.username === review.username ) || model.currentUser.role === 'admin'">
+                                <a class="btn btn-danger" ng-click="model.deleteReview(model.localBusiness, review._id)">
+                                    Delete</a>
+                            </p>
                         </div>
                     </div>
 
@@ -188,7 +196,7 @@
                 <div class="row">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>reviewed by: {{review.username}}</h3>
+                            <h3>Posted by: {{review.username}}</h3>
                         </div>
                         <div class="panel-body">
                             <h4><p><i>{{review.content}}</i></p></h4>
@@ -204,6 +212,9 @@
                                 <input type="radio"  name="{{review._id}}" ng-model="review.rating" value="1" /><label class = "full" title="Sucks big time - 1 star"></label>
                                 <input type="radio"  name="{{review._id}}" ng-model="review.rating" value=".5" /><label class="half"  title="Sucks big time - 0.5 stars"></label>
                             </fieldset>
+                            <br>
+                            <br>
+                            <h5>Date Posted: {{review.dateCreated | date: 'medium'}}</h5>
                         </div>
                     </div>
 

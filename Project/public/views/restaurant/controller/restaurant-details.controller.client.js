@@ -13,7 +13,7 @@
         vm.likeRestaurant = likeRestaurant;
         vm.dislikeRestaurant = dislikeRestaurant;
         vm.createReview = createReview;
-        // vm.deleteReview = deleteReview;
+        vm.deleteReview = deleteReview;
         vm.findBusiness = findBusiness;
         vm.createReview = createReview;
 
@@ -25,10 +25,8 @@
                     username: vm.currentUser.username,
                     content: reviewText,
                     rating: rating,
-                    // userId: vm.currentUser._id,
-                    // restaurantId: vm.data.id
+
                 };
-                console.log(review);
                 var restaurant=vm.data;
                 var newRestaurant = {
                     _id: restaurant.id,
@@ -49,8 +47,8 @@
                                     function (response) {
                                         var restaurant = response.data;
                                         if(!restaurant) {
-                                            newRestaurant.reviews=[];
-                                            newRestaurant.reviews.push(newReview);
+                                            // newRestaurant.reviews=[];
+                                            // newRestaurant.reviews.push(newReview);
                                             return RestaurantService
                                                 .createRestaurant(newRestaurant);
                                         }   else {
@@ -85,6 +83,8 @@
                                                 .then(
                                                     function (stats) {
                                                         findBusiness();
+                                                        vm.text="";
+                                                        vm.rating=0;
                                                     },
                                                     function (err) {
                                                     }
@@ -289,6 +289,42 @@
                 $location.url("/login");
             }
 
+        }
+
+
+
+        function deleteReview(restaurant, reviewId) {
+            RestaurantService
+                .findRestaurantById(restaurantId)
+                .then(
+                    function (res) {
+                        var restaurant = res.data;
+                        restaurant.reviews.splice(restaurant.reviews.indexOf(reviewId, 1));
+
+                        RestaurantService
+                            .updateRestaurant(restaurant._id, restaurant)
+                            .then(
+                                function (stats) {
+                                    ReviewService
+                                        .deleteReview(reviewId)
+                                        .then(function (status) {
+                                            init();
+                                        },function (error) {
+                                            console.log(error);
+                                            }
+
+                                        );
+
+                                },
+                                function (err) {
+                                    console.log(err);
+                                }
+                            );
+                    },
+                    function (err) {
+                        console.log(err);
+                    }
+                )
         }
 
 

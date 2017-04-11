@@ -9,7 +9,7 @@ module.exports = function () {
         createReview: createReview,
         // findRestaurantById: findRestaurantById,
         // updateUser: updateUser,
-        // deleteUser: deleteUser,
+        deleteReview: deleteReview,
         // findUserByUsername: findUserByUsername,
         // findUserByCredentials: findUserByCredentials,
         setModel: setModel
@@ -47,14 +47,14 @@ module.exports = function () {
     //         });
     // }
     //
-    // function deleteUser(userId) {
-    //     return UserModel.remove(
-    //         {
-    //             _id : userId
-    //         }
-    //     );
-    // }
-    //
+    function deleteReview(reviewId) {
+        return ReviewModel.remove(
+            {
+                _id : reviewId
+            }
+        );
+    }
+
     // function updateUser(userId, newUser) {
     //     return UserModel.update(
     //         {_id:userId},

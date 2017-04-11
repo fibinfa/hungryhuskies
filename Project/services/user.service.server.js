@@ -1,7 +1,8 @@
 module.exports = function (app, model) {
 
     var multer = require('multer');
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+    var upload = multer({ dest:__dirname+'/../public/uploads'});
+    // console.log({dest: __dirname });
 
     app.post("/api/uploads", upload.single('myFile'), uploadImage);
 
@@ -329,7 +330,7 @@ module.exports = function (app, model) {
         var myFile        = req.file;
 
         if(myFile == null) {
-            res.redirect("#/user");
+            res.redirect("/#/user");
             return;
         }
 
@@ -340,18 +341,19 @@ module.exports = function (app, model) {
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        var new_url =req.protocol+'://'+req.get('host')+'/uploads/'+filename;
+        //var new_url =req.protocol+'://'+req.get('host')+'/uploads/'+filename;
+        var new_url= "/uploads/"+filename;
         var newUser = {
             url: new_url
         };
 
         model
             .userModel
-            .updateUser(userId, newUser)
+            .updateUrl(userId, new_url)
             .then(
                 function (stats) {
                     // console.log(stats);
-                    res.redirect("#/user");
+                    res.redirect("/#/user");
                 },
                 function (error) {
                     res.status(404).send(error);

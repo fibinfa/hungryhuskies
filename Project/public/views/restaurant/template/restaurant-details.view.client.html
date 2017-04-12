@@ -101,7 +101,7 @@
             <hr>
 
             <!--review-->
-            <div ng-if="model.currentUser">
+            <div ng-if="model.currentUser && model.currentUser.role != 'OWNER'">
                 <!--write a review-->
                 <div class="row">
                     <div>
@@ -170,11 +170,7 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
-
-                <div ng-repeat="comment in review.comments"></div>
-
             </div>
 
 
@@ -209,7 +205,7 @@
                 <div class="row">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>Posted by: {{review.username}}</h3>
+                            <h3>Posted by: <a href="#/user/{{review.username}}">{{review.username}}</a></h3>
                         </div>
                         <div class="panel-body">
                             <h4><p><i>{{review.content}}</i></p></h4>

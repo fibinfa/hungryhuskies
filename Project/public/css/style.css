@@ -14,6 +14,10 @@ body {
 }
 
 
+.img-circle{
+    width: 180px;
+}
+
 .t-bottom-margin{
     margin-bottom: 10px;
     padding-bottom: 20px;

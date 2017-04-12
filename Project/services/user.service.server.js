@@ -173,15 +173,57 @@ module.exports = function (app, model) {
             );
     }
 
+    // function createUser(req, res) {
+    //     var newUser = req.body;
+    //     newUser.password = bcrypt.hashSync(newUser.password);
+    //     model.userModel
+    //         .createUser(newUser)
+    //         .then(function(user) {
+    //             res.json(user);
+    //         });
+    // }
+
+
+
     function createUser(req, res) {
-        var newUser = req.body;
-        newUser.password = bcrypt.hashSync(newUser.password);
-        model.userModel
-            .createUser(newUser)
-            .then(function(user) {
-                res.json(user);
-            });
+        var username = req.body.username;
+        // var password = req.body.password;
+        model
+            .userModel
+            .findUserByUsername(username)
+            .then(
+                function(user) {
+                    if(user) {
+                        res.status(400).send("Username already in use");
+                        return;
+                    } else {
+                        req.body.password = bcrypt.hashSync(req.body.password);
+                        return model.userModel
+                            .createUser(req.body);
+                    }
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function(user) {
+                    if(user) {
+                        req.login(user, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        })
+                    }
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
     }
+
 
     function findUser(req, res) {
         var username = req.query.username;

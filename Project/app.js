@@ -3,4 +3,5 @@ module.exports = function(app) {
     require("./services/restaurant.service.server")(app,model);
     require("./services/user.service.server.js")(app,model);
     require("./services/review.service.server")(app, model);
+    require("./services/comment.service.server")(app, model);
 };

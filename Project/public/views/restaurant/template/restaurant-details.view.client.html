@@ -46,7 +46,7 @@
                 <!--currently open-->
                 <div>
                     <p class=" t-title navbar-text t-open" ng-show = "{{model.data.is_closed}} == false">Currently Open</p>
-                    <p class="t-closed" ng-show = "{{model.data.is_closed}} ">Currently Closed</p>
+                    <p class="t-closed" ng-show = "{{model.data.is_closed}}">Currently Closed</p>
                 </div>
 
             </div>
@@ -116,16 +116,17 @@
                         <input type="radio"  id="starhalf" name="myrating" ng-model="model.rating" value=".5" ><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                     </div>
 
-                    <button class="btn btn-warning pull-right"
+                    <button ng-show="model.updateFlag == false" class="btn btn-warning pull-right"
                             ng-click="model.createReview(model.text, model.rating)">
                         Write a Review
                     </button>
-
+                    <button ng-show="model.updateFlag == true" class="btn btn-primary pull-right"
+                            ng-click="model.updateReview(model.review, model.text, model.rating)">
+                        Update review
+                    </button>
                 </div>
                 <hr>
             </div>
-
-
             <!--my review-->
             <div ng-if="model.currentUser && model.myReview" ng-repeat="review in model.myReview | orderBy:'dateCreated':true">
                 <div class="row">
@@ -151,16 +152,18 @@
                             <br>
                             <h5>Date Posted: {{review.dateCreated | date: 'medium'}}</h5>
                             <br>
-                            <p  ng-if="(model.username === review.username ) || model.currentUser.role === 'admin'">
+                            <p>
                                 <a class="btn btn-danger" ng-click="model.deleteReview(model.localBusiness, review._id)">
                                     Delete</a>
+                                <a class="btn btn-primary" ng-click="model.editReview(review,model.localBusiness)">
+                                    Edit Post</a>
                             </p>
                         </div>
                     </div>
 
                 </div>
 
-                <div ng-repeat="comment in review.comment"></div>
+                <div ng-repeat="comment in review.comments"></div>
 
             </div>
 
@@ -215,12 +218,32 @@
                             <br>
                             <br>
                             <h5>Date Posted: {{review.dateCreated | date: 'medium'}}</h5>
+                            <a class="btn btn-primary" ng-click="model.toggleCommentBox(review)">
+                                Add Comment</a>
+                            <div ng-show="model.boxShow_{{review._id}}">
+                                <textarea ng-model="model.comment.content" rows="3" cols="100" placeholder="Write a Comment Here"></textarea>
+                                <button  class="btn btn-warning pull-right"
+                                         ng-click="model.createComment(review, model.comment.content)">
+                                    Post comment
+                                </button>
+                            </div>
+
+                            <br>
+                            <p  ng-if=" model.currentUser.role === 'admin'">
+                                <a class="btn btn-danger" ng-click="model.deleteReview(model.localBusiness, review._id)">
+                                    Delete</a>
+                            </p>
+
+
                         </div>
                     </div>
 
                 </div>
 
-                <div ng-repeat="comment in review.comment"></div>
+                <div ng-repeat="comment in review.comments">
+                    <h5>{{comment.content}}</h5>
+                </div>
+
 
             </div>
         </div>

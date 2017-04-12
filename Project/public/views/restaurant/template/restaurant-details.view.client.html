@@ -45,16 +45,18 @@
 
                 <!--currently open-->
                 <div>
-                    <p class=" t-title navbar-text t-open" ng-show = "{{model.data.is_closed}} == false">Currently Open</p>
-                    <p class="t-closed" ng-show = "{{model.data.is_closed}}">Currently Closed</p>
+                    <p class=" t-title navbar-text t-open" ng-show = "model.data.is_closed == false">Currently Open</p>
+                    <p class="t-closed" ng-show = "model.data.is_closed">Currently Closed</p>
                 </div>
 
-                <div ng-show="model.owner">
-                    <p class=" t-title navbar-text t-open" >Owned By: {{model.owner}}</p>
+                <div ng-show="model.localBusiness.owner">
+                    <p class=" t-title  t-font t-category-head " >Owned By: <a href="#/user/{{model.localBusiness.owner}}">{{model.localBusiness.owner}}</a></p>
                 </div>
-
-                <div ng-if="model.currentUser && model.currentUser.role == 'Owner' && model.owner == null">
-
+                <div ng-if="model.currentUser && model.currentUser.role == 'OWNER' && !model.localBusiness.owner">
+                    <button  class="btn btn-primary pull-right"
+                            ng-click="model.claimRestaurant()">
+                        Claim Restaurant
+                    </button>
                 </div>
 
             </div>
@@ -99,7 +101,7 @@
             <hr>
 
             <!--review-->
-            <div ng-if="model.currentUser">
+            <div ng-if="model.currentUser && model.currentUser.role != 'OWNER'">
                 <!--write a review-->
                 <div class="row">
                     <div>
@@ -168,11 +170,7 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
-
-                <div ng-repeat="comment in review.comments"></div>
-
             </div>
 
 
@@ -207,7 +205,7 @@
                 <div class="row">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>Posted by: {{review.username}}</h3>
+                            <h3>Posted by: <a href="#/user/{{review.username}}">{{review.username}}</a></h3>
                         </div>
                         <div class="panel-body">
                             <h4><p><i>{{review.content}}</i></p></h4>
@@ -226,7 +224,7 @@
                             <br>
                             <br>
                             <h5>Date Posted: {{review.dateCreated | date: 'medium'}}</h5>
-                            <a class="btn btn-primary" ng-click="model.boxShow=!model.boxShow">
+                            <a ng-if="model.currentUser" class="btn btn-primary" ng-click="model.boxShow=!model.boxShow">
                                 Add Comment</a>
                             <a ng-show="review.comments.length>0" class="btn btn-primary" ng-click="model.toggle(model.showCom)">
                                 Show Comments</a>

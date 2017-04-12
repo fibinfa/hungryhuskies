@@ -14,6 +14,10 @@ body {
 }
 
 
+.img-circle{
+    width: 180px;
+}
+
 .t-bottom-margin{
     margin-bottom: 10px;
     padding-bottom: 20px;
@@ -148,6 +152,7 @@ p{
     font-family: 'Indie Flower', cursive;
     color: antiquewhite;
     margin-right: 20px;
+    margin-left: 20px;
     text-align: center;
 }
 

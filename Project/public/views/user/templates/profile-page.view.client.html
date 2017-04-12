@@ -119,4 +119,38 @@
     </div>
 
 
+    <div class="row t-title t-category t-font t-category-head row">
+        Activity
+    </div>
+
+    <div class="row">
+
+        <div class="">
+            <div ng-repeat="following in model.following">
+
+
+                <div class="text-center">
+
+                    <img ng-if="!following.url"
+                         ng-src="../../images/blank-img.jpg"
+                         class="avatar img-circle img-thumbnail"
+                         alt="avatar">
+
+                    <img ng-if="following.url"
+                         ng-src="{{following.url}}"
+                         class="avatar img-circle img-thumbnail img-responsive"
+                         alt="avatar">
+                    <h4 class="business-list-title">{{following.firstName}} {{following.lastName}}</h4>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
 </div>

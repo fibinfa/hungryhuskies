@@ -20,7 +20,18 @@
                         vm.profileUser = response.data;
                         // console.log(vm.profileUser);
 
-                        if($rootScope.currentUser){
+                        FollowerService
+                            .findAllFollowing(vm.profileUser.username)
+                            .then(
+                                function(following){
+                                    vm.following= following;
+                                }, function (err) {
+                                    console.log(err);
+                                }
+                            )
+
+
+                        if($rootScope.currentUser && $rootScope.currentUser.data.username != vm.profileUser.username){
                             vm.user = $rootScope.currentUser.data;
 
                             FollowerService

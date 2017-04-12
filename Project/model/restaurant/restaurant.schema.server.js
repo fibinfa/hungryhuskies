@@ -4,6 +4,7 @@ module.exports = function () {
 
     var RestaurantSchema = mongoose.Schema({
         _id: {type: String, required: true},
+        owner: String,
         name: String,
         phone: String,
         imageUrl: String,

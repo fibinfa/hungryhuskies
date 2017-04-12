@@ -49,6 +49,14 @@
                     <p class="t-closed" ng-show = "{{model.data.is_closed}}">Currently Closed</p>
                 </div>
 
+                <div ng-show="model.owner">
+                    <p class=" t-title navbar-text t-open" >Owned By: {{model.owner}}</p>
+                </div>
+
+                <div ng-if="model.currentUser && model.currentUser.role == 'Owner' && model.owner == null">
+
+                </div>
+
             </div>
 
             <!--rating and like-->

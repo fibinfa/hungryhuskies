@@ -12,6 +12,7 @@
         var restaurantId = $routeParams.rid;
         vm.udpateFlag=false;
         vm.boxshow=false;
+        vm.showCom = false;
         vm.likeRestaurant = likeRestaurant;
         vm.dislikeRestaurant = dislikeRestaurant;
         vm.createReview = createReview;
@@ -21,6 +22,13 @@
         vm.editReview = editReview;
         vm.updateReview = updateReview;
         vm.createComment = createComment;
+        vm.deleteComment= deleteComment;
+        vm.toggle= toggle;
+
+
+        function toggle(showCom){
+            vm.showCom= !showCom;
+        }
 
 
 
@@ -75,6 +83,7 @@
                                                         .then(
                                                             function (stats) {
                                                                 vm.comment.content="";
+                                                                vm.showCom=false;
                                                                 init();
                                                             }, function (error) {
                                                                 console.log("Error in updating comment");
@@ -96,6 +105,56 @@
 
             }
         }
+
+        function deleteComment(reviewId, commentId) {
+            ReviewService
+                .findReviewById(reviewId)
+                .then(
+                    function (res) {
+                        var review = res.data;
+                        review.comments.splice(review.comments.indexOf(commentId, 1));
+                        ReviewService
+                            .updateReview(reviewId, review)
+                            .then(
+                                function (stats) {
+                                    RestaurantService
+                                        .findRestaurantById(restaurantId)
+                                        .then(
+                                            function(res){
+                                                var restaurant = res.data;
+                                                var index = -1;
+                                                for(var i=0;i<restaurant.reviews.length;i++){
+                                                    if(restaurant.reviews[i]._id==review._id){
+                                                        index=i;
+                                                        break;
+                                                    }
+
+                                                }
+                                                restaurant.reviews[index]=review;
+                                                RestaurantService
+                                                    .updateRestaurant(restaurant._id, restaurant)
+                                                    .then(
+                                                        function (stats) {
+                                                            CommentService
+                                                                .deleteComment(commentId)
+                                                                .then(
+                                                                    function (stats) {
+                                                                        init();
+                                                                    }, function(error){
+                                                                        console.log("Error in deleting comment");
+                                                                    }
+                                                                )
+                                                        }, function (error) {
+                                                            console.log("Error in deleting comment");
+                                                        });
+                                            }
+                                        )
+                                }
+                            )
+                    }
+                )
+        }
+
 
         function createReview(reviewText, rating) {
             if(vm.currentUser) {

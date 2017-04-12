@@ -8,9 +8,14 @@
         var api = {
             createReview: createReview,
             deleteReview: deleteReview,
-            updateReview: updateReview
+            updateReview: updateReview,
+            findReviewById: findReviewById
         };
         return api;
+
+        function findReviewById(reviewId) {
+            return $http.get("/api/review/"+reviewId);
+        }
 
         function updateReview(reviewId, newReview) {
             return $http.put("/api/review/"+reviewId, newReview);

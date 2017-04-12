@@ -7,7 +7,7 @@ module.exports = function () {
 
     var api = {
         createReview: createReview,
-        // findRestaurantById: findRestaurantById,
+        findReviewById: findReviewById,
         updateReview: updateReview,
         deleteReview: deleteReview,
         // findUserByUsername: findUserByUsername,
@@ -62,9 +62,9 @@ module.exports = function () {
         );
     }
 
-    // function findRestaurantById(restaurantId) {
-    //     return RestaurantModel.findById(restaurantId);
-    // }
+    function findReviewById(reviewId) {
+        return ReviewModel.findById(reviewId);
+    }
 
     function createReview(review) {
         return ReviewModel.create(review);

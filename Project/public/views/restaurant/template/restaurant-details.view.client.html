@@ -218,9 +218,11 @@
                             <br>
                             <br>
                             <h5>Date Posted: {{review.dateCreated | date: 'medium'}}</h5>
-                            <a class="btn btn-primary" ng-click="model.toggleCommentBox(review)">
+                            <a class="btn btn-primary" ng-click="model.boxShow=!model.boxShow">
                                 Add Comment</a>
-                            <div ng-show="model.boxShow_{{review._id}}">
+                            <a ng-show="review.comments.length>0" class="btn btn-primary" ng-click="model.toggle(model.showCom)">
+                                Show Comments</a>
+                            <div ng-show="model.boxShow">
                                 <textarea ng-model="model.comment.content" rows="3" cols="100" placeholder="Write a Comment Here"></textarea>
                                 <button  class="btn btn-warning pull-right"
                                          ng-click="model.createComment(review, model.comment.content)">
@@ -240,8 +242,10 @@
 
                 </div>
 
-                <div ng-repeat="comment in review.comments">
-                    <h5>{{comment.content}}</h5>
+                <div ng-show="model.showCom" ng-repeat="comment in review.comments">
+                    <h5>{{comment.content}}    Posted by: {{comment._username}}
+                        <a ng-show="comment._username==model.currentUser.username  || model.currentUser.role === 'admin'" class="glyphicon glyphicon-remove" ng-click="model.deleteComment(review._id,comment._id)">
+                        </a></h5>
                 </div>
 
 

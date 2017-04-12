@@ -224,7 +224,7 @@
                             <br>
                             <br>
                             <h5>Date Posted: {{review.dateCreated | date: 'medium'}}</h5>
-                            <a class="btn btn-primary" ng-click="model.boxShow=!model.boxShow">
+                            <a ng-if="model.currentUser" class="btn btn-primary" ng-click="model.boxShow=!model.boxShow">
                                 Add Comment</a>
                             <a ng-show="review.comments.length>0" class="btn btn-primary" ng-click="model.toggle(model.showCom)">
                                 Show Comments</a>

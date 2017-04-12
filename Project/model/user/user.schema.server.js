@@ -10,7 +10,6 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
-        company: String,
         url: String,
         restaurants: [RestaurantSchema],
         dateCreated: {type: Date, default: Date.now()},

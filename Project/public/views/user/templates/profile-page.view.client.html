@@ -1,81 +1,122 @@
-<div class="row">
+<div class=" t-font t-bottom-margin t-top-margin">
+
+    <div class="row">
+
+        <div class="col-xs-4">
 
 
-    <div class="col-xs-4">
+            <div class="text-center">
+                <img ng-if="!model.profileUser.url"
+                     ng-src="../../images/blank-img.jpg"
+                     class="avatar img-circle img-thumbnail"
+                     alt="avatar">
+
+                <img ng-if="model.profileUser.url"
+                     ng-src="{{model.profileUser.url}}"
+                     class="avatar img-circle img-thumbnail img-responsive"
+                     alt="avatar">
+                <h4 class="business-list-title">{{model.profileUser.firstName}} {{model.profileUser.lastName}}</h4>
+
+                <button ng-if="model.user && model.showFollow && model.user.username!=model.profileUser.username"
+                        ng-click = "model.followUser()"
+                        class="btn btn-success">
+                    Follow
+                </button>
+
+
+                <button ng-if="model.user && !model.showFollow && model.user.username!=model.profileUser.username"
+                        ng-click = "model.unFollowUser()"
+                        class="btn btn-danger">
+                    Unfollow
+                </button>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="col-xs-8">
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label business-list-title">Username:</label>
+                <div class="col-lg-8">
+                    <input ng-model="model.profileUser.username"
+                           class="form-control"
+                           id="username"
+                           type="text"
+                           disabled>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label business-list-title">First name:</label>
+                <div class="col-lg-8">
+                    <input ng-model="model.profileUser.firstName"
+                           class="form-control"
+                           id="firstName"
+                           name="firstName"
+                           disabled
+                           type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label business-list-title">Last name:</label>
+                <div class="col-lg-8">
+                    <input ng-model="model.profileUser.lastName"
+                           class="form-control"
+                           id="lastName"
+                           name="lastName"
+                           type="text"
+                           disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label business-list-title ">Email:</label>
+                <div class="col-lg-8">
+                    <input ng-model="model.profileUser.email"
+                           class="form-control"
+                           id="email"
+                           name="email"
+                           type="email"
+                           disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label business-list-title ">#Phone</label>
+                <div class="col-lg-8">
+                    <input ng-model="model.profileUser.phone"
+                           class="form-control"
+                           id="phone"
+                           name="phone"
+                           type="text"
+                           disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label business-list-title">Role</label>
+                <div class="col-lg-8">
+                    <input ng-model="model.profileUser.role"
+                           class="form-control"
+                           id="Role"
+                           name="Role"
+                           type="text"
+                           disabled>
+                </div>
+            </div>
+
+
+
+        </div>
 
 
     </div>
 
-
-    <div class="col-xs-8">
-
-        <div class="form-group">
-            <label class="col-lg-3 control-label business-list-title">First name:</label>
-            <div class="col-lg-8">
-                <input ng-model="model.profileUser.firstName"
-                       class="form-control"
-                       id="firstName"
-                       name="firstName"
-                       disabled
-                       type="text">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label business-list-title">Last name:</label>
-            <div class="col-lg-8">
-                <input ng-model="model.profileUser.lastName"
-                       class="form-control"
-                       id="lastName"
-                       name="lastName"
-                       type="text"
-                       disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label business-list-title">Company:</label>
-            <div class="col-lg-8">
-                <input ng-model="model.profileUser.company"
-                       class="form-control"
-                       id="company"
-                       name="company"
-                       type="text"
-                       disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label business-list-title ">Email:</label>
-            <div class="col-lg-8">
-                <input ng-model="model.profileUser.email"
-                       class="form-control"
-                       id="email"
-                       name="email"
-                       type="email"
-                       disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label business-list-title ">Phone:</label>
-            <div class="col-lg-8">
-                <input ng-model="model.profileUser.phone"
-                       class="form-control"
-                       id="phone"
-                       name="phone"
-                       type="text"
-                       disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label business-list-title">Username:</label>
-            <div class="col-lg-8">
-                <input ng-model="model.profileUser.username"
-                       class="form-control"
-                       id="username"
-                       type="text"
-                       disabled>
-            </div>
-        </div>
-
-
-    </div>
 
 </div>

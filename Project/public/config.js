@@ -83,9 +83,9 @@
                 templateUrl: 'views/user/templates/profile-page.view.client.html',
                 controller: 'ProfilePageController',
                 controllerAs: 'model',
-                // resolve: {
-                //     checkLoggedIn: checkLoggedIn
-                // }
+                resolve:{
+                    getUser : getUser
+                }
             })
 
             .when("/restaurant/:rid",{

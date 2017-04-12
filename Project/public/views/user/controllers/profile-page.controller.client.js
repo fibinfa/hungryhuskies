@@ -3,27 +3,70 @@
         .module("HungryApp")
         .controller("ProfilePageController", profilePageController);
 
-    function profileDisplayController($routeParams, $location, UserService, $rootScope) {
+    function profilePageController($routeParams, UserService, FollowerService, $rootScope) {
         var vm = this;
-        var followUser = followUser;
-        var unFollowUser = unFollowUser;
+        vm.followUser = followUser;
+        vm.unFollowUser = unFollowUser;
+
+        var username = $routeParams.username;
 
         function init() {
-            vm.user = $rootScope.currentUser.data;
-            var userId = $routeParams.uid;
-            var username = $routeParams.username;
-
 
             UserService
                 .findUserByUsername(username)
                 .then(
                     function (response) {
+
                         vm.profileUser = response.data;
+                        // console.log(vm.profileUser);
+
+                        if($rootScope.currentUser){
+                            vm.user = $rootScope.currentUser.data;
+
+                            FollowerService
+                                .findIfFollower(vm.profileUser.username, vm.user.username)
+                                .then(
+                                    function(status){
+                                        vm.showFollow = false;
+                                    }, function (err) {
+                                        vm.showFollow = true;
+                                    }
+                                )
+
+                        }
+
                     }
                 );
 
+
+
+
+
+
+
         }
         init();
+
+
+        function followUser() {
+            FollowerService
+                .createFollower(vm.profileUser.username, vm.user.username)
+                .then(function (status) {
+                    vm.showFollow = false;
+                })
+        }
+
+
+
+        function unFollowUser() {
+            FollowerService
+                .deleteFollower(vm.profileUser.username, vm.user.username)
+                .then(function (status) {
+                    vm.showFollow = true;
+                })
+        }
+
+
     }
 
-});
+})();

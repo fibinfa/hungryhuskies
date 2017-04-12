@@ -6,18 +6,96 @@
 
 
 
-    function RestaurantDetailController($routeParams,RestaurantService,$rootScope,UserService, ReviewService) {
+    function RestaurantDetailController($routeParams,RestaurantService,$rootScope,UserService, ReviewService, CommentService) {
 
         var vm = this;
         var restaurantId = $routeParams.rid;
+        vm.udpateFlag=false;
+        vm.boxshow=false;
         vm.likeRestaurant = likeRestaurant;
         vm.dislikeRestaurant = dislikeRestaurant;
         vm.createReview = createReview;
         vm.deleteReview = deleteReview;
         vm.findBusiness = findBusiness;
         vm.createReview = createReview;
+        vm.editReview = editReview;
+        vm.updateReview = updateReview;
+        vm.createComment = createComment;
 
 
+
+        function createComment(review, content) {
+            if(vm.currentUser) {
+                var commentObject = {
+                    _username: vm.currentUser.username,
+                    content: content
+
+                };
+                var restaurant=vm.data;
+                var newRestaurant = {
+                    _id: restaurant.id,
+                    imageUrl: restaurant.image_url,
+                    name: restaurant.name,
+                    phone: restaurant.phone,
+                    ratingUrl: restaurant.rating_img_url
+                };
+
+                CommentService
+                    .createComment(commentObject)
+                    .then(
+                        function (res) {
+                            var comment = res.data;
+                            if(review.comments.length!=0){
+                                review.comments.push(comment);
+                            } else{
+                                review.comments = [];
+                                review.comments.push(comment);
+                            }
+                            ReviewService
+                                .updateReview(review._id, review)
+                                .then(
+                                    function (stats) {
+                                        console.log("fibin"+ review);
+                                        RestaurantService
+                                            .findRestaurantById(restaurant.id)
+                                            .then(
+                                                function (response) {
+                                                    var restaurant = response.data;
+                                                    var index = -1;
+                                                    for(var i=0;i<restaurant.reviews.length;i++){
+                                                        if(restaurant.reviews[i]._id==review._id){
+                                                            index=i;
+                                                            break;
+                                                        }
+
+                                                    }
+                                                    restaurant.reviews[index]=review;
+                                                    RestaurantService
+                                                        .updateRestaurant(restaurant._id, restaurant)
+                                                        .then(
+                                                            function (stats) {
+                                                                vm.comment.content="";
+                                                                init();
+                                                            }, function (error) {
+                                                                console.log("Error in updating comment");
+                                                            });
+
+                                                }
+                                            )
+                                    },
+                                    function (error) {
+                                        console.log("Error in updating review");
+                                    }
+                                )
+                        }, function (error) {
+                            console.log("Error in creating comment");
+                        }
+                    );
+
+
+
+            }
+        }
 
         function createReview(reviewText, rating) {
             if(vm.currentUser) {
@@ -99,6 +177,7 @@
                         },
                         function (err) {
                             vm.error="Error creating review";
+                            alert(error+"fibin");
                         }
                     );
 
@@ -112,6 +191,8 @@
             }else{
                 vm.currentUser = null;
             }
+            vm.updateFlag = false;
+            vm.boxshow=false;
 
             RestaurantService
                 .findRestaurantByIdYelp(restaurantId)
@@ -121,7 +202,7 @@
                         vm.data = res.data;
 
 
-                        console.log(vm.data);
+                        // console.log(vm.data);
                         // $scope.lat =res.data.location.coordinate.latitude;
                         // $scope.lng =res.data.location.coordinate.longitude;
                         // console.log($scope.lat);
@@ -215,7 +296,7 @@
                                     .createRestaurant(newRestaurant)
                                     .then(
                                         function (res) {
-                                            console.log(res.data);
+                                            // console.log(res.data);
                                         },
                                         function (err) {
                                             console.log(err);
@@ -234,7 +315,7 @@
                         function (res) {
                             var user = res.data;
                             user.restaurants.push(newRestaurant);
-                            console.log(user.restaurants);
+                            // console.log(user.restaurants);
                             UserService
                                 .updateUser(user._id, user)
                                 .then(
@@ -327,9 +408,70 @@
                 )
         }
 
+        function editReview(review, localBusiness) {
+            vm.text=review.content;
+            vm.rating=review.rating;
+            vm.updateFlag=true;
+            vm.review= review;
+            vm.localBusiness= localBusiness;
+        }
+
+        function updateReview(review, content, rating) {
+            review.content=content;
+            review.rating=rating;
+            RestaurantService
+                .findRestaurantById(restaurantId)
+                .then(
+                    function (res) {
+                        var restaurant = res.data;
+                        var index = -1;
+                        for(var i=0;i<restaurant.reviews.length;i++){
+                            if(restaurant.reviews[i]._id==review._id){
+                                index=i;
+                                break;
+                            }
+
+                        }
+                        restaurant.reviews[index].rating=review.rating;
+                        restaurant.reviews[index].content=review.content;
+                        RestaurantService
+                            .updateRestaurant(restaurant._id, restaurant)
+                            .then(
+                                function (stats) {
+                                    ReviewService
+                                        .updateReview(review._id, review)
+                                        .then(function (status) {
+                                            vm.text="";
+                                            vm.rating=0;
+                                                init();
+                                            },function (error) {
+                                                console.log(error);
+                                            }
+
+                                        );
+
+                                },
+                                function (err) {
+                                    console.log(err);
+                                }
+                            );
+                    },
+                    function (err) {
+                        console.log(err);
+                    }
+                )
+        }
+
+
+
 
 
     }
+
+
+
+
+
 
 //     function initMap() {
 //

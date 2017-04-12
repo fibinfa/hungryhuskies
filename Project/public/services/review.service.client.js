@@ -7,9 +7,14 @@
     function ReviewService($http){
         var api = {
             createReview: createReview,
-            deleteReview: deleteReview
+            deleteReview: deleteReview,
+            updateReview: updateReview
         };
         return api;
+
+        function updateReview(reviewId, newReview) {
+            return $http.put("/api/review/"+reviewId, newReview);
+        }
 
         function deleteReview(reviewId) {
             return $http.delete("/api/review/"+reviewId);

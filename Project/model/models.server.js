@@ -18,18 +18,22 @@ module.exports =function() {
      var restaurantModel = require("./restaurant/restaurant.model.server")();
      var reviewModel = require("./review/review.model.server")();
      var followerModel = require("./follower/follower.model.server")();
+     var commentModel = require("./comment/comment.model.server")();
+
 
      var model = {
          userModel : userModel,
          restaurantModel : restaurantModel,
          reviewModel : reviewModel,
-         followerModel : followerModel
+         followerModel : followerModel,
+         commentModel : commentModel
      };
 
     userModel.setModel(model);
     restaurantModel.setModel(model);
     reviewModel.setModel(model);
     followerModel.setModel(model);
+    commentModel.setModel(model);
 
     return model;
 

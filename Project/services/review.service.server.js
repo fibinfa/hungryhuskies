@@ -3,6 +3,21 @@ module.exports = function (app,model) {
 
     app.post("/api/review", createReview);
     app.delete("/api/review/:reviewId", deleteReview);
+    app.put("/api/review/:reviewId", updateReview);
+
+    function updateReview(req, res) {
+        var reviewId = req.params.reviewId;
+        var review =req.body;
+        model.reviewModel
+            .updateReview(reviewId, review)
+            .then(
+                function(review){
+                    res.json(review);
+                }, function (error) {
+                    console.log(error);
+                }
+            );
+    }
 
     function deleteReview(req, res) {
         var reviewId = req.params.reviewId;
@@ -23,9 +38,10 @@ module.exports = function (app,model) {
             .then(
                 function (review) {
                     res.json(review);
+                    console.log("fibin"+review);
                 }, function (error) {
                     res.sendStatus(400).send(error);
-                    console.log(error);
+                    console.log("hi"+error);
                 }
             );
     }

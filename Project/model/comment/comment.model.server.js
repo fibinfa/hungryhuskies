@@ -1,15 +1,15 @@
 module.exports = function () {
 
     var mongoose = require('mongoose');
-    var ReviewSchema = require('./review.schema.server')();
-    var ReviewModel = mongoose.model('ReviewModel', ReviewSchema);
+    var CommentSchema = require('./comment.schema.server')();
+    var CommentModel = mongoose.model('CommentModel', CommentSchema);
     var model ={};
 
     var api = {
-        createReview: createReview,
+        createComment: createComment,
         // findRestaurantById: findRestaurantById,
-        updateReview: updateReview,
-        deleteReview: deleteReview,
+        // updateCommen: updateReview,
+        deleteComment: deleteComment,
         // findUserByUsername: findUserByUsername,
         // findUserByCredentials: findUserByCredentials,
         setModel: setModel
@@ -47,27 +47,29 @@ module.exports = function () {
     //         });
     // }
     //
-    function deleteReview(reviewId) {
-        return ReviewModel.remove(
+    function deleteComment(commentId) {
+        return CommentModel.remove(
             {
-                _id : reviewId
+                _id : commentId
             }
         );
     }
 
-    function updateReview(reviewId, newReview) {
-        return ReviewModel.update(
-            {_id:reviewId},
-            {$set:newReview}
-        );
-    }
+    // function updateReview(reviewId, newReview) {
+    //     return ReviewModel.update(
+    //         {_id:reviewId},
+    //         {content: newReview.content,
+    //             rating: newReview.rating
+    //             }
+    //     );
+    // }
 
     // function findRestaurantById(restaurantId) {
     //     return RestaurantModel.findById(restaurantId);
     // }
 
-    function createReview(review) {
-        return ReviewModel.create(review);
+    function createComment(comment) {
+        return CommentModel.create(comment);
     }
 
     // function findUserByFacebookId(facebookId) {

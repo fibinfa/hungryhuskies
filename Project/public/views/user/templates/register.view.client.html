@@ -5,6 +5,10 @@
         {{model.message}}
     </div>
 
+    <div class="alert alert-danger" ng-show="model.error && registerForm.$valid">
+        {{model.error}}
+    </div>
+
     <div ng-show="registerForm.$invalid && registerForm.$submitted" class="alert alert-danger" >
         There are errors in the form. Please correct the errors and submit again.
     </div>

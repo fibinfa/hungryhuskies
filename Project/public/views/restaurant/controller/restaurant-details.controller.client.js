@@ -23,7 +23,33 @@
         vm.updateReview = updateReview;
         vm.createComment = createComment;
         vm.deleteComment= deleteComment;
-        vm.toggle= toggle;
+        vm.toggle = toggle;
+        vm.claimRestaurant = claimRestaurant;
+
+
+        function claimRestaurant() {
+            if(vm.currentUser && vm.currentUser.role == 'OWNER'){
+                RestaurantService
+                    .findRestaurantById(restaurantId)
+                    .then(
+                        function (res) {
+                            var restaurant = res.data;
+                            restaurant.owner = vm.currentUser.username;
+                            RestaurantService
+                                .updateRestaurant(restaurantId, restaurant)
+                                .then(
+                                    function (stats) {
+                                        init();
+                                    }, function (errror) {
+                                        console.log("Cannot update restaurant");
+                                    }
+                                )
+                        }, function (err) {
+                            console.log(err);
+                        }
+                    );
+            }
+        }
 
 
         function toggle(showCom){

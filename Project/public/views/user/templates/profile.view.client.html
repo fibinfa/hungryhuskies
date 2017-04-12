@@ -52,7 +52,7 @@
 
                 <div class="form-group">
                     <label for="role">Role:</label>
-                    <select id="role" name="role"  class="form-control">
+                    <select id="role" name="role" ng-model="model.user.role"  class="form-control">
                         <option value="USER" ng-selected="{{model.user.role}}=='USER'" >User</option>
                         <option value="OWNER" ng-selected="{{model.user.role}}=='OWNER'">Owner</option>
                         <option value="CRITIC" ng-selected="{{model.user.role}}=='CRITIC'">Critic</option>

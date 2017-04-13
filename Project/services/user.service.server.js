@@ -40,11 +40,12 @@ module.exports = function (app, model) {
     app.get("/api/user/:userId",findUserById);
     app.put("/api/user/",updateUser);
     app.post("/api/user",createUser);
-    app.delete("/api/user/",deleteUser);
+    app.delete("/api/user/:userId",deleteUser);
     app.post('/api/login', passport.authenticate('local'), login);
     app.post('/api/checkLoggedIn',checkLoggedIn);
     app.post('/api/logout',logout);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/api/getAllUsers', findAllUsers);
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
@@ -304,13 +305,14 @@ module.exports = function (app, model) {
                     res.send(200);
                 },
                 function (error) {
+                    console.log(error);
                     res.sendStatus(400).send(error);
                 }
             );
     }
 
     function deleteUser(req, res) {
-        var userId = req.user._id;
+        var userId = req.params.userId;
         model
             .userModel
             .deleteUser(userId)
@@ -402,6 +404,19 @@ module.exports = function (app, model) {
                 }
             );
 
+    }
+
+    function findAllUsers(req, res) {
+        model
+            .userModel
+            .findAllUsers()
+            .then(
+                function(users){
+                    res.json(users);
+                },function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            )
     }
 
 

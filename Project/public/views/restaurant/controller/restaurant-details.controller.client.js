@@ -11,8 +11,6 @@
         var vm = this;
         var restaurantId = $routeParams.rid;
         vm.udpateFlag=false;
-        vm.boxshow=false;
-        vm.showCom = false;
         vm.likeRestaurant = likeRestaurant;
         vm.dislikeRestaurant = dislikeRestaurant;
         vm.createReview = createReview;

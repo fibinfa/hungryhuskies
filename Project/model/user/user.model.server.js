@@ -14,9 +14,9 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         setModel: setModel,
-        findAllWebsitesForUser: findAllWebsitesForUser,
         findUserByFacebookId: findUserByFacebookId,
-        findUserByGoogleId: findUserByGoogleId
+        findUserByGoogleId: findUserByGoogleId,
+        findAllUsers: findAllUsers
     };
 
     return api;
@@ -25,12 +25,11 @@ module.exports = function () {
         model = _model;
     }
 
-    function findAllWebsitesForUser(userId) {
+    function findAllUsers() {
         return UserModel
-            .findById(userId)
-            .populate("websites")
-            .exec();
+            .find();
     }
+
 
 
     function findUserByUsername(username) {

@@ -62,6 +62,7 @@
     <script src="views/user/controllers/profile-page.controller.client.js"></script>
     <script src="views/user/controllers/login.controller.client.js"></script>
     <script src="views/restaurant/controller/restaurant-details.controller.client.js"></script>
+    <script src="views/user/controllers/admin.controller.client.js"></script>
 
 
 
@@ -125,7 +126,7 @@
 
                     </form>
 
-                    <li ng-if="currentUser.data.role == 'admin'">
+                    <li ng-if="currentUser.data.role == 'ADMIN'">
                         <a href="#/admin"><b>Admin</b></a>
                     </li>
                     <li ng-if="currentUser.data == null">

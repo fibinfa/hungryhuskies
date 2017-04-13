@@ -17,9 +17,14 @@
             "login": login,
             "checkLoggedIn": checkLoggedIn,
             "logout": logout,
-            "findCurrentUser": findCurrentUser
+            "findCurrentUser": findCurrentUser,
+            "findAllUsers": findAllUsers
         };
         return api;
+
+        function findAllUsers() {
+            return $http.get('/api/getAllUsers');
+        }
 
         function logout() {
             return $http.post("/api/logout");
@@ -56,8 +61,8 @@
            return $http.get("/api/user/"+uid);
         }
 
-        function deleteUser(userId) {
-            return $http.delete("/api/user/");
+        function deleteUser(uid) {
+            return $http.delete("/api/user/"+uid);
         }
 
     }

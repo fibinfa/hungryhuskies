@@ -1,0 +1,136 @@
+<div class="container-fluid">
+    <div class="container business-list-title">
+        <h2>User List</h2>
+        <hr>
+        <div ng-show="model.error"
+             class="alert alert-danger">
+            {{model.error}}
+        </div>
+        <div ng-show="model.success"
+             class="alert alert-success">
+            {{model.success}}
+        </div>
+        <table class="table table-responsive table-bordered">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <td>
+                    <input ng-model="model.user.username"
+                           name="username"
+                           id="username"
+                           type="text"
+                           placeholder="Username"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <input ng-model="model.user.password"
+                           name="password"
+                           id="password"
+                           type="password"
+                           placeholder="Password"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <input ng-model="model.user.role"
+                           name="role"
+                           id="role"
+                           placeholder="admin or user or owner or critic"
+                           type="text"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <input ng-model="model.user.firstName"
+                           name="firstName"
+                           id="firstName"
+                           placeholder="First Name"
+                           type="text"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <input ng-model="model.user.lastName"
+                           name="lastName"
+                           id="lastName"
+                           placeholder="Last Name"
+                           type="text"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <input ng-model="model.user.email"
+                           name="email"
+                           id="email"
+                           placeholder="example@abc.com"
+                           type="email"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <input ng-model="model.user.phone"
+                           name="phone"
+                           id="phone"
+                           placeholder="Phone Number"
+                           type="text"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <button ng-click="model.createUser(model.user)"
+                            class="btn btn-primary pull-right">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </td>
+                <td>
+                    <button ng-click="model.updateUser(model.user)"
+                            class="btn btn-success pull-right">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="t-font-standard" ng-repeat="u in model.users | orderBy:'dateCreated':true ">
+                <td>
+                    {{u.username}}
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    {{u.role}}
+                </td>
+                <td>
+                    {{u.firstName}}
+                </td>
+                <td>
+                    {{u.lastName}}
+                </td>
+                <td>
+                    {{u.email}}
+                </td>
+                <td>
+                    {{u.phone}}
+                </td>
+                <td>
+                    <button ng-click="model.deleteUser(u)"
+                            class="btn btn-danger pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+                <td>
+                    <button ng-click="model.populate(u)"
+                            class="btn btn-warning pull-right">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

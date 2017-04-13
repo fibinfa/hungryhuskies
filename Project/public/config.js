@@ -35,6 +35,14 @@
                     logOut : logOut
                 }
             })
+            .when("/admin", {
+                templateUrl: "views/user/templates/admin.view.client.html",
+                controller: "AdminController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkForAdminLogin
+                }
+            })
 
             .when("/yelp", {
                 templateUrl: "views/yelp.html",
@@ -170,6 +178,39 @@
             );
         return deferred.promise;
     }
+
+    function checkForAdminLogin(UserService, $q, $location, $rootScope) {
+        var deferred = $q.defer();
+
+        UserService
+            .checkLoggedIn()
+            .then(
+                function (response) {
+                    var user = response.data;
+                    //console.log(user);
+                    if(user == '0'){
+                        $rootScope.currentUser = null;
+                        deferred.reject();
+                        $location.url("/login");
+                    } else {
+                        $rootScope.currentUser = user;
+                        if(user.role === 'ADMIN') {
+                            deferred.resolve();
+                        }
+                        else {
+                            deferred.reject();
+                            $location.url("/");
+                        }
+                    }
+                },
+                function (err) {
+                    $location.url("/login");
+                }
+            );
+
+        return deferred.promise;
+    }
+
 
 
 })();

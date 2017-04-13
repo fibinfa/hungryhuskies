@@ -14,8 +14,7 @@
 
             UserService
                 .findUserByUsername(username)
-                .then(
-                    function (response) {
+                .then(function (response) {
 
                         vm.profileUser = response.data;
                         // console.log(vm.profileUser);
@@ -25,10 +24,28 @@
                             .then(
                                 function(following){
                                     vm.following= following;
+                                    vm.followingUser = [];
+                                    // console.log(following);
+
+                                    for(var i=0;i<vm.following.data.length;i++){
+
+
+                                        UserService
+                                            .findUserByUsername(following.data[i].username)
+                                            .then(function (userObj) {
+                                                // console.log(userObj);
+                                                vm.followingUser.push(userObj.data);
+                                            });
+
+                                    }
+
+                                    console.log(vm.followingUser);
+
+
                                 }, function (err) {
                                     console.log(err);
                                 }
-                            )
+                            );
 
 
                         if($rootScope.currentUser && $rootScope.currentUser.data.username != vm.profileUser.username){

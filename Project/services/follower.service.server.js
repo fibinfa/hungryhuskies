@@ -42,7 +42,7 @@ module.exports = function (app,model) {
             .followerModel
             .findIfFollower(username, follower)
             .then(function (follower) {
-                if(follower.size > 0){
+                if(follower.length > 0){
                     res.sendStatus(200);
                 }else{
                     res.sendStatus(400);

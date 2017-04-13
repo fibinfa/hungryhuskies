@@ -287,6 +287,18 @@
                         vm.data = res.data;
 
 
+
+                        var uluru = {lat: vm.data.location.coordinate.latitude, lng: vm.data.location.coordinate.longitude};
+
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 16,
+                            center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                        });
+
                         // console.log(vm.data);
                         // $scope.lat =res.data.location.coordinate.latitude;
                         // $scope.lng =res.data.location.coordinate.longitude;
@@ -315,6 +327,7 @@
                     );
                 vm.deleteEnable = true;
             }
+
 
 
 

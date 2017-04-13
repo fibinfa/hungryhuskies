@@ -123,65 +123,170 @@
         Activity
     </div>
 
+    <!--<div class="row">-->
+
+        <!--<div>-->
+            <!--<div ng-repeat="following in model.followingUser">-->
+
+
+                <!--<div class="text-center">-->
+
+                    <!--<img ng-if="!following.url"-->
+                         <!--ng-src="../../images/blank-img.jpg"-->
+                         <!--class="avatar img-circle img-thumbnail img-responsive"-->
+                         <!--alt="avatar">-->
+
+                    <!--<img ng-if="following.url"-->
+                         <!--ng-src="{{following.url}}"-->
+                         <!--class="avatar img-circle img-thumbnail img-responsive"-->
+                         <!--alt="avatar">-->
+                    <!--<a href="#/user/{{following.username}}" class="business-list-title">{{following.firstName}} {{following.lastName}}</a>-->
+
+                <!--</div>-->
+
+
+
+            <!--</div>-->
+
+        <!--</div>-->
+
+
+    <!--</div>-->
+
+
+
+
+
+
+
     <div class="row">
+        <div class="col-lg-12 col-sm-12">
 
-        <div class="">
-            <div ng-repeat="following in model.followingUser">
-
-
-                <div class="text-center">
-
-                    <img ng-if="!following.url"
-                         ng-src="../../images/blank-img.jpg"
-                         class="avatar img-circle img-thumbnail img-responsive"
-                         alt="avatar">
-
-                    <img ng-if="following.url"
-                         ng-src="{{following.url}}"
-                         class="avatar img-circle img-thumbnail img-responsive"
-                         alt="avatar">
-                    <a href="#/user/{{following.username}}" class="business-list-title">{{following.firstName}} {{following.lastName}}</a>
-
+            <div class="btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-danger" href="#tab1" data-toggle="tab">
+                        <span class="fa fa-thumbs-o-up" aria-hidden="true"></span>
+                        <div class="hidden-xs">Liked <span class="badge">{{model.profileUser.businesses.length}}</span></div>
+                    </button>
                 </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <div class="hidden-xs">Followers <span class="badge">{{model.followers.length}}</span> </div>
+                    </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <div class="hidden-xs">Following <span class="badge">{{model.followings.length}}</span> </div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="well">
+                <div class="tab-content">
+
+                    <!--liked-->
+                    <div class="tab-pane fade in active" id="tab1">
+                        <div class="row">
+                            <div ng-repeat="business in model.user.restaurants" class="col-md-4 portfolio-item">
+                                <div class="panel panel-default">
+                                    <a href="#/business/{{business._id}}">
+                                        <div class="thumbnail">
+                                            <img class="img-responsive"
+                                                 width="400"
+                                                 height="400"
+                                                 ng-src="{{business.imageUrl}}" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="panel-body fixed-panel-small">
+                                        <h5>
+                                            <a href="#/business/{{business._id}}"><h4>{{business.name}}</h4></a>
+                                        </h5>
+
+                                        <p>
+                                            <img class="img-responsive"
+                                                 ng-src="{{business.ratingUrl}}" alt="">
+                                        </p>
+                                        <p><b>Phone:</b> {{business.phone}} <br></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--followers-->
+                    <div class="tab-pane fade in" id="tab2">
+                        <div class="row">
+                            <div ng-repeat="follower in model.followers" class="col-md-3 portfolio-item">
+                                <div class="text-center">
+                                    <img ng-if="follower.url"
+                                         ng-src="{{follower.url}}"
+                                         id="img-profile-small"
+                                         class="avatar img-circle img-thumbnail img-responsive"
+                                         alt="avatar">
+                                    <img ng-if="!follower.url"
+                                         ng-src="img/staff-profile-blank.jpg"
+                                         id="img-profile-small"
+                                         class="avatar img-circle img-thumbnail img-responsive"
+                                         alt="avatar">
+                                    <p>
+                                    <h4 class="business-list-title"><a href="#/user/{{follower.username}}">{{follower.username}}</a></h4>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
+                    <!--following-->
+                    <div class="tab-pane fade in" id="tab3">
+                        <div class="row">
+                            <div ng-repeat="following in model.followings" class="col-md-3 portfolio-item">
+                                <div class="text-center">
+                                    <img ng-if="following.url"
+                                         ng-src="{{following.url}}"
+                                         id="img-profile-small"
+                                         class="avatar img-circle img-thumbnail img-responsive"
+                                         alt="avatar">
+                                    <img ng-if="!following.url"
+                                         ng-src="img/staff-profile-blank.jpg"
+                                         id="img-profile-small"
+                                         class="avatar img-circle img-thumbnail img-responsive"
+                                         alt="avatar">
+                                    <p>
+                                    <h4 class="business-list-title"><a href="#/user/{{following.username}}">{{following.username}}</a></h4>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                                <div ng-repeat="following in model.followingUser" class="col-md-3">
+
+
+                                    <div class="text-center">
+
+                                        <img ng-if="!following.url"
+                                             ng-src="../../images/blank-img.jpg"
+                                             class="img-circle img-responsive"
+                                             alt="avatar">
+
+                                        <img ng-if="following.url"
+                                             ng-src="{{following.url}}"
+                                             class="img-circle img-responsive"
+                                             alt="avatar">
+
+                                        <a href="#/user/{{following.username}}">{{following.firstName}} {{following.lastName}}</a>
+
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
-
-
     </div>
-
-
-    <ul class="nav nav-pills">
-        <li class="active"><a data-toggle="pill" href="#home">Home</a></li>
-        <li><a data-toggle="pill" href="#menu1">Menu 1</a></li>
-        <li><a data-toggle="pill" href="#menu2">Menu 2</a></li>
-        <li><a data-toggle="pill" href="#menu3">Menu 3</a></li>
-    </ul>
-
-
-
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-            <h3>HOME</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <div id="menu1" class="tab-pane fade">
-            <h3>Menu 1</h3>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <h3>Menu 2</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-        </div>
-        <div id="menu3" class="tab-pane fade">
-            <h3>Menu 3</h3>
-            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-        </div>
-    </div>
-</div>
-
 
 </div>

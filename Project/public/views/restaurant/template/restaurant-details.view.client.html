@@ -237,7 +237,7 @@
                             </div>
 
                             <br>
-                            <p  ng-if=" model.currentUser.role === 'admin'">
+                            <p  ng-if=" model.currentUser.role === 'ADMIN'">
                                 <a class="btn btn-danger" ng-click="model.deleteReview(model.localBusiness, review._id)">
                                     Delete</a>
                             </p>
@@ -250,7 +250,7 @@
 
                 <div ng-show="model.showCom" ng-repeat="comment in review.comments">
                     <h5>{{comment.content}}    Posted by: {{comment._username}}
-                        <a ng-show="comment._username==model.currentUser.username  || model.currentUser.role === 'admin'" class="glyphicon glyphicon-remove" ng-click="model.deleteComment(review._id,comment._id)">
+                        <a ng-show="comment._username==model.currentUser.username  || model.currentUser.role === 'ADMIN'" class="glyphicon glyphicon-remove" ng-click="model.deleteComment(review._id,comment._id)">
                         </a></h5>
                 </div>
 
@@ -260,7 +260,8 @@
     </div>
 
 
-    <div id="map"></div>
+    <div ng-if="showMap" id="map" ></div>
+
 </div>
 
 

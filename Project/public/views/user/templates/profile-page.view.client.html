@@ -159,7 +159,7 @@
 
 
 
-    <div class="row">
+    <div class="row container">
         <div class="col-lg-12 col-sm-12">
 
             <div class="btn-group-justified" role="group">
@@ -170,12 +170,12 @@
                     </button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <button type="button" id="favorites" class="btn btn-outline-danger" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         <div class="hidden-xs">Followers <span class="badge">{{model.followers.length}}</span> </div>
                     </button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <button type="button" id="following" class="btn btn-outline-danger" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         <div class="hidden-xs">Following <span class="badge">{{model.followings.length}}</span> </div>
                     </button>
                 </div>
@@ -187,7 +187,7 @@
                     <!--liked-->
                     <div class="tab-pane fade in active" id="tab1">
                         <div class="row">
-                            <div ng-repeat="business in model.user.restaurants" class="col-md-4 portfolio-item">
+                            <div ng-repeat="business in model.profileUser.restaurants" class="col-md-4 portfolio-item">
                                 <div class="panel panel-default">
                                     <a href="#/business/{{business._id}}">
                                         <div class="thumbnail">
@@ -219,17 +219,19 @@
                         <div class="row">
                             <div ng-repeat="follower in model.followers" class="col-md-3 portfolio-item">
                                 <div class="text-center">
+
                                     <img ng-if="follower.url"
                                          ng-src="{{follower.url}}"
-                                         id="img-profile-small"
                                          class="avatar img-circle img-thumbnail img-responsive"
                                          alt="avatar">
+
                                     <img ng-if="!follower.url"
                                          ng-src="img/staff-profile-blank.jpg"
-                                         id="img-profile-small"
                                          class="avatar img-circle img-thumbnail img-responsive"
                                          alt="avatar">
+
                                     <p>
+
                                     <h4 class="business-list-title"><a href="#/user/{{follower.username}}">{{follower.username}}</a></h4>
                                     </p>
                                 </div>
@@ -283,6 +285,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 

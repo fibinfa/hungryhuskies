@@ -17,7 +17,7 @@
                 .then(function (response) {
 
                         vm.profileUser = response.data;
-                        // console.log(vm.profileUser);
+                        console.log(vm.profileUser);
 
                         FollowerService
                             .findAllFollowing(vm.profileUser.username)
@@ -39,7 +39,7 @@
 
                                     }
 
-                                    console.log(vm.followingUser);
+                                    // console.log(vm.followingUser);
 
 
                                 }, function (err) {
@@ -65,11 +65,6 @@
 
                     }
                 );
-
-
-
-
-
 
 
         }

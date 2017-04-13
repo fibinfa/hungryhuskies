@@ -29,9 +29,33 @@
                         </form>
                     </div>
                 </div>
+            <input ng-model="searchText"
+                   type="text"
+                   placeholder="Search Photos"
+                   class="form-control">
+            <a class="btn btn-primary btn-block"
+               ng-click="model.searchPhotos(searchText)">
+                Search Image
+            </a>
+            <br>
 
 
-        </div>
+
+                    <div class="row">
+                    <div ng-show="model.showPhotos==true" class="col-xs-4" ng-repeat="photo in model.photos.photo">
+                        <img ng-click="model.selectPhoto(model.user, photo)"
+                             ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"
+                             width="100%"/>
+                    </div>
+                </div>
+            <br>
+            <br>
+
+            </div>
+
+
+
+
 
         <div class="col-xs-8">
 

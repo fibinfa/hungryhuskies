@@ -29,13 +29,13 @@
                         </form>
                     </div>
                 </div>
-            <input ng-model="searchText"
+            <input ng-model="model.searchText"
                    type="text"
                    placeholder="Search Photos"
                    class="form-control">
             <a class="btn btn-primary btn-block"
-               ng-click="model.searchPhotos(searchText)">
-                Search Image
+               ng-click="model.searchPhotos(model.searchText)">
+                Search From Flicker
             </a>
             <br>
 

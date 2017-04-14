@@ -7,7 +7,7 @@
         var vm = this;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
-        vm.currentUser = $rootScope.currentUser.data;
+
         vm.likeFlag = true;
         vm.followerFlag= false;
         vm.followingFlag = false;
@@ -22,6 +22,12 @@
         var username = $routeParams.username;
 
         function init() {
+
+            if($rootScope.currentUser){
+                vm.currentUser = $rootScope.currentUser.data;
+            }else {
+                vm.currentUser = null;
+            }
 
             UserService
                 .findUserByUsername(username)

@@ -124,12 +124,23 @@
                 <!--review-->
                 <div class="col-xs-4 text-center">
 
-                    <button ng-show="!model.reviewFlag" class="btn btn-warning fa fa-lg fa-pencil" ng-click="model.toggleReview()">
-                        <span>	&nbsp;	&nbsp;Write Review</span></button>
+                    <a href="#/login" ng-show="!model.currentUser"
+                       class="btn btn-warning fa fa-lg fa-pencil">
+                        <span>	&nbsp;	&nbsp;Write Review</span>
+                    </a>
+
+                    <button ng-show="!model.reviewFlag && model.currentUser"
+                            class="btn btn-warning fa fa-lg fa-pencil"
+                            ng-click="model.toggleReview()">
+                        <span>	&nbsp;	&nbsp;Write Review</span>
+                    </button>
 
 
-                    <button ng-show="model.reviewFlag" class="btn btn-warning fa fa-lg fa-pencil" ng-click="model.toggleReview()">
-                        <span>	&nbsp;	&nbsp;Hide</span></button>
+                    <button ng-show="model.reviewFlag"
+                            class="btn btn-warning fa fa-lg fa-pencil"
+                            ng-click="model.toggleReview()">
+                        <span>	&nbsp;	&nbsp;Hide</span>
+                    </button>
 
                 </div>
 

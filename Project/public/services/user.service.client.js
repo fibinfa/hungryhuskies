@@ -41,7 +41,7 @@
         function createUser(user) {
             return $http.post("/api/user",user);
         }
-        function updateUser(userId,newUser) {
+        function updateUser(newUser) {
             return $http.put("/api/user/", newUser);
         }
         

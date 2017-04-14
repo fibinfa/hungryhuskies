@@ -127,8 +127,13 @@
                                                     function (res) {
                                                         var user = res.data;
                                                         vm.username = user.username;
-                                                        user.restaurants.push(restaurant);
-                                                        init();
+                                                        user.restaurants.push(newRestaurant);
+                                                        UserService.
+                                                            updateUser(user)
+                                                            .then(function (stats) {
+                                                                init();
+                                                            });
+
                                                     })
                                         },
                                         function (err) {
@@ -150,7 +155,14 @@
                                                     var user = res.data;
                                                     vm.username = user.username;
                                                     user.restaurants.push(restaurant);
-                                                    init();
+                                                    UserService
+                                                        .updateUser(user)
+                                                        .then(
+                                                            function (stats) {
+                                                                init();
+                                                            }
+                                                        )
+
                                                 })
                                     }, function (errror) {
                                         console.log("Cannot update restaurant");

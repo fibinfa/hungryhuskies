@@ -295,7 +295,7 @@ module.exports = function (app, model) {
     }
 
     function updateUser(req, res) {
-        var userId = req.user._id;
+        var userId = req.user._doc._id;
         var newUser = req.body;
         model
             .userModel

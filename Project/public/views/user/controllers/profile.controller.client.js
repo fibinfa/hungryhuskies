@@ -50,7 +50,7 @@
         function update(newUser) {
             vm.showPhotos=false;
             UserService
-                .updateUser(userId,newUser)
+                .updateUser(newUser)
                 .success(function (user) {
                     if(user==null){
                         vm.error="Unable to update the user";

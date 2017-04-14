@@ -7,6 +7,7 @@ module.exports = function () {
         // restaurantId: {type:mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'},
         content: String,
         rating: Number,
+        isCritic: Boolean,
         comments: [CommentSchema],
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "review"});

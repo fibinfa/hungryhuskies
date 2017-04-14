@@ -21,7 +21,6 @@
         vm.updateReview = updateReview;
         vm.createComment = createComment;
         vm.deleteComment= deleteComment;
-        vm.toggle = toggle;
         vm.claimRestaurant = claimRestaurant;
 
 
@@ -49,10 +48,6 @@
             }
         }
 
-
-        function toggle(showCom){
-            vm.showCom= !showCom;
-        }
 
 
 
@@ -186,7 +181,7 @@
                     username: vm.currentUser.username,
                     content: reviewText,
                     rating: rating,
-
+                    isCritic: vm.currentUser.role == 'CRITIC'
                 };
                 var restaurant=vm.data;
                 var newRestaurant = {
@@ -339,10 +334,14 @@
                         vm.localBusiness = res.data;
                         vm.reviewArray=[];
                         vm.myReview=[];
+                        vm.criticReview=[];
                         if(vm.currentUser!=null) {
                             for (var i = 0; i < res.data.reviews.length; i++) {
                                 var localReview = res.data.reviews[i];
-                                if (localReview.username == vm.currentUser.username) {
+                                if(localReview.isCritic){
+                                    vm.criticReview.push(localReview);
+                                }
+                                else if (localReview.username == vm.currentUser.username) {
                                     localReview.userId = vm.currentUser._id;
                                     vm.myReview.push(localReview);
                                 } else {

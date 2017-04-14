@@ -1,0 +1,85 @@
+module.exports = function () {
+
+    var mongoose = require('mongoose');
+    var InviteSchema = require('./invite.schema.server')();
+    var InviteModel = mongoose.model('InviteModel', InviteSchema);
+    var model ={};
+
+    var api = {
+        // createInvite: createInvite,
+        // // findRestaurantById: findRestaurantById,
+        // // updateCommen: updateReview,
+        // deleteInvite: deleteInvite,
+        // // findUserByUsername: findUserByUsername,
+        // // findUserByCredentials: findUserByCredentials,
+        setModel: setModel
+        // findAllWebsitesForUser: findAllWebsitesForUser,
+        // findUserByFacebookId: findUserByFacebookId,
+        // findUserByGoogleId: findUserByGoogleId
+    };
+
+    return api;
+
+    function setModel(_model) {
+        model = _model;
+    }
+
+    // function findAllWebsitesForUser(userId) {
+    //     return UserModel
+    //         .findById(userId)
+    //         .populate("websites")
+    //         .exec();
+    // }
+    //
+    //
+    // function findUserByUsername(username) {
+    //     return UserModel.findOne(
+    //         {
+    //             username: username
+    //         });
+    // }
+    //
+    // function findUserByCredentials(username, password) {
+    //     return UserModel.findOne(
+    //         {
+    //             username: username,
+    //             password: password
+    //         });
+    // }
+    //
+    function deleteComment(commentId) {
+        return CommentModel.remove(
+            {
+                _id : commentId
+            }
+        );
+    }
+
+    // function updateReview(reviewId, newReview) {
+    //     return ReviewModel.update(
+    //         {_id:reviewId},
+    //         {content: newReview.content,
+    //             rating: newReview.rating
+    //             }
+    //     );
+    // }
+
+    // function findRestaurantById(restaurantId) {
+    //     return RestaurantModel.findById(restaurantId);
+    // }
+
+    function createComment(comment) {
+        return CommentModel.create(comment);
+    }
+
+    // function findUserByFacebookId(facebookId) {
+    //     return UserModel.findOne({'facebook.id': facebookId});
+    // }
+    //
+    // function findUserByGoogleId(googleId) {
+    //     return UserModel
+    //         .findOne({"google.id": googleId});
+    // }
+
+
+};

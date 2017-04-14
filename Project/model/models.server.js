@@ -19,14 +19,15 @@ module.exports =function() {
      var reviewModel = require("./review/review.model.server")();
      var followerModel = require("./follower/follower.model.server")();
      var commentModel = require("./comment/comment.model.server")();
-
+     var inviteModel = require("./invite/invite.model.server")();
 
      var model = {
          userModel : userModel,
          restaurantModel : restaurantModel,
          reviewModel : reviewModel,
          followerModel : followerModel,
-         commentModel : commentModel
+         commentModel : commentModel,
+         inviteModel : inviteModel
      };
 
     userModel.setModel(model);
@@ -34,6 +35,7 @@ module.exports =function() {
     reviewModel.setModel(model);
     followerModel.setModel(model);
     commentModel.setModel(model);
+    inviteModel.setModel(model);
 
     return model;
 

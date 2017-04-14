@@ -3,11 +3,13 @@
         .module("HungryApp")
         .controller("ProfilePageController", profilePageController);
 
-    function profilePageController($routeParams, $location, UserService, FollowerService, $rootScope) {
+
+    function profilePageController($routeParams, UserService, FollowerService, $rootScope, InviteService) {
+
         var vm = this;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
-
+        vm.createInvite = createInvite;
         vm.likeFlag = true;
         vm.followerFlag= false;
         vm.followingFlag = false;
@@ -19,14 +21,29 @@
         vm.toggleInvite = toggleInvite ;
         vm.toggleShowInvite = toggleShowInvite ;
 
+
         var username = $routeParams.username;
 
         function init() {
+
 
             if($rootScope.currentUser){
                 vm.currentUser = $rootScope.currentUser.data;
             }else {
                 vm.currentUser = null;
+            }
+
+            if(vm.currentUser && vm.currentUser.role=='CRITIC'){
+                InviteService
+                    .findInviteByCritic(vm.currentUser.username)
+                    .then(
+                        function (res) {
+                            vm.invites=res.data;
+                        }, function (error) {
+                            console.log(error);
+                        }
+                    )
+
             }
 
             UserService
@@ -118,6 +135,22 @@
         }
         init();
 
+        function createInvite(restaurant) {
+            var newInvite={
+                owner: vm.currentUser.username,
+                restaurant: restaurant._id,
+                critic: username,
+                isReviewed: false
+            };
+            InviteService
+                .createInvite(newInvite)
+                .then(
+                    function (res) {
+                        init();
+                    }
+                );
+        }
+
 
         function followUser() {
             FollowerService
@@ -186,5 +219,6 @@
         }
 
     }
+
 
 })();

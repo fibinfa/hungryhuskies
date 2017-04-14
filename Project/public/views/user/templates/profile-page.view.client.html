@@ -208,7 +208,29 @@
         </span>
 
 
+            <!--create invite-->
+            <div ng-if="model.currentUser && model.currentUser.role == 'OWNER' && model.currentUser.restaurants.length>0
+                        model.profileUser && model.profileUser.role == 'CRITIC'"
+                 ng-repeat="restaurant in model.currentUser.restaurants">
+                {{restaurant._id}}
+                <button ng-show="!restaurant.sendInviteFlag" ng-click = "model.createInvite(restaurant)"
+                        class="btn btn-primary">
+                    Invite
+                </button>
+            </div>
 
+            <!--list of invitations-->
+
+            <div ng-if="model.currentUser && model.currentUser.role == 'CRITIC' && model.invites.length>0"
+                 ng-repeat="invite in model.invites">
+                {{invite.restaurant}}
+                <a ng-show="!invite.isReviewed" href="#/restaurant/{{invite.restaurant}}"
+                        class="button btn btn-primary">
+                    Write Review
+                </a>
+            </div>
+
+    </div>
 
     </div>
 

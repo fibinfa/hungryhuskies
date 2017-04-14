@@ -1,5 +1,6 @@
 <div class=" t-font t-bottom-margin t-top-margin">
 
+    <!--user details-->
     <div class="row">
 
         <div class="col-xs-4">
@@ -123,40 +124,6 @@
         Activity
     </div>
 
-    <!--<div class="row">-->
-
-        <!--<div>-->
-            <!--<div ng-repeat="following in model.followingUser">-->
-
-
-                <!--<div class="text-center">-->
-
-                    <!--<img ng-if="!following.url"-->
-                         <!--ng-src="../../images/blank-img.jpg"-->
-                         <!--class="avatar img-circle img-thumbnail img-responsive"-->
-                         <!--alt="avatar">-->
-
-                    <!--<img ng-if="following.url"-->
-                         <!--ng-src="{{following.url}}"-->
-                         <!--class="avatar img-circle img-thumbnail img-responsive"-->
-                         <!--alt="avatar">-->
-                    <!--<a href="#/user/{{following.username}}" class="business-list-title">{{following.firstName}} {{following.lastName}}</a>-->
-
-                <!--</div>-->
-
-
-
-            <!--</div>-->
-
-        <!--</div>-->
-
-
-    <!--</div>-->
-
-
-
-
-
 
 
     <div class="row container">
@@ -189,7 +156,7 @@
                         <div class="row">
                             <div ng-repeat="business in model.profileUser.restaurants" class="col-md-4 portfolio-item">
                                 <div class="panel panel-default">
-                                    <a href="#/business/{{business._id}}">
+                                    <a href="#/restaurant/{{business._id}}">
                                         <div class="thumbnail">
                                             <img class="img-responsive"
                                                  width="400"
@@ -199,7 +166,7 @@
                                     </a>
                                     <div class="panel-body fixed-panel-small">
                                         <h5>
-                                            <a href="#/business/{{business._id}}"><h4>{{business.name}}</h4></a>
+                                            <a href="#/restaurant/{{business._id}}"><h4>{{business.name}}</h4></a>
                                         </h5>
 
                                         <p>

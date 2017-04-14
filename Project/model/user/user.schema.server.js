@@ -9,7 +9,7 @@ module.exports = function () {
         firstName: String,
         lastName: String,
         email: String,
-        phone: String,
+        phone:Number,
         url: String,
         restaurants: [RestaurantSchema],
         dateCreated: {type: Date, default: Date.now()},

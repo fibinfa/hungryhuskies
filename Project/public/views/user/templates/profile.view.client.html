@@ -29,15 +29,17 @@
                         </form>
                     </div>
                 </div>
-            <input ng-model="model.searchText"
-                   type="text"
-                   placeholder="Search Photos"
-                   class="form-control">
-            <a class="btn btn-primary btn-block"
-               ng-click="model.searchPhotos(model.searchText)">
-                Search From Flicker
-            </a>
-            <br>
+
+                <!--flicker-->
+                <input ng-model="model.searchText"
+                       type="text"
+                       placeholder="Search Photos"
+                       class="form-control">
+                <a class="btn btn-primary btn-block"
+                   ng-click="model.searchPhotos(model.searchText)">
+                    Search From Flicker
+                </a>
+                <br>
 
 
 
@@ -51,7 +53,7 @@
             <br>
             <br>
 
-            </div>
+        </div>
 
 
 
@@ -123,7 +125,7 @@
            ng-click="model.logout()">Logout</a>
 
 
-        <a ng-click="model.deleteUser()"
+        <a ng-if="model.user.role ==='ADMIN'" ng-click="model.deleteUser()"
            class="btn btn-warning btn-block">
             Delete User
         </a>

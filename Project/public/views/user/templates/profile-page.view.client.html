@@ -210,7 +210,7 @@
 
             <!--create invite-->
             <div ng-if="model.currentUser && model.currentUser.role == 'OWNER' && model.currentUser.restaurants.length>0
-                        model.profileUser && model.profileUser.role == 'CRITIC'"
+                       && model.profileUser && model.profileUser.role == 'CRITIC'"
                  ng-repeat="restaurant in model.currentUser.restaurants">
                 {{restaurant._id}}
                 <button ng-show="!restaurant.sendInviteFlag" ng-click = "model.createInvite(restaurant)"

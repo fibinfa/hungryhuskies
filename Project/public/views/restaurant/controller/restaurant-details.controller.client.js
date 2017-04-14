@@ -476,7 +476,7 @@
                             user.restaurants.push(newRestaurant);
                             // console.log(user.restaurants);
                             UserService
-                                .updateUser(user._id, user)
+                                .updateUser(user)
                                 .then(
                                     function (stats) {
                                         vm.liked = true;
@@ -510,7 +510,7 @@
                             user.restaurants.splice(user.restaurants.indexOf(restaurantId, 1));
 
                             UserService
-                                .updateUser(user._id, user)
+                                .updateUser( user)
                                 .then(
                                     function (stats) {
                                         vm.liked = false;

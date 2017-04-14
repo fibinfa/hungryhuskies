@@ -18,17 +18,16 @@
                 .then(function (response) {
 
                         vm.profileUser = response.data;
-                        console.log(vm.profileUser);
+                        // console.log(vm.profileUser);
 
                         FollowerService
                             .findAllFollowing(vm.profileUser.username)
                             .then(
                                 function(following){
-                                    vm.following= following;
+                                    // vm.following= following;
                                     vm.followingUser = [];
                                     // console.log(following);
-
-                                    for(var i=0;i<vm.following.data.length;i++){
+                                    for(var i=0;i<following.data.length;i++){
 
 
                                         UserService
@@ -41,6 +40,35 @@
                                     }
 
                                     // console.log(vm.followingUser);
+
+
+                                }, function (err) {
+                                    console.log(err);
+                                }
+                            );
+
+
+                        FollowerService
+                            .findAllFollower(vm.profileUser.username)
+                            .then(
+                                function(follower){
+                                    // vm.follower= follower;
+                                    vm.followerUser = [];
+                                    // console.log(following);
+
+                                    for(var i=0;i<follower.data.length;i++){
+
+
+                                        UserService
+                                            .findUserByUsername(follower.data[i].username)
+                                            .then(function (userObj) {
+                                                // console.log(userObj);
+                                                vm.followerUser.push(userObj.data);
+                                            });
+
+                                    }
+
+                                    // console.log(vm.followerUser);
 
 
                                 }, function (err) {

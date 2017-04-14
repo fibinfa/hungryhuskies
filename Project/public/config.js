@@ -155,7 +155,6 @@
         return deferred.promise;
     }
 
-
     function logOut($q,UserService,$rootScope){
         var deferred = $q.defer();
         UserService

@@ -3,15 +3,28 @@
         .module("HungryApp")
         .controller("ProfilePageController", profilePageController);
 
-    function profilePageController($routeParams, UserService, FollowerService, $rootScope) {
+    function profilePageController($routeParams, UserService, FollowerService, $rootScope, InviteService) {
         var vm = this;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
         vm.currentUser = $rootScope.currentUser.data;
+        vm.createInvite = createInvite;
 
         var username = $routeParams.username;
 
         function init() {
+
+            if(vm.currentUser && vm.currentUser.role=='CRITIC'){
+                InviteService
+                    .findInviteByCritic(vm.currentUser.username)
+                    .then(
+                        function (res) {
+                            vm.invites=res.data;
+                        }, function (error) {
+                            console.log(error);
+                        }
+                    )
+            }
 
             UserService
                 .findUserByUsername(username)
@@ -98,6 +111,22 @@
 
         }
         init();
+
+        function createInvite(restaurant) {
+            var newInvite={
+                owner: vm.currentUser.username,
+                restaurant: restaurant._id,
+                critic: username,
+                isReviewed: false
+            };
+            InviteService
+                .createInvite(newInvite)
+                .then(
+                    function (res) {
+                        init();
+                    }
+                );
+        }
 
 
         function followUser() {

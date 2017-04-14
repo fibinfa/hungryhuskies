@@ -6,7 +6,8 @@ module.exports = function () {
     var model ={};
 
     var api = {
-        // createInvite: createInvite,
+        createInvite: createInvite,
+        findInvitesByCriticName: findInvitesByCriticName,
         // // findRestaurantById: findRestaurantById,
         // // updateCommen: updateReview,
         // deleteInvite: deleteInvite,
@@ -47,13 +48,13 @@ module.exports = function () {
     //         });
     // }
     //
-    function deleteComment(commentId) {
-        return CommentModel.remove(
-            {
-                _id : commentId
-            }
-        );
-    }
+    // function deleteComment(commentId) {
+    //     return CommentModel.remove(
+    //         {
+    //             _id : commentId
+    //         }
+    //     );
+    // }
 
     // function updateReview(reviewId, newReview) {
     //     return ReviewModel.update(
@@ -67,9 +68,12 @@ module.exports = function () {
     // function findRestaurantById(restaurantId) {
     //     return RestaurantModel.findById(restaurantId);
     // }
+    function findInvitesByCriticName(criticName) {
+        return InviteModel.find({critic:criticName});
+    }
 
-    function createComment(comment) {
-        return CommentModel.create(comment);
+    function createInvite(invite) {
+        return InviteModel.create(invite);
     }
 
     // function findUserByFacebookId(facebookId) {

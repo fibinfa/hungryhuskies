@@ -5,8 +5,9 @@ module.exports = function () {
         owner: String,
         restaurant: String,
         critic: String,
+        isReviewed: {type: Boolean, default:false},
         dateCreated: {type: Date, default: Date.now()}
-    }, {collection: "comment"});
+    }, {collection: "invite"});
 
     return InviteSchema;
 };

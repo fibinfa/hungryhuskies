@@ -87,13 +87,13 @@
                                 function(follower){
                                     // vm.follower= follower;
                                     vm.followerUser = [];
-                                    // console.log(following);
+                                    console.log(follower);
 
                                     for(var i=0;i<follower.data.length;i++){
 
 
                                         UserService
-                                            .findUserByUsername(follower.data[i].username)
+                                            .findUserByUsername(follower.data[i].follower)
                                             .then(function (userObj) {
                                                 // console.log(userObj);
                                                 vm.followerUser.push(userObj.data);
@@ -157,6 +157,7 @@
                 .createFollower(vm.profileUser.username, vm.user.username)
                 .then(function (status) {
                     vm.showFollow = false;
+                    init();
                 })
         }
 
@@ -167,6 +168,7 @@
                 .deleteFollower(vm.profileUser.username, vm.user.username)
                 .then(function (status) {
                     vm.showFollow = true;
+                    init();
                 })
         }
 

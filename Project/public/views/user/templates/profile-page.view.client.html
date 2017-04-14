@@ -16,7 +16,7 @@
                      ng-src="{{model.profileUser.url}}"
                      class="avatar img-circle img-thumbnail img-responsive"
                      alt="avatar">
-                <h4 class="business-list-title">{{model.profileUser.firstName}} {{model.profileUser.lastName}}</h4>
+                <h4>{{model.profileUser.firstName}} {{model.profileUser.lastName}}</h4>
 
                 <button ng-if="model.user && model.showFollow && model.user.username!=model.profileUser.username"
                         ng-click = "model.followUser()"
@@ -148,12 +148,25 @@
 
 
 
-        <button ng-show="!model.likeFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
+        <button ng-show="!model.likeFlag && model.profileUser.role !='OWNER'" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
                 ng-click="model.toggleLike()">
             Liked <span class="badge">{{model.profileUser.restaurants.length}}</span>
         </button>
 
-        <button ng-show="model.likeFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
+        <button ng-show=" model.likeFlag && model.profileUser.role !='OWNER'" class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
+                ng-click="model.toggleLike()">
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Hide
+        </button>
+
+        <button ng-show="!model.likeFlag && model.profileUser.role ==='OWNER'" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
+                ng-click="model.toggleLike()">
+            Claimed <span class="badge">{{model.profileUser.restaurants.length}}</span>
+        </button>
+
+        <button ng-show="model.likeFlag && model.profileUser.role ==='OWNER'" class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
                 ng-click="model.toggleLike()">
             &nbsp;
             &nbsp;
@@ -190,7 +203,8 @@
 
 
         <!--for owner-->
-        <span ng-if="model.currentUser && model.currentUser.role==='OWNER'">
+        <span ng-if="model.currentUser && model.currentUser.role==='OWNER' &&
+                     model.profileUser && model.profileUser.role == 'CRITIC'">
 
             <button ng-show="!model.inviteFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
                     ng-click="model.toggleInvite()">
@@ -209,8 +223,13 @@
 
 
             <!--create invite-->
-            <div ng-if="model.currentUser && model.currentUser.role == 'OWNER' && model.currentUser.restaurants.length>0
-                       && model.profileUser && model.profileUser.role == 'CRITIC'"
+
+
+            <div ng-if="model.currentUser && model.currentUser.role == 'OWNER' &&
+                        model.currentUser.restaurants.length>0 &&
+                        model.inviteFlag &&
+                        model.profileUser && model.profileUser.role == 'CRITIC'"
+
                  ng-repeat="restaurant in model.currentUser.restaurants">
                 {{restaurant._id}}
                 <button ng-show="!restaurant.sendInviteFlag" ng-click = "model.createInvite(restaurant)"
@@ -232,7 +251,90 @@
 
     </div>
 
+    <!--liked-->
+    <div ng-if="model.likeFlag">
+
+        <div ng-repeat="restaurant in model.profileUser.restaurants" class="col-md-3">
+            <div class="panel">
+                <a href="#/restaurant/{{restaurant._id}}">
+                    <p class="thumbnail">
+                        <img class="img-responsive"
+                             width="100%"
+                             ng-src="{{restaurant.imageUrl}}" alt="">
+                    </p>
+                </a>
+                <p class="text-center">
+                    <img class="img-responsive"
+                         ng-src="{{restaurant.ratingUrl}}" alt="">
+                </p>
+                <p class="text-center">
+                    <a href="#/restaurant/{{restaurant._id}}"><h4>{{restaurant.name}}</h4></a>
+                </p>
+            </div>
+        </div>
+
     </div>
 
 
+    <!--follower-->
+    <div ng-if="model.followerFlag">
+
+        <div ng-repeat="userObj in model.followerUser" class="col-md-3">
+            <div class="panel">
+                <a href="#/user/{{userObj.username}}">
+                    <div class="thumbnail">
+                        <img class="img-responsive"
+                             width="100%"
+                             ng-src="{{userObj.url}}" alt="">
+                    </div>
+                </a>
+                <p class="text-center">
+                    <a href="#/user/{{userObj.username}}"><h4>{{userObj.username}}</h4></a>
+
+                </p>
+                <p >
+                <h4 class="text-center">{{userObj.role}}</h4>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--following-->
+    <div ng-if="model.followingFlag">
+
+        <div ng-repeat="userObj in model.followingUser" class="col-md-3">
+            <div class="panel">
+                <a href="#/user/{{userObj.username}}">
+                    <div class="thumbnail">
+                        <img ng-if="!userObj.url"
+                             ng-src="../../images/blank-img.jpg"
+                             class="img-responsive"
+                             width="100%"
+                             alt="avatar">
+
+                        <img ng-if="userObj.url"
+                             class="img-responsive"
+                             width="100%"
+                             ng-src="{{userObj.url}}" alt="">
+                    </div>
+                </a>
+
+                <p class="text-center">
+                    <a href="#/user/{{userObj.username}}"><h4>{{userObj.username}}</h4></a>
+
+                </p>
+                <p class="text-center">
+                    <h4>{{userObj.role}}</h4>
+                </p>
+
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
+
+

@@ -1,4 +1,15 @@
-input.form-control {
+#map {
+    height: 400px;
+    /*width: 400px;*/
+}
+
+#hungry{
+    padding-left: 3px;
+    font-size: x-large;
+    font-family: 'UnifrakturCook', cursive;
+}
+
+  input.form-control {
     margin-bottom: 5px;
 }
 body {

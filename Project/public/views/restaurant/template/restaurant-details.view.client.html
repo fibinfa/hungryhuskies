@@ -237,6 +237,32 @@
                                 <br>
                                 <br>
                                 <h5>Date Posted: {{review.dateCreated | date: 'medium'}}</h5>
+                                <a class="fa fa-comment-o"
+                                   ng-if="model.currentUser"
+                                   ng-click="review.boxShow=!review.boxShow || false">
+                                    Add Comment
+                                </a>
+                                &nbsp;
+                                &nbsp;
+                                <a ng-show="review.comments.length>0"
+                                   class="fa fa-comments-o"
+                                   ng-click="review.commentsShow=!review.commentsShow || false"
+                                   ng-click="review.boxShow=false">
+                                    Show Comments
+                                </a>
+
+                                <div ng-show="review.boxShow">
+                                    <textarea ng-model="model.comment.content"
+                                              rows="3" cols="100" placeholder="Write a Comment Here">
+                                    </textarea>
+                                    <button class="btn btn-warning pull-right fa fa-comment-o"
+                                            ng-click="model.createComment(review, model.comment.content)">
+                                        Post comment
+                                    </button>
+                                </div>
+
+                                <br>
+
                                 <br>
                             </div>
                         </div>

@@ -286,6 +286,11 @@
                         </div>
                     </div>
 
+                    <!--create invite-->
+                    <div ng-if="model.currentUser && model.currentUser.role == 'OWNER' && model.currentUser.restaurants.length>0">
+                        Create Invite
+                    </div>
+
                 </div>
             </div>
 

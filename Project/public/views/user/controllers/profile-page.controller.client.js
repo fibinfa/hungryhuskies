@@ -7,6 +7,7 @@
         var vm = this;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
+        vm.currentUser = $rootScope.currentUser.data;
 
         var username = $routeParams.username;
 

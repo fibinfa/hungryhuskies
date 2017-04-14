@@ -36,7 +36,15 @@
                                 .updateRestaurant(restaurantId, restaurant)
                                 .then(
                                     function (stats) {
-                                        init();
+                                        UserService
+                                            .findUserById(vm.currentUser._id)
+                                            .then(
+                                                function (res) {
+                                                    var user = res.data;
+                                                    vm.username = user.username;
+                                                    user.restaurants.push(restaurant);
+                                                    init();
+                                                })
                                     }, function (errror) {
                                         console.log("Cannot update restaurant");
                                     }

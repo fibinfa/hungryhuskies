@@ -9,6 +9,14 @@
     font-family: 'UnifrakturCook', cursive;
 }
 
+
+
+.new-font{
+    padding-left: 3px;
+    font-size: x-large;
+    font-family: 'UnifrakturCook', cursive !important;
+}
+
   input.form-control {
     margin-bottom: 5px;
 }
@@ -128,7 +136,7 @@ p{
 
 
 .t-font{
-    font-family: 'Indie Flower', cursive;
+    font-family: 'UnifrakturCook', cursive ;
     color: antiquewhite;
     margin-right: 20px;
     margin-left: 20px;
@@ -161,10 +169,23 @@ p{
 
 .t-title{
     padding: 15px;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'UnifrakturCook', cursive !important;
     color: cornsilk;
     font-size: larger;
 
+}
+
+.t-comment{
+    border-bottom: groove;
+    border-bottom-color: #999999;
+    border-top: groove;
+    border-top-color: #999999;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: small;
+    background-image:url("../images/bg-3.jpg")
 }
 
 .t-span{

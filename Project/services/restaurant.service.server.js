@@ -51,7 +51,7 @@ module.exports = function (app,model) {
                 function (restaurant) {
                     res.json(restaurant);
                 }, function (error) {
-                    res.sendStatus(400).send(error);
+                      res.sendStatus(400).send(error);
                 }
             );
     }

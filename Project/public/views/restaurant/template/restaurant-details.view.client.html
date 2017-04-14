@@ -82,6 +82,7 @@
                     <input type="radio"  name="ratingd" ng-model="model.data.rating" value=".5" /><label class="half"   title="Sucks big time - 0.5 stars"></label>
                 </fieldset>
 
+
                 <div  ng-if="model.currentUser && model.currentUser.role!='OWNER'">
                 <div ng-if="!model.liked" class="like-button">
                     <span class="fa-stack fa-lg">

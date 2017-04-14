@@ -99,14 +99,46 @@
         }
         init();
 
+
         function claimRestaurant() {
             if(vm.currentUser && vm.currentUser.role == 'OWNER'){
+                var restaurant=vm.data;
+                var newRestaurant = {
+                    _id: restaurant.id,
+                    imageUrl: restaurant.image_url,
+                    name: restaurant.name,
+                    phone: restaurant.phone,
+                    ratingUrl: restaurant.rating_img_url,
+                    owner: vm.currentUser.username
+                };
                 RestaurantService
                     .findRestaurantById(restaurantId)
                     .then(
                         function (res) {
                             var restaurant = res.data;
-                            restaurant.owner = vm.currentUser.username;
+                            if (!restaurant) {
+                                RestaurantService
+                                    .createRestaurant(newRestaurant)
+                                    .then(
+                                        function (res) {
+                                            UserService
+                                                .findUserById(vm.currentUser._id)
+                                                .then(
+                                                    function (res) {
+                                                        var user = res.data;
+                                                        vm.username = user.username;
+                                                        user.restaurants.push(restaurant);
+                                                        init();
+                                                    })
+                                        },
+                                        function (err) {
+                                            console.log(err);
+                                        }
+                                    );
+                            }
+                            else {
+                                restaurant.owner = vm.currentUser.username;
+
                             RestaurantService
                                 .updateRestaurant(restaurantId, restaurant)
                                 .then(
@@ -124,7 +156,7 @@
                                         console.log("Cannot update restaurant");
                                     }
                                 )
-                        }, function (err) {
+                        }}, function (err) {
                             console.log(err);
                         }
                     );
@@ -353,25 +385,27 @@
                 .then(
                     function (res) {
                         vm.localBusiness = res.data;
-                        vm.reviewArray=[];
-                        vm.myReview=[];
-                        vm.criticReview=[];
-                        if(vm.currentUser!=null) {
-                            for (var i = 0; i < res.data.reviews.length; i++) {
-                                var localReview = res.data.reviews[i];
-                                if(localReview.isCritic){
-                                    vm.criticReview.push(localReview);
-                                }
-                                else if (localReview.username == vm.currentUser.username) {
-                                    localReview.userId = vm.currentUser._id;
-                                    vm.myReview.push(localReview);
-                                } else {
+                        if(vm.localBusiness) {
+                            vm.reviewArray = [];
+                            vm.myReview = [];
+                            vm.criticReview = [];
+                            if (vm.currentUser != null) {
+                                for (var i = 0; i < res.data.reviews.length; i++) {
+                                    var localReview = res.data.reviews[i];
+                                    if (localReview.isCritic) {
+                                        vm.criticReview.push(localReview);
+                                    }
+                                    else if (localReview.username == vm.currentUser.username) {
+                                        localReview.userId = vm.currentUser._id;
+                                        vm.myReview.push(localReview);
+                                    } else {
 
-                                    vm.reviewArray.push(localReview);
+                                        vm.reviewArray.push(localReview);
+                                    }
                                 }
+                            } else {
+                                vm.reviewArray = res.data.reviews;
                             }
-                        } else{
-                            vm.reviewArray =res.data.reviews;
                         }
                     }
                 );

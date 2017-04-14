@@ -287,6 +287,8 @@
                     </div>
 
                     <!--create invite-->
+                    Role{{model.currentUser.role}}
+                    REst{{model.currentUser.restaurants}}
                     <div ng-if="model.currentUser && model.currentUser.role == 'OWNER' && model.currentUser.restaurants.length>0">
                         Create Invite
                     </div>

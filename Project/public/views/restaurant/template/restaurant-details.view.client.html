@@ -122,7 +122,7 @@
                 </div>
 
                 <!--review-->
-                <div class="col-xs-4 text-center">
+                <div ng-if="model.currentUser.role!='OWNER'" class="col-xs-4 text-center">
 
                     <a href="#/login" ng-show="!model.currentUser"
                        class="btn btn-warning fa fa-lg fa-pencil">
@@ -163,6 +163,7 @@
             </div>
 
 
+            <hr ng-if="model.mapFlag || model.reviewFlag || model.showReviewFlag">
             <hr ng-if="model.mapFlag || model.reviewFlag || model.showReviewFlag">
 
             <!--map-->

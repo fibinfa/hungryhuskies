@@ -11,6 +11,9 @@
         var vm = this;
         var restaurantId = $routeParams.rid;
         vm.udpateFlag=false;
+        vm.mapFlag = false;
+        vm.reviewFlag = false;
+        vm.showReviewFlag = false;
         vm.likeRestaurant = likeRestaurant;
         vm.dislikeRestaurant = dislikeRestaurant;
         vm.createReview = createReview;
@@ -22,7 +25,79 @@
         vm.createComment = createComment;
         vm.deleteComment= deleteComment;
         vm.claimRestaurant = claimRestaurant;
+        vm.toggleMap = toggleMap;
+        vm.toggleReview= toggleReview;
+        vm.toggleShowReview= toggleShowReview;
 
+
+        function init() {
+            if($rootScope.currentUser !== null) {
+                vm.currentUser = $rootScope.currentUser.data;
+            }else{
+                vm.currentUser = null;
+            }
+            vm.updateFlag = false;
+            vm.boxshow=false;
+
+            RestaurantService
+                .findRestaurantByIdYelp(restaurantId)
+                .then(
+                    function (res) {
+                        // console.log(res.data.location.coordinate.latitude);
+                        vm.data = res.data;
+
+                        // initialize map
+                        if(vm.mapFlag==true) {
+
+                            var uluru = {
+                                lat: vm.data.location.coordinate.latitude,
+                                lng: vm.data.location.coordinate.longitude
+                            };
+
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 16,
+                                center: uluru
+                            });
+                            var marker = new google.maps.Marker({
+                                position: uluru,
+                                map: map
+                            });
+                        }
+
+                        // console.log(vm.data);
+                        // $scope.lat =res.data.location.coordinate.latitude;
+                        // $scope.lng =res.data.location.coordinate.longitude;
+                        // console.log($scope.lat);
+                        // console.log($scope.lng);
+                    }, function (err) {
+                        console.log(err);
+                    }
+                );
+
+            findBusiness();
+
+            if(vm.currentUser) {
+                UserService
+                    .findUserById(vm.currentUser._id)
+                    .then(
+                        function (res) {
+                            var user = res.data;
+                            vm.username = user.username;
+                            var restaurantArray = user.restaurants;
+                            vm.liked = search(restaurantId, restaurantArray);
+                        },
+                        function (err) {
+                            vm.error = "User not found";
+                        }
+                    );
+                vm.deleteEnable = true;
+            }
+
+
+
+
+        }
+        init();
 
         function claimRestaurant() {
             if(vm.currentUser && vm.currentUser.role == 'OWNER'){
@@ -55,8 +130,6 @@
                     );
             }
         }
-
-
 
 
         function createComment(review, content) {
@@ -223,6 +296,7 @@
                                                     function (stats) {
                                                         vm.text="";
                                                         vm.rating=0;
+                                                        toggleShowReview();
                                                         return;
                                                     },
                                                     function (err) {
@@ -271,68 +345,7 @@
             }
         }
 
-        function init() {
-            if($rootScope.currentUser !== null) {
-                vm.currentUser = $rootScope.currentUser.data;
-            }else{
-                vm.currentUser = null;
-            }
-            vm.updateFlag = false;
-            vm.boxshow=false;
 
-            RestaurantService
-                .findRestaurantByIdYelp(restaurantId)
-                .then(
-                    function (res) {
-                        // console.log(res.data.location.coordinate.latitude);
-                        vm.data = res.data;
-
-
-
-                        var uluru = {lat: vm.data.location.coordinate.latitude, lng: vm.data.location.coordinate.longitude};
-
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 16,
-                            center: uluru
-                        });
-                        var marker = new google.maps.Marker({
-                            position: uluru,
-                            map: map
-                        });
-
-                        // console.log(vm.data);
-                        // $scope.lat =res.data.location.coordinate.latitude;
-                        // $scope.lng =res.data.location.coordinate.longitude;
-                        // console.log($scope.lat);
-                        // console.log($scope.lng);
-                    }, function (err) {
-                        console.log(err);
-                    }
-                );
-
-            findBusiness();
-
-            if(vm.currentUser) {
-                UserService
-                    .findUserById(vm.currentUser._id)
-                    .then(
-                        function (res) {
-                            var user = res.data;
-                            vm.username = user.username;
-                            var restaurantArray = user.restaurants;
-                            vm.liked = search(restaurantId, restaurantArray);
-                        },
-                        function (err) {
-                            vm.error = "User not found";
-                        }
-                    );
-                vm.deleteEnable = true;
-            }
-
-
-
-
-        }
 
         function findBusiness() {
             RestaurantService
@@ -372,9 +385,6 @@
             }
             return false;
         }
-        init();
-
-
 
 
         function likeRestaurant(restaurant) {
@@ -512,6 +522,7 @@
         }
 
         function editReview(review, localBusiness) {
+            toggleReview();
             vm.text=review.content;
             vm.rating=review.rating;
             vm.updateFlag=true;
@@ -546,6 +557,7 @@
                                         .then(function (status) {
                                             vm.text="";
                                             vm.rating=0;
+                                            toggleShowReview();
                                                 init();
                                             },function (error) {
                                                 console.log(error);
@@ -566,34 +578,30 @@
         }
 
 
+        function toggleMap() {
+            vm.mapFlag = !vm.mapFlag;
+            vm.reviewFlag = false;
+            vm.showReviewFlag = false;
+            init();
+        }
 
 
+        function toggleReview() {
+            vm.reviewFlag = !vm.reviewFlag ;
+            vm.mapFlag = false;
+            vm.showReviewFlag = false;
+
+        }
+
+
+        function toggleShowReview() {
+            vm.showReviewFlag = !vm.showReviewFlag ;
+            vm.reviewFlag = false;
+            vm.mapFlag = false;
+
+        }
 
     }
 
-
-
-
-
-
-//     function initMap() {
-//
-//
-//             var scope = angular.element("#map").scope();
-//             var lt =  window.lat;
-//             var lg =  window.lng;
-//
-//             console.log(window.lat);
-//             var uluru = {lat: lt, lng: lg};
-// //        console.log(scope)
-//             var map = new google.maps.Map(document.getElementById('map'), {
-//                 zoom: 8,
-//                 center: uluru
-//             });
-//             var marker = new google.maps.Marker({
-//                 position: uluru,
-//                 map: map
-//             });
-//         }
 
 })();

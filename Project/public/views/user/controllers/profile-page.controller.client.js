@@ -3,11 +3,21 @@
         .module("HungryApp")
         .controller("ProfilePageController", profilePageController);
 
-    function profilePageController($routeParams, UserService, FollowerService, $rootScope) {
+    function profilePageController($routeParams, $location, UserService, FollowerService, $rootScope) {
         var vm = this;
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
         vm.currentUser = $rootScope.currentUser.data;
+        vm.likeFlag = true;
+        vm.followerFlag= false;
+        vm.followingFlag = false;
+        vm.inviteFlag = false;
+        vm.showInviteFlag = false;
+        vm.toggleLike = toggleLike;
+        vm.toggleFollower = toggleFollower;
+        vm.toggleFollowing = toggleFollowing;
+        vm.toggleInvite = toggleInvite ;
+        vm.toggleShowInvite = toggleShowInvite ;
 
         var username = $routeParams.username;
 
@@ -92,6 +102,9 @@
 
                         }
 
+                    },function (err) {
+                        console.log(err);
+                    $location.url("/");
                     }
                 );
 
@@ -118,6 +131,53 @@
                 })
         }
 
+
+
+
+        function toggleLike() {
+            vm.likeFlag = !vm.likeFlag;
+            vm.followerFlag = false;
+            vm.followingFlag = false;
+            vm.inviteFlag = false;
+            vm.showInviteFlag =false;
+        }
+
+
+
+        function toggleFollower() {
+            vm.likeFlag = false;
+            vm.followerFlag = !vm.followerFlag ;
+            vm.followingFlag = false;
+            vm.inviteFlag = false;
+            vm.showInviteFlag =false;
+        }
+
+
+        function toggleFollowing() {
+            vm.likeFlag = false;
+            vm.followerFlag = false;
+            vm.followingFlag = !vm.followingFlag ;
+            vm.inviteFlag = false;
+            vm.showInviteFlag =false;
+        }
+
+
+        function toggleInvite() {
+            vm.likeFlag = false;
+            vm.followerFlag = false;
+            vm.followingFlag = false;
+            vm.inviteFlag = !vm.inviteFlag;
+            vm.showInviteFlag =false;
+        }
+
+
+        function toggleShowInvite () {
+            vm.likeFlag = false;
+            vm.followerFlag = false;
+            vm.followingFlag = false;
+            vm.inviteFlag = false;
+            vm.showInviteFlag = !vm.showInviteFlag;
+        }
 
     }
 

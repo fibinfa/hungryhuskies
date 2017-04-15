@@ -63,9 +63,12 @@
 
 
         function updateUser(user) {
-            console.log(user);
+            // console.log(user);
+            if(user.role){
+                user.role=user.role.toUpperCase();
+            }
             UserService
-                .updateUser(user._id, user)
+                .updateUser(user,user._id)
                 .then(
                     function (res) {
                         vm.user = {};

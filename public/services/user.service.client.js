@@ -41,8 +41,12 @@
         function createUser(user) {
             return $http.post("/api/user",user);
         }
-        function updateUser(newUser) {
-            return $http.put("/api/user/", newUser);
+        function updateUser(newUser,userId) {
+            if(userId){
+                return $http.put("/api/user/"+userId, newUser);
+            } else {
+                return $http.put("/api/user/", newUser);
+            }
         }
         
         function findUserByCredentials(username, password) {

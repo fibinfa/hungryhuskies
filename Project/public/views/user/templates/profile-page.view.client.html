@@ -132,7 +132,7 @@
 
             <button ng-show="!model.showInviteFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
                     ng-click="model.toggleShowInvite()">
-                Invites <span class="badge">{{model.profileUser.restaurants.length}}</span>
+                Invites <span class="badge">{{model.invites.length}}</span>
             </button>
 
             <button ng-show="model.showInviteFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
@@ -221,6 +221,8 @@
 
         </span>
 
+    </div>
+
 
             <!--create invite-->
 
@@ -238,18 +240,9 @@
                 </button>
             </div>
 
-            <!--list of invitations-->
 
-            <div ng-if="model.currentUser && model.currentUser.role == 'CRITIC' && model.invites.length>0"
-                 ng-repeat="invite in model.invites">
-                {{invite.restaurant}}
-                <button ng-show="!invite.isReviewed" ng-click="model.writeReview(invite)"
-                        class="btn btn-primary">
-                    Write Review
-                </button>
-            </div>
 
-    </div>
+
 
     <!--liked-->
     <div ng-if="model.likeFlag">
@@ -344,6 +337,24 @@
             </div>
         </div>
 
+    </div>
+
+
+    <!--list of invitations-->
+
+    <div ng-if="model.showInviteFlag && model.currentUser && model.currentUser.role == 'CRITIC'"
+         ng-repeat="invite in model.invites">
+        <div class="panel black-font">
+
+
+        {{invite.restaurant}}
+        <button ng-show="!invite.isReviewed" ng-click="model.writeReview(invite)"
+                class="btn btn-primary">
+            Write Review
+        </button>
+
+        <i ng-show="invite.isReviewed" class="fa fa-check fa-lg" aria-hidden="true"></i>
+        </div>
     </div>
 
 </div>

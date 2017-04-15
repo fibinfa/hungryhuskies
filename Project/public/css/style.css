@@ -9,7 +9,9 @@
     font-family: 'UnifrakturCook', cursive;
 }
 
-
+.black-font{
+    color: black !important;
+}
 
 .new-font{
     padding-left: 3px;

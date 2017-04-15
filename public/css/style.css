@@ -7,6 +7,9 @@
     overflow:hidden;
 }
 
+.ts-sidebar-menu li{
+    overflow: hidden;
+}
 
 
 #hungry{
@@ -37,8 +40,8 @@ body {
     background-image: url(../images/bg.jpg);
 }
 .t-top-margin{
-    margin-top: 10px;
-    padding-top: 20px;
+    margin-top: 20px;
+    padding-top: 30px;
 }
 
 

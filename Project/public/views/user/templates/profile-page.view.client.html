@@ -243,10 +243,10 @@
             <div ng-if="model.currentUser && model.currentUser.role == 'CRITIC' && model.invites.length>0"
                  ng-repeat="invite in model.invites">
                 {{invite.restaurant}}
-                <a ng-show="!invite.isReviewed" href="#/restaurant/{{invite.restaurant}}"
-                        class="button btn btn-primary">
+                <button ng-show="!invite.isReviewed" ng-click="model.writeReview(invite)"
+                        class="btn btn-primary">
                     Write Review
-                </a>
+                </button>
             </div>
 
     </div>

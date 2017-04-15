@@ -3,22 +3,23 @@ module.exports = function (app,model) {
 
     app.post("/api/invite", createInvite);
     app.get("/api/invite/:criticName", findAllInvitesByCriticName);
+    app.put("/api/invite/:inviteId", updateInvite);
     // app.delete("/api/comment/:commentId", deleteComment);
     // app.put("/api/comment/:commentId", updateReview);
 
-    // function updateReview(req, res) {
-    //     var reviewId = req.params.reviewId;
-    //     var review =req.body;
-    //     model.reviewModel
-    //         .updateReview(reviewId, review)
-    //         .then(
-    //             function(review){
-    //                 res.json(review);
-    //             }, function (error) {
-    //                 console.log(error);
-    //             }
-    //         );
-    // }
+    function updateInvite(req, res) {
+        var inviteId = req.params.inviteId;
+        var invite =req.body;
+        model.inviteModel
+            .updateInvite(inviteId, invite)
+            .then(
+                function(invite){
+                    res.json(invite);
+                }, function (error) {
+                    console.log(error);
+                }
+            );
+    }
 
     function findAllInvitesByCriticName(req, res) {
         var criticName = req.params.criticName;
@@ -31,16 +32,6 @@ module.exports = function (app,model) {
             )
     }
 
-    function deleteComment(req, res) {
-        var commentId = req.params.commentId;
-        model.commentModel
-            .deleteComment(commentId)
-            .then(
-                function(comment){
-                    res.json(comment);
-                }
-            )
-    }
 
 
     function createInvite(req, res) {

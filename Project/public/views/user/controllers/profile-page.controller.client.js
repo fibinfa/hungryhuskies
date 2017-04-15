@@ -4,7 +4,7 @@
         .controller("ProfilePageController", profilePageController);
 
 
-    function profilePageController($routeParams, UserService, FollowerService, $rootScope, InviteService) {
+    function profilePageController($routeParams, UserService, FollowerService, $rootScope, InviteService,$location) {
 
         var vm = this;
         vm.followUser = followUser;
@@ -20,6 +20,7 @@
         vm.toggleFollowing = toggleFollowing;
         vm.toggleInvite = toggleInvite ;
         vm.toggleShowInvite = toggleShowInvite ;
+        vm.writeReview = writeReview;
 
 
         var username = $routeParams.username;
@@ -219,6 +220,21 @@
             vm.inviteFlag = false;
             vm.showInviteFlag = !vm.showInviteFlag;
         }
+
+        function writeReview(invite) {
+            invite.isReviewed=true;
+            InviteService
+                .updateInvite(invite._id, invite)
+                .then(
+                    function (stats) {
+                        $location.url("/restaurant/"+invite.restaurant);
+                    }
+                )
+        }
+
+
+
+
 
     }
 

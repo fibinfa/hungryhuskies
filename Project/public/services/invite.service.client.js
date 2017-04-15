@@ -7,7 +7,8 @@
     function InviteService($http){
         var api = {
             createInvite: createInvite,
-            findInviteByCritic: findInviteByCritic
+            findInviteByCritic: findInviteByCritic,
+            updateInvite: updateInvite
             // updateReview: updateReview
         };
         return api;
@@ -16,12 +17,13 @@
         //     return $http.put("/api/review/"+reviewId, newReview);
         // }
 
+
         function findInviteByCritic(criticName) {
             return $http.get("/api/invite/"+criticName);
         }
 
-        function deleteComment(commentId) {
-            return $http.delete("/api/comment/"+commentId);
+        function updateInvite(inviteId, newInvite) {
+            return $http.put("/api/invite/"+inviteId, newInvite);
         }
 
         function createInvite(invite) {

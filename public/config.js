@@ -177,13 +177,13 @@
                 function (response) {
                     var user = response;
                     //console.log(user);
-                    if(user == '0'){
+                    if(user.data == '0'){
                         $rootScope.currentUser = null;
                         deferred.reject();
                         $location.url("/login");
                     } else {
                         $rootScope.currentUser = user;
-                        if(user.role === 'ADMIN') {
+                        if(user.data.role === 'ADMIN') {
                             deferred.resolve();
                         }
                         else {

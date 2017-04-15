@@ -128,7 +128,7 @@
     <div class="row">
 
         <!--for crtic-->
-        <span ng-if="model.profileUser.role==='CRITIC'">
+        <span ng-if="model.currentUser.role==='CRITIC'">
 
             <button ng-show="!model.showInviteFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
                     ng-click="model.toggleShowInvite()">
@@ -148,12 +148,14 @@
 
 
 
-        <button ng-show="!model.likeFlag && model.profileUser.role !='OWNER'" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
+        <button ng-show="!model.likeFlag && model.profileUser.role !='OWNER'"
+                class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
                 ng-click="model.toggleLike()">
             Liked <span class="badge">{{model.profileUser.restaurants.length}}</span>
         </button>
 
-        <button ng-show=" model.likeFlag && model.profileUser.role !='OWNER'" class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
+        <button ng-show=" model.likeFlag && model.profileUser.role !='OWNER'"
+                class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
                 ng-click="model.toggleLike()">
             &nbsp;
             &nbsp;
@@ -208,7 +210,7 @@
 
             <button ng-show="!model.inviteFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
                     ng-click="model.toggleInvite()">
-                Invite <span class="badge">{{model.profileUser.restaurants.length}}</span>
+                Invite <span class="badge">{{model.currentUser.restaurants.length}}</span>
             </button>
 
             <button ng-show="model.inviteFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
@@ -347,7 +349,7 @@
         <div class="panel black-font">
 
 
-        {{invite.restaurant}}
+            <a href="#/restaurant/{{invite.restaurant}}">{{invite.restaurant}}</a>
         <button ng-show="!invite.isReviewed" ng-click="model.writeReview(invite)"
                 class="btn btn-primary">
             Write Review

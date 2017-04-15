@@ -1,7 +1,7 @@
 module.exports = function (app, model) {
 
     var multer = require('multer');
-    var upload = multer({ dest:__dirname+'/../public/uploads'});
+    var upload = multer({ dest:__dirname+'/../../public/uploads'});
     // console.log({dest: __dirname });
 
     app.post("/api/uploads", upload.single('myFile'), uploadImage);

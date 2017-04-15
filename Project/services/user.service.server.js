@@ -62,18 +62,18 @@ module.exports = function (app, model) {
         }));
 
     var googleConfig = {
-        clientID     : "914499455124-0d4jn9hpden18rgigd7f9j6e3q88tiu5.apps.googleusercontent.com",//process.env.GOOGLE_CLIENT_ID,
-        clientSecret : "cCBYplD2WmznaKvTTn7CbPac",//process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL  : "http://localhost:3000/auth/google/callback"//process.env.GOOGLE_CALLBACK_URL
+        clientID     : process.env.GOOGLE_CLIENT_ID,//"914499455124-0d4jn9hpden18rgigd7f9j6e3q88tiu5.apps.googleusercontent.com",//
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,//"cCBYplD2WmznaKvTTn7CbPac",//
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL//"http://localhost:3000/auth/google/callback"//
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 
     var facebookConfig = {
-        clientID     : "1479677212082333",//process.env.FACEBOOK_CLIENT_ID, ////
-        clientSecret : "be7bc72af96265506db4ae5faf14a61d",//process.env.FACEBOOK_CLIENT_SECRET,//
-        callbackURL  : "http://localhost:3000/auth/facebook/callback"//process.env.FACEBOOK_CALLBACK_URL//
+        clientID     : process.env.FACEBOOK_CLIENT_ID, ////"1479677212082333",//
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,//"be7bc72af96265506db4ae5faf14a61d",//
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL//"http://localhost:3000/auth/facebook/callback"//
     };
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));

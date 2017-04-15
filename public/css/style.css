@@ -12,7 +12,8 @@
 #hungry{
     padding-left: 3px;
     font-size: x-large;
-    font-family: 'UnifrakturCook', cursive;
+    /*font-family: 'UnifrakturCook', cursive;*/
+    font-family: 'Asar', serif;
 }
 
 .black-font{
@@ -144,7 +145,8 @@ p{
 
 
 .t-font{
-    font-family: 'UnifrakturCook', cursive ;
+    /*font-family: 'UnifrakturCook', cursive ;*/
+    font-family: 'Asar', serif;
     color: antiquewhite;
     margin-right: 20px;
     margin-left: 20px;

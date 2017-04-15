@@ -236,11 +236,13 @@
 
                  ng-repeat="restaurant in model.currentUser.restaurants">
                 {{restaurant._id}}
-                <button ng-show="!restaurant.sendInviteFlag" ng-click = "model.createInvite(restaurant)"
+                <button ng-show="!restaurant.sendInviteFlag" ng-click = "model.createInvite(restaurant); restaurant.sendInviteFlag=true"
                         class="btn btn-primary">
                     Invite
                 </button>
             </div>
+
+            <br>
 
 
 

@@ -3,6 +3,12 @@
     /*width: 400px;*/
 }
 
+.panel{
+    overflow:hidden;
+}
+
+
+
 #hungry{
     padding-left: 3px;
     font-size: x-large;

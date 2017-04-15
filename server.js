@@ -26,7 +26,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-require ("./app.js")(app);
+require ("./Project/app")(app);
 
 var port = process.env.PORT || 3000;
 

@@ -10,7 +10,7 @@
         vm.followUser = followUser;
         vm.unFollowUser = unFollowUser;
         vm.createInvite = createInvite;
-        vm.likeFlag = true;
+        vm.likeFlag = false;
         vm.followerFlag= false;
         vm.followingFlag = false;
         vm.inviteFlag = false;
@@ -88,7 +88,7 @@
                                 function(follower){
                                     // vm.follower= follower;
                                     vm.followerUser = [];
-                                    console.log(follower);
+                                    // console.log(follower);
 
                                     for(var i=0;i<follower.data.length;i++){
 

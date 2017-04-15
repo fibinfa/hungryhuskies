@@ -44,6 +44,13 @@
                 interval: 4000
             });
 
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(function (position) {
+                  // console.log(position.coords.latitude);
+                  // console.log(position.coords.longitude);
+                });
+            }
+
 
         }init();
     }

@@ -213,6 +213,12 @@ p{
 }
 
 
+.image-view{
+    width: 100%;
+    height: 300px !important;
+}
+
+
 .t-button {
     padding: 10px;
     margin-right: 8px;

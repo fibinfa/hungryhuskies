@@ -14,7 +14,7 @@
         var location = $routeParams.location;
 
         function init() {
-            // vm.currentUser = $rootScope.currentUser;
+            vm.currentUser = $rootScope.currentUser;
 
             if(category) {
                 RestaurantService
@@ -29,6 +29,8 @@
                     {
                         term: searchTerm,
                         location: location
+
+
                     }
 
                 RestaurantService

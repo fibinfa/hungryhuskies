@@ -177,7 +177,7 @@
 
         <button ng-show="!model.followerFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
                 ng-click="model.toggleFollower()">
-            Followers <span class="badge">{{model.profileUser.restaurants.length}}</span>
+            Followers <span class="badge">{{model.followerUser.length}}</span>
         </button>
 
         <button ng-show="model.followerFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
@@ -190,11 +190,11 @@
 
         <button ng-show="!model.followingFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-down"
                 ng-click="model.toggleFollowing()">
-            Following <span class="badge">{{model.profileUser.restaurants.length}}</span>
+            Following <span class="badge">{{model.followingUser.length}}</span>
         </button>
 
         <button ng-show="model.followingFlag" class="btn btn-outline-primary fa fa-lg fa-hand-o-up"
-                ng-click="model.toggleFollower()">
+                ng-click="model.toggleFollowing()">
             &nbsp;
             &nbsp;
             &nbsp;
@@ -254,7 +254,7 @@
     <!--liked-->
     <div ng-if="model.likeFlag">
 
-        <div ng-repeat="restaurant in model.profileUser.restaurants" class="col-md-3">
+        <div ng-repeat="restaurant in model.profileUser.restaurants" class="col-xs-12 col-sm-4 col-md-3">
             <div class="panel">
                 <a href="#/restaurant/{{restaurant._id}}">
                     <p class="thumbnail">
@@ -279,12 +279,21 @@
     <!--follower-->
     <div ng-if="model.followerFlag">
 
-        <div ng-repeat="userObj in model.followerUser" class="col-md-3">
+        <div ng-repeat="userObj in model.followerUser" class="col-xs-12 col-sm-4 col-md-3">
             <div class="panel">
                 <a href="#/user/{{userObj.username}}">
                     <div class="thumbnail">
-                        <img class="img-responsive"
-                             width="100%"
+                        <img ng-if="!userObj.url"
+                             ng-src="../../images/blank-img.jpg"
+                             class="img-responsive image-view"
+                             width="300px"
+                             height="300px"
+                             alt="avatar">
+
+                        <img ng-if="userObj.url"
+                             class="img-responsive image-view"
+                             width="300px"
+                             height="300px"
                              ng-src="{{userObj.url}}" alt="">
                     </div>
                 </a>
@@ -304,19 +313,21 @@
     <!--following-->
     <div ng-if="model.followingFlag">
 
-        <div ng-repeat="userObj in model.followingUser" class="col-md-3">
+        <div ng-repeat="userObj in model.followingUser" class="col-xs-12 col-sm-4 col-md-3">
             <div class="panel">
                 <a href="#/user/{{userObj.username}}">
                     <div class="thumbnail">
                         <img ng-if="!userObj.url"
                              ng-src="../../images/blank-img.jpg"
-                             class="img-responsive"
-                             width="100%"
+                             class="img-responsive image-view"
+                             width="300px"
+                             height="300px"
                              alt="avatar">
 
                         <img ng-if="userObj.url"
-                             class="img-responsive"
-                             width="100%"
+                             class="img-responsive image-view"
+                             width="300px"
+                             height="300px"
                              ng-src="{{userObj.url}}" alt="">
                     </div>
                 </a>

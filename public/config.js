@@ -175,7 +175,7 @@
             .checkLoggedIn()
             .then(
                 function (response) {
-                    var user = response.data;
+                    var user = response;
                     //console.log(user);
                     if(user == '0'){
                         $rootScope.currentUser = null;

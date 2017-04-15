@@ -13,7 +13,10 @@
         There are errors in the form. Please correct the errors and submit again.
     </div>
 
-     <form name="registerForm" novalidate>
+     <form name="registerForm" novalidate ng-submit="!registerForm.username.$invalid &&
+            !registerForm.password.$invalid && !registerForm.cpassword.$invalid
+            && user.password == user.cpassword">
+         {{user.password}}
         <div class="form-group">
                 <label for="username">Username</label>
                 <input ng-model="user.username" type="text" class="form-control"
@@ -42,7 +45,7 @@
      <div ng-show="registerForm.$submitted && registerForm.cpassword.$invalid" class="error">
          Please re-enter the password
      </div>
-     <div ng-show="registerForm.$submitted && registerForm.password.value != registerForm.cpassword.value" class="error">
+     <div ng-show="registerForm.$submitted && user.password!='' && user.cpassword!='' && user.password != user.cpassword" class="error">
          Your password and confirmation-password do not match.
      </div>
      <div class="form-group">

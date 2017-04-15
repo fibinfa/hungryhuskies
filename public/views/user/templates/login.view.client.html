@@ -7,7 +7,7 @@
          There are errors in the form. Please correct the errors and submit again.
      </div>
 
-     <form name="loginForm" novalidate>
+     <form name="loginForm" novalidate ng-submit="!loginForm.username.$invalid && !loginForm.password.$invalid">
 
      <label for="username">Username</label>
         <input ng-model="user.username" id="username" name="username" type="text"

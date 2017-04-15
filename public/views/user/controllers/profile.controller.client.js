@@ -11,7 +11,7 @@
         vm.logout = logout;
         vm.searchPhotos =searchPhotos;
         vm.selectPhoto = selectPhoto;
-        vm.showPhotos = false;
+
 
         function init(){
    // var promise = UserService
@@ -33,11 +33,12 @@
             user.url=url;
             vm.searchText="";
             update(user);
+            vm.showPhotos=false;
         }
 
 
         function searchPhotos(searchText) {
-            vm.showPhotos=!vm.showPhotos;
+            vm.showPhotos = true;
             FlickerService.searchPhotos(searchText)
                 .then(function(response){
                     data = response.data.replace("jsonFlickrApi(","");

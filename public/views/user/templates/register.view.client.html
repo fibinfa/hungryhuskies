@@ -16,7 +16,6 @@
      <form name="registerForm" novalidate ng-submit="!registerForm.username.$invalid &&
             !registerForm.password.$invalid && !registerForm.cpassword.$invalid
             && user.password == user.cpassword">
-         {{user.password}}
         <div class="form-group">
                 <label for="username">Username</label>
                 <input ng-model="user.username" type="text" class="form-control"
